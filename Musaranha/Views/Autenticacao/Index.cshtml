@@ -1,0 +1,78 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="~/favicon.png" />
+
+    <title>Autenticação - Projeto Musaranha</title>
+
+    @Styles.Render("~/bundles/css")
+
+    <style>
+        .login-form {
+            width: 25rem;
+            height: 18.75rem;
+            position: fixed;
+            top: 50%;
+            margin-top: -9.375rem;
+            left: 50%;
+            margin-left: -12.5rem;
+            background-color: #ffffff;
+            opacity: 0;
+            -webkit-transform: scale(.8);
+            transform: scale(.8);
+        }
+    </style>    
+</head>
+<body>
+    <div class="login-form padding20 block-shadow">
+        <form method="post">
+            <h1 class="text-light">Autenticação</h1>
+            <hr class="thin" />
+            <br />
+            <div class="input-control text full-size" data-role="input">
+                <label for="user_login">Nome de usuário:</label>
+                <input type="text" name="user_login" id="user_login" required>
+                <button class="button helper-button clear"><span class="mif-cross"></span></button>
+            </div>
+            <br />
+            <br />
+            <div class="input-control password full-size" data-role="input">
+                <label for="user_password">Palavra-chave:</label>
+                <input type="password" name="user_password" id="user_password" required>
+                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+            </div>
+            <br />
+            <br />
+            <div class="form-actions">
+                <button type="submit" class="button primary">Acessar...</button>
+                <button type="button" class="button link">Cancelar</button>
+            </div>
+        </form>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+
+    <script>
+        $(function () {
+            var form = $('.login-form');
+
+            form.css({
+                opacity: 1,
+                '-webkit-transform': 'scale(1)',
+                'transform': 'scale(1)',
+                '-webkit-transition': '.5s',
+                'transition': '.5s'
+            });
+        });
+    </script>
+</body>
+</html>
