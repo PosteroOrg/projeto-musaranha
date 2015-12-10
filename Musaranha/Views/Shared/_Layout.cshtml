@@ -1,0 +1,108 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="shortcut icon" href="~/favicon.png" />
+
+    <title>@ViewBag.Title - Projeto Musaranha</title>
+
+    @Styles.Render("~/bundles/css")
+    @RenderSection("Styles", required: false)
+
+    <style>
+        html, body {
+            height: 100%;
+        }
+        body {
+        }
+        .page-content {
+            padding-top: 3.125rem;
+            min-height: 100%;
+            height: 100%;
+        }
+        .table .input-control.checkbox {
+            line-height: 1;
+            min-height: 0;
+            height: auto;
+        }
+
+        @@media screen and (max-width: 800px){
+            #cell-sidebar {
+                flex-basis: 52px;
+            }
+            #cell-content {
+                flex-basis: calc(100% - 52px);
+            }
+        }
+    </style>    
+</head>
+<body class="bg-steel">
+    <div class="app-bar fixed-top darcula" data-role="appbar">
+        <a class="app-bar-element branding">Projeto Musaranha</a>
+        <span class="app-bar-divider"></span>        
+
+        <div class="app-bar-element place-right">
+            <span class="dropdown-toggle">Ariranda</span>
+            <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
+                <h2 class="text-light">Ações</h2>
+                <ul class="unstyled-list fg-dark">
+                    <li><a href="" class="fg-white1 fg-hover-yellow">Configurações</a></li>
+                    <li><a href="" class="fg-white3 fg-hover-yellow">Sair</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="page-content">
+        <div class="flex-grid no-responsive-future" style="height: 100%;">
+            <div class="row" style="height: 100%">
+                <div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+                    <ul class="sidebar">
+                        <li class="active">
+                            <a href="#">
+                                <span class="mif-apps icon"></span>
+                                <span class="title">Painel</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-vpn-publ icon"></span>
+                                <span class="title">Relatórios</span>
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="cell auto-size padding20 bg-white" id="cell-content">
+                    @RenderBody()
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @Scripts.Render("~/bundles/js")
+    <script>
+        function pushMessage(t){
+            var mes = 'Info|Implement independently';
+            $.Notify({
+                caption: mes.split("|")[0],
+                content: mes.split("|")[1],
+                type: t
+            });
+        }
+
+        $(function(){
+            $('.sidebar').on('click', 'li', function(){
+                if (!$(this).hasClass('active')) {
+                    $('.sidebar li').removeClass('active');
+                    $(this).addClass('active');
+                }
+            })
+        })
+    </script>
+    @RenderSection("Scripts", required: false)
+
+</body>
+</html>
