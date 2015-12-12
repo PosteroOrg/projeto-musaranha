@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace Musaranha.Controllers
 {
+    [Filters.AutenticacaoFilter]
     public class PainelController : Controller
     {
-        // GET: Painel
         public ActionResult Index()
         {
             return View();

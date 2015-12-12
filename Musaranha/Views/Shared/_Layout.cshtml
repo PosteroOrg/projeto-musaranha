@@ -45,12 +45,11 @@
         <span class="app-bar-divider"></span>        
 
         <div class="app-bar-element place-right">
-            <span class="dropdown-toggle">Ariranda</span>
+            <span class="dropdown-toggle">@Session["Usuario"]</span>
             <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
                 <h2 class="text-light">Ações</h2>
                 <ul class="unstyled-list fg-dark">
-                    <li><a href="" class="fg-white1 fg-hover-yellow">Configurações</a></li>
-                    <li><a href="" class="fg-white3 fg-hover-yellow">Sair</a></li>
+                    <li><a href="@Url.Action("Sair", "Autenticacao")" class="fg-white3 fg-hover-yellow">Sair</a></li>
                 </ul>
             </div>
         </div>

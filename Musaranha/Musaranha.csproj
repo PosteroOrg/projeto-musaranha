@@ -140,9 +140,11 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\PainelController.cs" />
+    <Compile Include="Filters\AutenticacaoFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\Criptografia.cs" />
     <Compile Include="Models\Acesso.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
@@ -155,6 +157,7 @@
     <Compile Include="Models\CompraProduto.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\Contexto.cs" />
     <Compile Include="Models\Endereco.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
@@ -164,6 +167,7 @@
     <Compile Include="Models\Funcionario.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pAcesso.cs" />
     <Compile Include="Models\Pagamento.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
