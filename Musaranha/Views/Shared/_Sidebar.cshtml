@@ -1,0 +1,60 @@
+﻿@{ 
+    var pathname = Request.Path.ToLower();
+}
+
+<ul class="sidebar">
+    <li class="@(pathname.StartsWith("/painel") ? "active" : "")">
+        <a href="#">
+            <span class="mif-apps icon"></span>
+            <span class="title">Painel</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/cliente") ? "active" : "")">
+        <a href="#">
+            <span class="mif-users icon"></span>
+            <span class="title">Clientes</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/funcionario") ? "active" : "")">
+        <a href="#">
+            <span class="mif-contacts-mail icon"></span>
+            <span class="title">Funcionários</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/fornecedor") ? "active" : "")">
+        <a href="#">
+            <span class="mif-shop icon"></span>
+            <span class="title">Fornecedores</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/produto") ? "active" : "")">
+        <a href="#">
+            <span class="mif-files-empty icon"></span>
+            <span class="title">Produtos</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/compra") ? "active" : "")">
+        <a href="#">
+            <span class="mif-shopping-basket2 icon"></span>
+            <span class="title">Compras</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/venda") ? "active" : "")">
+        <a href="#">
+            <span class="mif-coins icon"></span>
+            <span class="title">Vendas</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/relatorio/compra") ? "active" : "")">
+        <a href="#">
+            <span class="mif-chart-bars2 icon"></span>
+            <span class="title">Relatório<br /> de Compras</span>
+        </a>
+    </li>
+    <li class="@(pathname.StartsWith("/relatorio/venda") ? "active" : "")">
+        <a href="#">
+            <span class="mif-chart-bars icon"></span>
+            <span class="title">Relatório<br /> de Vendas</span>
+        </a>
+    </li>
+</ul>
