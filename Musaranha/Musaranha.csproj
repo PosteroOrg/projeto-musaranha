@@ -139,6 +139,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
+    <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\PainelController.cs" />
     <Compile Include="Filters\AutenticacaoFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
@@ -221,6 +222,7 @@
     <Content Include="Models\Repositorio.edmx.diagram">
       <DependentUpon>Repositorio.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Configuracoes\Index.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

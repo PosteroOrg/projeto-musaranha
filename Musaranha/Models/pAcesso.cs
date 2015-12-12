@@ -17,6 +17,16 @@ namespace Musaranha.Models
                 return true;
             }
             return false;
-        }        
+        }     
+        
+        public static void AlterarSenha(string usuario, string senha)
+        {
+            var acesso = c.Acessos.FirstOrDefault(x => x.Usuario == usuario);
+            if (acesso != null)
+            {
+                acesso.Senha = Criptografia.GerarMD5Hash(senha);
+                c.SaveChanges();
+            }            
+        }   
     }
 }

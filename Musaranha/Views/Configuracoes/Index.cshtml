@@ -1,0 +1,67 @@
+﻿
+@{
+    ViewBag.Title = "Configurações";
+}
+
+@section Scripts{
+    @if (ViewBag.Mensagens != null)
+    {
+
+        <script>
+            $(function () {
+                @foreach (var mensagem in ViewBag.Mensagens)
+                {
+                    <text>
+                    $.Notify({
+                        content: '@mensagem["Conteudo"]',
+                        type: '@mensagem["Tipo"]'
+                    });
+                    </text>
+                }
+            });
+        </script>
+
+    }
+      
+}
+
+<h1 class="text-light">@ViewBag.Title <span class="mif-cogs place-right"></span></h1>
+<hr class="thin bg-grayLighter">
+
+<form method="post">
+    <h2 class="text-light">Alterar senha</h2>
+    <br />
+    <div class="grid">
+        <div class="row cells">
+            <div class="cell colspan5">
+                <div class="input-control password full-size" data-role="input">
+                    <label>Senha atual</label>
+                    <input type="password" name="txtSenhaAtual"  placeholder="Senha atual" pattern="[A-Za-z0-9]{5,}" required>
+                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="row cells2">
+            <div class="cell colspan5">
+                <div class="input-control password full-size" data-role="input">
+                    <label>Senha nova</label>
+                    <input type="password" name="txtSenhaNova" placeholder="Senha nova" pattern="[A-Za-z0-9]{5,}" required>
+                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                </div>
+            </div>
+        </div>
+        <div class="row cells2">
+            <div class="cell colspan5">
+                <div class="input-control password full-size" data-role="input">
+                    <label>Confirmação</label>
+                    <input type="password" name="txtConfirmacao"  placeholder="Confirmação" pattern="[A-Za-z0-9]{5,}" required>
+                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+                </div>
+            </div>
+        </div>
+    </div> 
+    <div class="form-actions">
+        <button type="submit" class="button primary">Alterar</button>
+        <button type="reset" class="button link">Cancelar</button>
+    </div>
+</form>

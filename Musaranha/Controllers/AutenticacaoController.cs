@@ -12,6 +12,10 @@ namespace Musaranha.Controllers
         [HttpGet]
         public ActionResult Index()
         {
+            if (Session["Autenticado"] != null)
+            {
+                return RedirectToAction("Index", "Painel");
+            }
             return View();
         }
 
