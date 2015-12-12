@@ -48,6 +48,14 @@
       <HintPath>..\packages\Antlr.3.4.1.9004\lib\Antlr3.Runtime.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.1.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
       <Private>True</Private>
@@ -57,6 +65,8 @@
       <HintPath>..\packages\Newtonsoft.Json.5.0.4\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -111,6 +121,16 @@
     <Content Include="Content\metro-responsive.css" />
     <Content Include="Content\metro.css" />
     <Content Include="Global.asax" />
+    <Content Include="Models\Repositorio.Context.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Repositorio.edmx</DependentUpon>
+      <LastGenOutput>Repositorio.Context.cs</LastGenOutput>
+    </Content>
+    <Content Include="Models\Repositorio.tt">
+      <Generator>TextTemplatingFileGenerator</Generator>
+      <DependentUpon>Repositorio.edmx</DependentUpon>
+      <LastGenOutput>Repositorio.cs</LastGenOutput>
+    </Content>
     <Content Include="Scripts\libs\jquery-2.1.4.js" />
     <Content Include="Scripts\libs\metro.js" />
     <Content Include="Web.config" />
@@ -122,6 +142,60 @@
     <Compile Include="Controllers\PainelController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Acesso.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Cliente.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Compra.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\CompraProduto.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Endereco.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Fornecedor.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Funcionario.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pagamento.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Pessoa.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Produto.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repositorio.Context.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Repositorio.Context.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repositorio.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Repositorio.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Repositorio.edmx</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Telefone.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\Venda.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
+    </Compile>
+    <Compile Include="Models\VendaProduto.cs">
+      <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -136,6 +210,13 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Painel\Index.cshtml" />
+    <EntityDeploy Include="Models\Repositorio.edmx">
+      <Generator>EntityModelCodeGenerator</Generator>
+      <LastGenOutput>Repositorio.Designer.cs</LastGenOutput>
+    </EntityDeploy>
+    <Content Include="Models\Repositorio.edmx.diagram">
+      <DependentUpon>Repositorio.edmx</DependentUpon>
+    </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
@@ -145,7 +226,9 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
-    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
