@@ -58,7 +58,7 @@
     <div class="page-content">
         <div class="flex-grid no-responsive-future" style="height: 100%;">
             <div class="row" style="height: 100%">
-                <div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
+                <div class="cell" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
                     <ul class="sidebar">
                         <li class="active">
                             <a href="#">
@@ -68,8 +68,50 @@
                         </li>
                         <li>
                             <a href="#">
-                                <span class="mif-vpn-publ icon"></span>
-                                <span class="title">Relatórios</span>
+                                <span class="mif-users icon"></span>
+                                <span class="title">Clientes</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-contacts-mail icon"></span>
+                                <span class="title">Funcionários</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-shop icon"></span>
+                                <span class="title">Fornecedores</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-files-empty icon"></span>
+                                <span class="title">Produtos</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-shopping-basket2 icon"></span>
+                                <span class="title">Compras</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-coins icon"></span>
+                                <span class="title">Vendas</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-chart-bars2 icon"></span>
+                                <span class="title">Relatório<br /> de Compras</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <span class="mif-chart-bars icon"></span>
+                                <span class="title">Relatório<br /> de Vendas</span>
                             </a>
                         </li>
                     </ul>
@@ -91,15 +133,6 @@
                 type: t
             });
         }
-
-        $(function(){
-            $('.sidebar').on('click', 'li', function(){
-                if (!$(this).hasClass('active')) {
-                    $('.sidebar li').removeClass('active');
-                    $(this).addClass('active');
-                }
-            })
-        })
     </script>
     @RenderSection("Scripts", required: false)
 
