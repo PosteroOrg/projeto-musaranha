@@ -1,0 +1,27 @@
+﻿@{
+    var pathname = Request.Path.ToLower();
+}
+
+@if (pathname.StartsWith("/cliente")) {
+    @Scripts.Render("~/bundles/js/cliente")
+}
+else if(pathname.StartsWith("/funcionario"))
+{
+    @Scripts.Render("~/bundles/js/funcionario")
+}
+else if(pathname.StartsWith("/fornecedor"))
+{
+    @Scripts.Render("~/bundles/js/fornecedor")
+}
+else if(pathname.StartsWith("/produto"))
+{
+    @Scripts.Render("~/bundles/js/produto")
+}
+else if(pathname.StartsWith("/compra"))
+{
+    @Scripts.Render("~/bundles/js/compra")
+}
+else if(pathname.StartsWith("/venda"))
+{
+    @Scripts.Render("~/bundles/js/venda")
+}

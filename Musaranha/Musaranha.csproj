@@ -133,6 +133,13 @@
     </Content>
     <Content Include="Scripts\libs\jquery-2.1.4.js" />
     <Content Include="Scripts\libs\metro.js" />
+    <Content Include="Scripts\modules\musaranha.fornecedor.js" />
+    <Content Include="Scripts\modules\musaranha.venda.js" />
+    <Content Include="Scripts\modules\musaranha.compra.js" />
+    <Content Include="Scripts\modules\musaranha.produto.js" />
+    <Content Include="Scripts\modules\musaranha.funcionario.js" />
+    <Content Include="Scripts\modules\musaranha.cliente.js" />
+    <Content Include="Scripts\musaranha.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -224,6 +231,7 @@
     </Content>
     <Content Include="Views\Configuracoes\Index.cshtml" />
     <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_Modulo.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

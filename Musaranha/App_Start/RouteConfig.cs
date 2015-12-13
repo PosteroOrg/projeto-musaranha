@@ -17,8 +17,8 @@ namespace Musaranha
 
             routes.MapRoute(
                 name: "Default",
-                url: "{controller}/{action}/{id}",
-                defaults: new { controller = "Autenticacao", action = "Index", id = UrlParameter.Optional }
+                url: "{controller}/{action}/{cod}",
+                defaults: new { controller = "Autenticacao", action = "Index", cod = UrlParameter.Optional }
             );
         }
     }
