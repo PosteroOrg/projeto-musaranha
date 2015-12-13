@@ -3,28 +3,6 @@
     ViewBag.Title = "Configurações";
 }
 
-@section Scripts{
-    @if (ViewBag.Mensagens != null)
-    {
-
-        <script>
-            $(function () {
-                @foreach (var mensagem in ViewBag.Mensagens)
-                {
-                    <text>
-                    $.Notify({
-                        content: '@mensagem["Conteudo"]',
-                        type: '@mensagem["Tipo"]'
-                    });
-                    </text>
-                }
-            });
-        </script>
-
-    }
-      
-}
-
 <h1 class="text-light">@ViewBag.Title <span class="mif-cogs place-right"></span></h1>
 <hr class="thin bg-grayLighter">
 

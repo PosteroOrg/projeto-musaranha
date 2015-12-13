@@ -70,16 +70,22 @@
     </div>
 
     @Scripts.Render("~/bundles/js")
-    <script>
-        function pushMessage(t){
-            var mes = 'Info|Implement independently';
-            $.Notify({
-                caption: mes.split("|")[0],
-                content: mes.split("|")[1],
-                type: t
+    @if (ViewBag.Mensagens != null)
+    {
+        <script>
+            $(function () {
+                @foreach (var mensagem in ViewBag.Mensagens)
+                {
+                    <text>
+                    $.Notify({
+                        content: '@mensagem["Conteudo"]',
+                        type: '@mensagem["Tipo"]'
+                    });
+                    </text>
+                }
             });
-        }
-    </script>
+        </script>
+    }
     @RenderSection("Scripts", required: false)
 
 </body>
