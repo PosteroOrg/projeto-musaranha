@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="MusaranhaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="MusaranhaModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="Acesso">
           <Key>
             <PropertyRef Name="CodAcesso" />
@@ -127,7 +127,7 @@
           <Property Name="Quantidade" Type="float" Nullable="false" />
           <Property Name="PrecoUnitario" Type="money" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Cliente__CodPess__1BFD2C07">
+        <Association Name="FK__Cliente__CodPess__164452B1">
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -139,7 +139,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Compra__CodForne__2B3F6F97">
+        <Association Name="FK__Compra__CodForne__2F10007B">
           <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="1" />
           <End Role="Compra" Type="Self.Compra" Multiplicity="*" />
           <ReferentialConstraint>
@@ -151,7 +151,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CompraPro__CodCo__32E0915F">
+        <Association Name="FK__CompraPro__CodCo__3A81B327">
           <End Role="Compra" Type="Self.Compra" Multiplicity="1" />
           <End Role="CompraProduto" Type="Self.CompraProduto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -163,7 +163,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__CompraPro__CodPr__31EC6D26">
+        <Association Name="FK__CompraPro__CodPr__398D8EEE">
           <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
           <End Role="CompraProduto" Type="Self.CompraProduto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -175,7 +175,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Fornecedo__CodPe__21B6055D">
+        <Association Name="FK__Fornecedo__CodPe__1FCDBCEB">
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
           <End Role="Fornecedor" Type="Self.Fornecedor" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -187,7 +187,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Funcionar__CodPe__1ED998B2">
+        <Association Name="FK__Funcionar__CodPe__1B0907CE">
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
           <End Role="Funcionario" Type="Self.Funcionario" Multiplicity="0..1" />
           <ReferentialConstraint>
@@ -211,7 +211,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Pessoa__CodEnder__164452B1">
+        <Association Name="FK__Pessoa__CodEnder__0CBAE877">
           <End Role="Endereco" Type="Self.Endereco" Multiplicity="1" />
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="*" />
           <ReferentialConstraint>
@@ -223,7 +223,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Telefone__CodPes__1920BF5C">
+        <Association Name="FK__Telefone__CodPes__117F9D94">
           <End Role="Pessoa" Type="Self.Pessoa" Multiplicity="1" />
           <End Role="Telefone" Type="Self.Telefone" Multiplicity="*" />
           <ReferentialConstraint>
@@ -235,7 +235,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Venda__CodClient__286302EC">
+        <Association Name="FK__Venda__CodClient__2A4B4B5E">
           <End Role="Cliente" Type="Self.Cliente" Multiplicity="1" />
           <End Role="Venda" Type="Self.Venda" Multiplicity="*" />
           <ReferentialConstraint>
@@ -247,7 +247,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VendaProd__CodPr__2E1BDC42">
+        <Association Name="FK__VendaProd__CodPr__33D4B598">
           <End Role="Produto" Type="Self.Produto" Multiplicity="1" />
           <End Role="VendaProduto" Type="Self.VendaProduto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -259,7 +259,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__VendaProd__CodVe__2F10007B">
+        <Association Name="FK__VendaProd__CodVe__34C8D9D1">
           <End Role="Venda" Type="Self.Venda" Multiplicity="1" />
           <End Role="VendaProduto" Type="Self.VendaProduto" Multiplicity="*" />
           <ReferentialConstraint>
@@ -285,27 +285,27 @@
           <EntitySet Name="Telefone" EntityType="Self.Telefone" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="Venda" EntityType="Self.Venda" Schema="dbo" store:Type="Tables" />
           <EntitySet Name="VendaProduto" EntityType="Self.VendaProduto" Schema="dbo" store:Type="Tables" />
-          <AssociationSet Name="FK__Cliente__CodPess__1BFD2C07" Association="Self.FK__Cliente__CodPess__1BFD2C07">
+          <AssociationSet Name="FK__Cliente__CodPess__164452B1" Association="Self.FK__Cliente__CodPess__164452B1">
             <End Role="Pessoa" EntitySet="Pessoa" />
             <End Role="Cliente" EntitySet="Cliente" />
           </AssociationSet>
-          <AssociationSet Name="FK__Compra__CodForne__2B3F6F97" Association="Self.FK__Compra__CodForne__2B3F6F97">
+          <AssociationSet Name="FK__Compra__CodForne__2F10007B" Association="Self.FK__Compra__CodForne__2F10007B">
             <End Role="Fornecedor" EntitySet="Fornecedor" />
             <End Role="Compra" EntitySet="Compra" />
           </AssociationSet>
-          <AssociationSet Name="FK__CompraPro__CodCo__32E0915F" Association="Self.FK__CompraPro__CodCo__32E0915F">
+          <AssociationSet Name="FK__CompraPro__CodCo__3A81B327" Association="Self.FK__CompraPro__CodCo__3A81B327">
             <End Role="Compra" EntitySet="Compra" />
             <End Role="CompraProduto" EntitySet="CompraProduto" />
           </AssociationSet>
-          <AssociationSet Name="FK__CompraPro__CodPr__31EC6D26" Association="Self.FK__CompraPro__CodPr__31EC6D26">
+          <AssociationSet Name="FK__CompraPro__CodPr__398D8EEE" Association="Self.FK__CompraPro__CodPr__398D8EEE">
             <End Role="Produto" EntitySet="Produto" />
             <End Role="CompraProduto" EntitySet="CompraProduto" />
           </AssociationSet>
-          <AssociationSet Name="FK__Fornecedo__CodPe__21B6055D" Association="Self.FK__Fornecedo__CodPe__21B6055D">
+          <AssociationSet Name="FK__Fornecedo__CodPe__1FCDBCEB" Association="Self.FK__Fornecedo__CodPe__1FCDBCEB">
             <End Role="Pessoa" EntitySet="Pessoa" />
             <End Role="Fornecedor" EntitySet="Fornecedor" />
           </AssociationSet>
-          <AssociationSet Name="FK__Funcionar__CodPe__1ED998B2" Association="Self.FK__Funcionar__CodPe__1ED998B2">
+          <AssociationSet Name="FK__Funcionar__CodPe__1B0907CE" Association="Self.FK__Funcionar__CodPe__1B0907CE">
             <End Role="Pessoa" EntitySet="Pessoa" />
             <End Role="Funcionario" EntitySet="Funcionario" />
           </AssociationSet>
@@ -313,29 +313,28 @@
             <End Role="Funcionario" EntitySet="Funcionario" />
             <End Role="Pagamento" EntitySet="Pagamento" />
           </AssociationSet>
-          <AssociationSet Name="FK__Pessoa__CodEnder__164452B1" Association="Self.FK__Pessoa__CodEnder__164452B1">
+          <AssociationSet Name="FK__Pessoa__CodEnder__0CBAE877" Association="Self.FK__Pessoa__CodEnder__0CBAE877">
             <End Role="Endereco" EntitySet="Endereco" />
             <End Role="Pessoa" EntitySet="Pessoa" />
           </AssociationSet>
-          <AssociationSet Name="FK__Telefone__CodPes__1920BF5C" Association="Self.FK__Telefone__CodPes__1920BF5C">
+          <AssociationSet Name="FK__Telefone__CodPes__117F9D94" Association="Self.FK__Telefone__CodPes__117F9D94">
             <End Role="Pessoa" EntitySet="Pessoa" />
             <End Role="Telefone" EntitySet="Telefone" />
           </AssociationSet>
-          <AssociationSet Name="FK__Venda__CodClient__286302EC" Association="Self.FK__Venda__CodClient__286302EC">
+          <AssociationSet Name="FK__Venda__CodClient__2A4B4B5E" Association="Self.FK__Venda__CodClient__2A4B4B5E">
             <End Role="Cliente" EntitySet="Cliente" />
             <End Role="Venda" EntitySet="Venda" />
           </AssociationSet>
-          <AssociationSet Name="FK__VendaProd__CodPr__2E1BDC42" Association="Self.FK__VendaProd__CodPr__2E1BDC42">
+          <AssociationSet Name="FK__VendaProd__CodPr__33D4B598" Association="Self.FK__VendaProd__CodPr__33D4B598">
             <End Role="Produto" EntitySet="Produto" />
             <End Role="VendaProduto" EntitySet="VendaProduto" />
           </AssociationSet>
-          <AssociationSet Name="FK__VendaProd__CodVe__2F10007B" Association="Self.FK__VendaProd__CodVe__2F10007B">
+          <AssociationSet Name="FK__VendaProd__CodVe__34C8D9D1" Association="Self.FK__VendaProd__CodVe__34C8D9D1">
             <End Role="Venda" EntitySet="Venda" />
             <End Role="VendaProduto" EntitySet="VendaProduto" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="MusaranhaModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
