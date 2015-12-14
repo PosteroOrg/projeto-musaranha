@@ -184,6 +184,7 @@
     <Compile Include="Models\Pessoa.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pFuncionario.cs" />
     <Compile Include="Models\Produto.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
@@ -224,6 +225,10 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Painel\Index.cshtml" />
+    <Content Include="Views\Configuracoes\Index.cshtml" />
+    <Content Include="Views\Shared\_Sidebar.cshtml" />
+    <Content Include="Views\Shared\_Modulo.cshtml" />
+    <Content Include="Views\Funcionario\Index.cshtml" />
     <EntityDeploy Include="Models\Repositorio.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>Repositorio.Designer.cs</LastGenOutput>
@@ -231,10 +236,6 @@
     <Content Include="Models\Repositorio.edmx.diagram">
       <DependentUpon>Repositorio.edmx</DependentUpon>
     </Content>
-    <Content Include="Views\Configuracoes\Index.cshtml" />
-    <Content Include="Views\Shared\_Sidebar.cshtml" />
-    <Content Include="Views\Shared\_Modulo.cshtml" />
-    <Content Include="Views\Funcionario\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -17,7 +17,7 @@ namespace Musaranha.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Funcionario()
         {
-            this.Pagamentos = new HashSet<Pagamento>();
+            this.Pagamento = new HashSet<Pagamento>();
         }
     
         public int CodPessoa { get; set; }
@@ -29,6 +29,6 @@ namespace Musaranha.Models
     
         public virtual Pessoa Pessoa { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pagamento> Pagamentos { get; set; }
+        public virtual ICollection<Pagamento> Pagamento { get; set; }
     }
 }

@@ -25,18 +25,18 @@ namespace Musaranha.Models
             throw new UnintentionalCodeFirstException();
         }
     
-        public virtual DbSet<Acesso> Acessos { get; set; }
-        public virtual DbSet<Cliente> Clientes { get; set; }
-        public virtual DbSet<Compra> Compras { get; set; }
-        public virtual DbSet<CompraProduto> CompraProdutos { get; set; }
-        public virtual DbSet<Endereco> Enderecoes { get; set; }
-        public virtual DbSet<Fornecedor> Fornecedores { get; set; }
-        public virtual DbSet<Funcionario> Funcionarios { get; set; }
-        public virtual DbSet<Pagamento> Pagamentos { get; set; }
-        public virtual DbSet<Pessoa> Pessoas { get; set; }
-        public virtual DbSet<Produto> Produtos { get; set; }
-        public virtual DbSet<Telefone> Telefones { get; set; }
-        public virtual DbSet<Venda> Vendas { get; set; }
-        public virtual DbSet<VendaProduto> VendaProdutos { get; set; }
+        public virtual DbSet<Acesso> Acesso { get; set; }
+        public virtual DbSet<Cliente> Cliente { get; set; }
+        public virtual DbSet<Compra> Compra { get; set; }
+        public virtual DbSet<CompraProduto> CompraProduto { get; set; }
+        public virtual DbSet<Endereco> Endereco { get; set; }
+        public virtual DbSet<Fornecedor> Fornecedor { get; set; }
+        public virtual DbSet<Funcionario> Funcionario { get; set; }
+        public virtual DbSet<Pagamento> Pagamento { get; set; }
+        public virtual DbSet<Pessoa> Pessoa { get; set; }
+        public virtual DbSet<Produto> Produto { get; set; }
+        public virtual DbSet<Telefone> Telefone { get; set; }
+        public virtual DbSet<Venda> Venda { get; set; }
+        public virtual DbSet<VendaProduto> VendaProduto { get; set; }
     }
 }

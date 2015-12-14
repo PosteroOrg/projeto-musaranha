@@ -1,20 +1,48 @@
 ﻿Musaranha.Funcionario = Musaranha.Funcionario || (function () {
-    function inciar() {
-        $('.cadastrar.button').click(function () {
+    function iniciar() {
+        $('.incluir.button').click(function () {
             abrirDialogCadastro();
         });
-        alert('carregou');
     }
 
     function abrirDialogCadastro() {
-        var $dialog = $('[data-role=dialog]');
+        var $dialog = $('.dialog');
 
-        $dialog.find('h1').text('Cadastrar Funcionário');
+        $dialog.find('h1').text('Incluir Funcionário');
+        $dialog.find('.primary.button').text('Incluir').click(function () {
+            cadastrar();
+        });
 
-        $dialog.open();
+        $dialog.data('dialog').open();
+    }
+
+    function cadastrar() {
+        var form = $('form').serialize();
+
+        $.ajax({
+            type: 'POST',
+            url: '/funcionario/Cadastrar',
+            data: form,
+            success: function (funcionario) {
+
+            },
+            error: function () {
+                $.Notify({
+                    caption: 'Erro na operação',
+                    content: 'Ocorreu um erro na inclusão do Funcionário',
+                    type: 'alert'
+                });
+            }
+        })
+    }
+    function editar() {
+
+    }
+    function remover() {
+
     }
 
     return {
-        inciar: iniciar
+        iniciar: iniciar
     }
 })();

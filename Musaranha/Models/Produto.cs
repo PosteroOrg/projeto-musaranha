@@ -17,16 +17,16 @@ namespace Musaranha.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Produto()
         {
-            this.CompraProdutos = new HashSet<CompraProduto>();
-            this.VendaProdutos = new HashSet<VendaProduto>();
+            this.CompraProduto = new HashSet<CompraProduto>();
+            this.VendaProduto = new HashSet<VendaProduto>();
         }
     
         public int CodProduto { get; set; }
         public string Descricao { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompraProduto> CompraProdutos { get; set; }
+        public virtual ICollection<CompraProduto> CompraProduto { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<VendaProduto> VendaProdutos { get; set; }
+        public virtual ICollection<VendaProduto> VendaProduto { get; set; }
     }
 }

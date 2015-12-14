@@ -17,7 +17,7 @@ namespace Musaranha.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Endereco()
         {
-            this.Pessoas = new HashSet<Pessoa>();
+            this.Pessoa = new HashSet<Pessoa>();
         }
     
         public int CodEndereco { get; set; }
@@ -30,6 +30,6 @@ namespace Musaranha.Models
         public string Estado { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Pessoa> Pessoas { get; set; }
+        public virtual ICollection<Pessoa> Pessoa { get; set; }
     }
 }

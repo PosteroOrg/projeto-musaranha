@@ -7,21 +7,72 @@
 <h1 class="text-light">@ViewBag.Title<span class="mif-contacts-mail place-right"></span></h1>
 <hr class="thin bg-grayLighter" />
 
-<h2 class="text-light">Gerenciar
-    <button class="cadastrar button"><span class="mif-user-plus"></span> Cadastrar</button>
-</h2>
+<button class="incluir button"><span class="mif-user-plus"></span> Incluir</button>
+
 
 <div class="input-control text full-size">
     <span class="mif-user prepend-icon"></span>
     <input type="text" id="txtFiltro" placeholder="Digite aqui para filtrar">
 </div>
 
-<div data-role="dialog">
-    <h1>Título</h1>
-    <div class="input-control password full-size" data-role="input">
-        <label>Nome</label>
-        <input type="text" name="txtNome" placeholder="Nome" required>
-    </div>
+<div data-role="dialog,draggable" class="dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true">
+    <form method="post">
+        <h1 class="text-light">Título</h1>
+        <hr class="thin" />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtNome">Nome:</label>
+            <input type="text" name="txtNome" id="txtNome" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtTelefone">Telefones:</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtIdentidade">Identidade:</label>
+            <input type="text" name="txtIdentidade" id="txtIdentidade" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtCarteiraTrabalho">Carteira de Trabalho:</label>
+            <input type="text" name="txtCarteiraTrabalho" id="txtCarteiraTrabalho" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtSalario">Salário:</label>
+            <input type="text" name="txtSalario" id="txtSalario" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control select full-size" data-role="input">
+            <label for="txtCategoria">Categoria:</label>
+            <select type="text" name="txtCategoria" id="txtCategoria" required>
+                <option value="M">Motorista</option>
+                <option value="T">Técnico</option>
+            </select>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <div class="input-control textarea full-size" data-role="input">
+            <label for="txtObservacao">Observação:</label>
+            <textarea name="txtObservacao" id="txtObservacao" required></textarea>
+        </div>
+        <div class="form-actions">
+            <button class="button primary">Incluir</button>
+            <button class="button link">Cancelar</button>
+        </div>
+    </form>
 </div>
 
 <table class="table">
@@ -36,9 +87,7 @@
             <th>Observação</th>
         </tr>
     </thead>
-    <tbody>
-
-    </tbody>
+    <tbody></tbody>
 </table>
 
 @section Scripts{
