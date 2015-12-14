@@ -1,9 +1,9 @@
 ﻿Musaranha.Produto = Musaranha.Produto || (function () {
-    function inciar() {
+    function iniciar() {
 
     }
 
     return {
-        inciar: iniciar
+        iniciar: iniciar
     }
 })();
