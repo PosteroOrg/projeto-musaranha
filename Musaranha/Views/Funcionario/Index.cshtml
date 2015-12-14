@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "Funcionários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-light">@ViewBag.Title<span class="mif-contacts-mail place-right"></span></h1>
+<hr class="thin bg-grayLighter" />
+
+<h2 class="text-light">Gerenciar
+    <button class="cadastrar button"><span class="mif-user-plus"></span> Cadastrar</button>
+</h2>
+
+<div class="input-control text full-size">
+    <span class="mif-user prepend-icon"></span>
+    <input type="text" id="txtFiltro" placeholder="Digite aqui para filtrar">
+</div>
+
+<div data-role="dialog">
+    <h1>Título</h1>
+    <div class="input-control password full-size" data-role="input">
+        <label>Nome</label>
+        <input type="text" name="txtNome" placeholder="Nome" required>
+    </div>
+</div>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefones</th>
+            <th>Categoria</th>
+            <th>Identidade</th>
+            <th>CLT</th>
+            <th>Salário</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    </tbody>
+</table>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/js/funcionario")
+}
