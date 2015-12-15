@@ -13,12 +13,14 @@ namespace Musaranha.Controllers
         // GET: Funcionario
         public ActionResult Index()
         {
-            return View();
+            List<Funcionario> funcionarios = Funcionario.Listar();
+
+            return View(funcionarios);
         }
 
-        //POST: funcionario/Cadastrar
+        //POST: funcionario/Incluir
         [HttpPost]
-        public ActionResult Cadastrar(FormCollection form)
+        public ActionResult Incluir(FormCollection form)
         {
             if (form.HasKeys())
             {
@@ -38,9 +40,24 @@ namespace Musaranha.Controllers
                 funcionario.Categoria = form["txtCategoria"];
                 funcionario.Observacao = form["txtObservacao"];
 
-                Funcionario.Inserir(funcionario);
+                Funcionario.Incluir(funcionario);
 
-                return Json(funcionario);
+                return PartialView("_Lista",Funcionario.Listar());
+            }
+            return Json(false);
+        }
+
+        //POST: funcionario/Excluir
+        [HttpPost]
+        public ActionResult Excluir(int cod)
+        {
+            if (cod != 0)
+            {
+                Funcionario funcionario = Funcionario.ObterPorCodigo(cod);
+                
+                Funcionario.Excluir(funcionario);
+
+                return PartialView("_Lista", Funcionario.Listar());
             }
             return Json(false);
         }

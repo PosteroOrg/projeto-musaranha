@@ -7,17 +7,50 @@ namespace Musaranha.Models
 {
     public partial class Funcionario
     {
+        public string GetCategoria
+        {
+            get
+            {
+                switch (this.Categoria)
+                {
+                    case "M":
+                        return "Motorista";
+                    case "T":
+                        return "Técnico";
+                    default:
+                        return String.Empty;
+                }
+            }
+        }
+
         private static MusaranhaEntities c => Contexto.Current;
 
-        public static void Inserir(Funcionario funcionario)
+        public static void Incluir(Funcionario funcionario)
         {
             c.Funcionario.Add(funcionario);
             c.SaveChanges();
+        }
+
+        public static void Excluir(Funcionario funcionario)
+        {
+            Funcionario temp = c.Funcionario.Find(funcionario.CodPessoa);
+
+            if (temp != null)
+            {
+                c.Funcionario.Remove(temp);
+                c.SaveChanges();
+            }
         }
 
         public static List<Funcionario> Listar()
         {
             return c.Funcionario.ToList();
         }
+
+        public static Funcionario ObterPorCodigo(int codPessoa)
+        {
+            return c.Funcionario.Find(codPessoa);
+        }
+        
     }
 }

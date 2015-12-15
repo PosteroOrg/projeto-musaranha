@@ -236,6 +236,7 @@
     <Content Include="Models\Repositorio.edmx.diagram">
       <DependentUpon>Repositorio.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Funcionario\Partials\_Lista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
