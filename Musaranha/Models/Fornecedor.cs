@@ -17,13 +17,13 @@ namespace Musaranha.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Fornecedor()
         {
-            this.Compras = new HashSet<Compra>();
+            this.Compra = new HashSet<Compra>();
         }
     
         public int CodPessoa { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Compra> Compras { get; set; }
+        public virtual ICollection<Compra> Compra { get; set; }
         public virtual Pessoa Pessoa { get; set; }
     }
 }

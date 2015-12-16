@@ -1,9 +1,9 @@
 ﻿Musaranha.Cliente = Musaranha.Cliente || (function () {
-    function inciar() {
+    function iniciar() {
 
     }
 
     return {
-        inciar: iniciar
+        iniciar: iniciar
     }
 })();

@@ -1,0 +1,17 @@
+﻿@model List<Funcionario>
+@foreach (Funcionario funcionario in Model)
+{
+    <tr data-funcionario="@funcionario.CodPessoa">
+        <td>@funcionario.Pessoa.Nome</td>
+        <td>@funcionario.Pessoa.Telefone.First().NumTelefone</td>
+        <td>@funcionario.GetCategoria</td>
+        <td>@funcionario.NumIdentidade</td>
+        <td>@funcionario.NumCarteiraTrabalho</td>
+        <td>@funcionario.Salario.ToString("C",new System.Globalization.CultureInfo("pt-BR"))</td>
+        <td>@funcionario.Observacao</td>
+        <td>
+            <div class="editar button link fg-blue fg-hover-darkBlue"><span class="mif-pencil"></span></div>
+            <div class="excluir button link fg-red fg-hover-darkRed"><span class="mif-cross"></span></div>
+        </td>
+    </tr>
+}

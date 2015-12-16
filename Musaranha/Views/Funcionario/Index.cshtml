@@ -1,0 +1,108 @@
+﻿@model List<Funcionario>
+@{
+    ViewBag.Title = "Funcionários";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h1 class="text-light">@ViewBag.Title<span class="mif-contacts-mail place-right"></span></h1>
+<hr class="thin bg-grayLighter" />
+
+<button class="incluir button"><span class="mif-user-plus"></span> Incluir</button>
+
+<div data-role="dialog,draggable" class="acao dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
+    <form method="post">
+        <h1 class="text-light">Título</h1>
+        <hr class="thin" />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtNome">Nome:</label>
+            <input type="text" name="txtNome" id="txtNome" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtTelefone">Telefones:</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtIdentidade">Identidade:</label>
+            <input type="text" name="txtIdentidade" id="txtIdentidade" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtCarteiraTrabalho">Carteira de Trabalho:</label>
+            <input type="text" name="txtCarteiraTrabalho" id="txtCarteiraTrabalho" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control text full-size" data-role="input">
+            <label for="txtSalario">Salário:</label>
+            <input type="text" name="txtSalario" id="txtSalario" required>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <br />
+        <div class="input-control select full-size" data-role="input">
+            <label for="txtCategoria">Categoria:</label>
+            <select type="text" name="txtCategoria" id="txtCategoria" required>
+                <option value="M">Motorista</option>
+                <option value="T">Técnico</option>
+            </select>
+            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        </div>
+        <br />
+        <div class="input-control textarea full-size" data-role="input">
+            <label for="txtObservacao">Observação:</label>
+            <textarea name="txtObservacao" id="txtObservacao"></textarea>
+        </div>
+        <div class="form-actions">
+            <button class="button primary">Incluir</button>
+            <button type="reset" class="cancelar button link">Cancelar</button>
+        </div>
+        <center></center>
+    </form>
+</div>
+
+<div data-role="dialog,draggable" class="excluir dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
+    <form method="post">
+        <h1 class="text-light">Excluir funcionário?</h1>
+        <hr class="thin" />
+        <br />
+        <p>Deseja mesmo excluir o funcionário selecionado?</p>
+        <div class="info">
+        </div>
+        <div class="form-actions">
+            <button type="reset" class="button primary">Excluir</button>
+            <button type="reset" class="cancelar button link">Cancelar</button>
+        </div>
+        <center></center>
+    </form>
+</div>
+
+<table class="table hovered funcionarios">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefones</th>
+            <th>Categoria</th>
+            <th>Identidade</th>
+            <th>CLT</th>
+            <th>Salário</th>
+            <th>Observação</th>
+        </tr>
+    </thead>
+    <tbody>
+        @Html.Partial("_Lista")
+    </tbody>
+</table>
+
+@section Scripts{
+    @Scripts.Render("~/bundles/js/funcionario")
+}

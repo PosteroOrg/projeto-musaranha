@@ -7,7 +7,7 @@ namespace Musaranha.Models
 {
     public class Contexto
     {
-        public static MusaranhaEntities Current
+        public static MusaranhaEntities  Current
         {
             get
             {

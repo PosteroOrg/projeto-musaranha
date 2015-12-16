@@ -11,7 +11,7 @@ namespace Musaranha.Models
 
         public static bool Autenticado(string usuario, string senha)
         {
-            var acesso = c.Acessos.FirstOrDefault(x => x.Usuario == usuario);
+            var acesso = c.Acesso.FirstOrDefault(x => x.Usuario == usuario);
             if (acesso?.Senha == Criptografia.GerarMD5Hash(senha))
             {
                 return true;
@@ -21,7 +21,7 @@ namespace Musaranha.Models
         
         public static void AlterarSenha(string usuario, string senha)
         {
-            var acesso = c.Acessos.FirstOrDefault(x => x.Usuario == usuario);
+            var acesso = c.Acesso.FirstOrDefault(x => x.Usuario == usuario);
             if (acesso != null)
             {
                 acesso.Senha = Criptografia.GerarMD5Hash(senha);

@@ -17,7 +17,7 @@ namespace Musaranha.Models
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public Compra()
         {
-            this.CompraProdutos = new HashSet<CompraProduto>();
+            this.CompraProduto = new HashSet<CompraProduto>();
         }
     
         public int CodCompra { get; set; }
@@ -27,6 +27,6 @@ namespace Musaranha.Models
     
         public virtual Fornecedor Fornecedor { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<CompraProduto> CompraProdutos { get; set; }
+        public virtual ICollection<CompraProduto> CompraProduto { get; set; }
     }
 }

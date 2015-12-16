@@ -1,4 +1,4 @@
-﻿Musaranha = Musaranha || (function () {
+﻿var Musaranha = Musaranha || (function () {
     function iniciar() {
         $(function () {
             var pathname = window.location.pathname.toLowerCase();
@@ -24,7 +24,7 @@
     }
 
     return {
-        ìniciar: iniciar
+        iniciar: iniciar
     }
 })();
 
