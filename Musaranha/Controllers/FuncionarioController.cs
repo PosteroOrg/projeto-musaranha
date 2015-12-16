@@ -47,6 +47,34 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
+        //POST: funcionario/Editar
+        [HttpPost]
+        public ActionResult Editar(int cod,FormCollection form)
+        {
+            if (cod != 0)
+            {
+                Funcionario funcionario = Funcionario.ObterPorCodigo(cod);
+
+                /* Dados Pessoais */
+                funcionario.Pessoa.Nome = form["txtNome"];
+                funcionario.Pessoa.Telefone.Clear();
+                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+
+
+                /* Funcionario */
+                funcionario.NumIdentidade = form["txtIdentidade"];
+                funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"];
+                funcionario.Salario = Decimal.Parse(form["txtSalario"]);
+                funcionario.Categoria = form["txtCategoria"];
+                funcionario.Observacao = form["txtObservacao"];
+
+                Funcionario.Editar(funcionario);
+
+                return PartialView("_Lista", Funcionario.Listar());
+            }
+            return Json(false);
+        }
+
         //POST: funcionario/Excluir
         [HttpPost]
         public ActionResult Excluir(int cod)

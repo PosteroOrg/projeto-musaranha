@@ -9,10 +9,6 @@
 
 <button class="incluir button"><span class="mif-user-plus"></span> Incluir</button>
 
-@*<div class="input-control text full-size">
-    <span class="mif-user prepend-icon"></span>
-    <input type="text" id="txtFiltro" placeholder="Digite aqui para filtrar">
-</div>*@
 <div data-role="dialog,draggable" class="acao dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
     <form method="post">
         <h1 class="text-light">Título</h1>
@@ -64,12 +60,13 @@
         <br />
         <div class="input-control textarea full-size" data-role="input">
             <label for="txtObservacao">Observação:</label>
-            <textarea name="txtObservacao" id="txtObservacao" required></textarea>
+            <textarea name="txtObservacao" id="txtObservacao"></textarea>
         </div>
         <div class="form-actions">
-            <button type="reset" class="button primary">Incluir</button>
+            <button class="button primary">Incluir</button>
             <button type="reset" class="cancelar button link">Cancelar</button>
         </div>
+        <center></center>
     </form>
 </div>
 
@@ -79,10 +76,13 @@
         <hr class="thin" />
         <br />
         <p>Deseja mesmo excluir o funcionário selecionado?</p>
+        <div class="info">
+        </div>
         <div class="form-actions">
             <button type="reset" class="button primary">Excluir</button>
             <button type="reset" class="cancelar button link">Cancelar</button>
         </div>
+        <center></center>
     </form>
 </div>
 

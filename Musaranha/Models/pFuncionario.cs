@@ -31,6 +31,27 @@ namespace Musaranha.Models
             c.SaveChanges();
         }
 
+        public static void Editar(Funcionario funcionario)
+        {
+            Funcionario temp = c.Funcionario.Find(funcionario.CodPessoa);
+
+            if (temp != null)
+            {
+                /* Dados Pessoais */
+                temp.Pessoa.Nome = funcionario.Pessoa.Nome;
+                temp.Pessoa.Telefone = funcionario.Pessoa.Telefone;
+
+                /* Funcionario */
+                temp.NumIdentidade = funcionario.NumIdentidade;
+                temp.NumCarteiraTrabalho = funcionario.NumCarteiraTrabalho;
+                temp.Salario = funcionario.Salario;
+                temp.Categoria = funcionario.Categoria;
+                temp.Observacao = funcionario.Observacao;
+
+                c.SaveChanges();
+            }
+        }
+
         public static void Excluir(Funcionario funcionario)
         {
             Funcionario temp = c.Funcionario.Find(funcionario.CodPessoa);
