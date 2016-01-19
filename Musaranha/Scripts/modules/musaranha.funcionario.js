@@ -214,7 +214,7 @@
             $listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;
         }
-        if(!Musaranha.EDinheiro($('#txtSalario').val())){
+        if(!Musaranha.eDinheiro($('#txtSalario').val())){
             $listaErro.append('<li>O campo Salário tem que ser numérico</li>');
             valido = false;
         }
