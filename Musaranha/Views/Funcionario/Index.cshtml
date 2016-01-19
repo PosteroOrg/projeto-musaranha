@@ -10,7 +10,7 @@
 <button class="incluir button"><span class="mif-user-plus"></span> Incluir</button>
 
 <div data-role="dialog,draggable" class="acao dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
-    <form method="post">
+    <form method="post" data-role="validator">
         <h1 class="text-light">Título</h1>
         <hr class="thin" />
         <br />
@@ -63,7 +63,7 @@
             <textarea name="txtObservacao" id="txtObservacao"></textarea>
         </div>
         <div class="form-actions">
-            <button class="button primary">Incluir</button>
+            <div class="button primary">Incluir</div>
             <button type="reset" class="cancelar button link">Cancelar</button>
         </div>
         <center></center>

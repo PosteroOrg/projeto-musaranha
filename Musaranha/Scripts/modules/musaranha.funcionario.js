@@ -76,68 +76,74 @@
     }
 
     function incluir() {
-        var form = $('form').serializeArray();
-        var $center = $('.acao.dialog center');
-        $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
-        $.ajax({
-            type: 'POST',
-            url: '/funcionario/Incluir',
-            data: form,
-            success: function (funcionarios) {
-                var $tbody = $('.table.funcionarios tbody');
-                $tbody.html(funcionarios);
-                $.Notify({
-                    caption: 'Operação Realizada!',
-                    content: 'Funcionário incluído com sucesso',
-                    type: 'success'
-                });
-                iniciar();
-            },
-            error: function () {
-                $.Notify({
-                    caption: 'Erro na operação',
-                    content: 'Ocorreu um erro na inclusão do Funcionário',
-                    type: 'alert'
-                });
-            },
-            complete: function () {
-                $center.html('');
-                $('.acao.dialog').data('dialog').close();
-                $('.acao.dialog form').reset();
-            }
-        })
+        if (validarFormulario()) {
+            var form = $('form').serializeArray();
+            var $center = $('.acao.dialog center');
+            $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
+            $.ajax({
+                type: 'POST',
+                url: '/funcionario/Incluir',
+                data: form,
+                success: function (funcionarios) {
+                    var $tbody = $('.table.funcionarios tbody');
+                    $tbody.html(funcionarios);
+                    $.Notify({
+                        caption: 'Operação Realizada!',
+                        content: 'Funcionário incluído com sucesso',
+                        type: 'success'
+                    });
+                    iniciar();
+                },
+                error: function () {
+                    $.Notify({
+                        caption: 'Erro na operação',
+                        content: 'Ocorreu um erro na inclusão do Funcionário',
+                        type: 'alert'
+                    });
+                },
+                complete: function () {
+                    $center.html('');
+                    $('.acao.dialog').data('dialog').close();
+                    $('.acao.dialog form .cancelar.button').click();
+                }
+            })
+        }
+        else return false;
     }
 
     function editar(codPessoa) {
-        var $center = $('.acao.dialog center');
-        var form = $('.acao.dialog form').serializeArray();
-        $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
-        $.ajax({
-            type: 'POST',
-            data: form,
-            url: '/funcionario/Editar/' + codPessoa,
-            success: function (funcionarios) {
-                var $tbody = $('.table.funcionarios tbody');
-                $tbody.html(funcionarios);
-                $.Notify({
-                    caption: 'Operação Realizada!',
-                    content: 'Funcionário editado com sucesso',
-                    type: 'success'
-                });
-                iniciar();
-            },
-            error: function () {
-                $.Notify({
-                    caption: 'Erro na operação',
-                    content: 'Ocorreu um erro na edição do Funcionário',
-                    type: 'alert'
-                });
-            },
-            complete: function () {
-                $center.html('');
-                $('.excluir.dialog').data('dialog').close();
-            }
-        })
+        if (validarFormulario()) {
+            var $center = $('.acao.dialog center');
+            var form = $('.acao.dialog form').serializeArray();
+            $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
+            $.ajax({
+                type: 'POST',
+                data: form,
+                url: '/funcionario/Editar/' + codPessoa,
+                success: function (funcionarios) {
+                    var $tbody = $('.table.funcionarios tbody');
+                    $tbody.html(funcionarios);
+                    $.Notify({
+                        caption: 'Operação Realizada!',
+                        content: 'Funcionário editado com sucesso',
+                        type: 'success'
+                    });
+                    iniciar();
+                },
+                error: function () {
+                    $.Notify({
+                        caption: 'Erro na operação',
+                        content: 'Ocorreu um erro na edição do Funcionário',
+                        type: 'alert'
+                    });
+                },
+                complete: function () {
+                    $center.html('');
+                    $('.acao.dialog').data('dialog').close();
+                }
+            })
+        }
+        else return false;
     }
 
     function excluir(codPessoa) {
@@ -174,12 +180,50 @@
     function ajustarTamanhoDoConteudo() {
         var $conteudo = $('#cell-content');
         var $appBar = $('[data-role="appbar"');
-        //var conteudoAltura = $conteudo.height();
         var appBarAltura = $appBar.height();
         var documentoAltura = $(window).height();
 
         $conteudo.css('max-height', documentoAltura - appBarAltura)
                  .css('overflow-y', 'auto');
+    }
+
+    function validarFormulario() {
+        var valido = true;
+        var $form = $('form');
+        var $listaErro = $('<div class="lista erro padding10 bg-red fg-white"></div>');
+
+        $form.find('.lista.erro').remove();
+
+        if (!$('#txtNome').val()) {
+            $listaErro.append('<li>Preencha o campo Nome</li>');
+            valido = false;
+        }
+        if (!$('#txtTelefone').val()) {
+            $listaErro.append('<li>Preencha o campo Telefone</li>');
+            valido = false;
+        }
+        if (!$('#txtIdentidade').val()) {
+            $listaErro.append('<li>Preencha o campo Identidade</li>');
+            valido = false;
+        }
+        if (!$('#txtCarteiraTrabalho').val()) {
+            $listaErro.append('<li>Preencha o campo Carteira de Trabalho</li>');
+            valido = false;
+        }
+        if (!$('#txtSalario').val()) {
+            $listaErro.append('<li>Preencha o campo Salário</li>');
+            valido = false;
+        }
+        if(!Musaranha.EDinheiro($('#txtSalario').val())){
+            $listaErro.append('<li>O campo Salário tem que ser numérico</li>');
+            valido = false;
+        }
+        if (!valido) {
+            $form.prepend($listaErro);
+            return false;
+        }
+        
+        return true;
     }
 
     return {
