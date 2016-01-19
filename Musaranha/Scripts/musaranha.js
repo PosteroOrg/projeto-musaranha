@@ -23,8 +23,20 @@
         });
     }
 
+    function eDinheiro(n) {
+        var regex = /^[0-9]\d*(((.\d{3}){1})?(\,\d{0,2})?)$/;
+
+        return regex.test(n);
+    }
+
+    function eNumero(n) {
+        return !isNaN(parseFloat(n)) && isFinite(n);
+    }
+
     return {
-        iniciar: iniciar
+        iniciar: iniciar,
+        eDinheiro: eDinheiro,
+        eNumero: eNumero
     }
 })();
 
