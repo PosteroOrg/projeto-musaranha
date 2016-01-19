@@ -15,6 +15,8 @@
             var categoria = $tr.find('td').eq(2).text();
             abrirDialogExclusao(codPessoa,nome,categoria);
         });
+
+        ajustarTamanhoDoConteudo();
     }
 
     function abrirDialogInclusao() {
@@ -167,6 +169,17 @@
                 $('.excluir.dialog').data('dialog').close();
             }
         })
+    }
+
+    function ajustarTamanhoDoConteudo() {
+        var $conteudo = $('#cell-content');
+        var $appBar = $('[data-role="appbar"');
+        //var conteudoAltura = $conteudo.height();
+        var appBarAltura = $appBar.height();
+        var documentoAltura = $(window).height();
+
+        $conteudo.css('max-height', documentoAltura - appBarAltura)
+                 .css('overflow-y', 'auto');
     }
 
     return {
