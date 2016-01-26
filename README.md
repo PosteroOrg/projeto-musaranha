@@ -1,5 +1,11 @@
 # Projeto Musaranha
 
+**Instituição**: Instituto Federal do Rio Grande do Norte
+
+**Curso**: Técnico em Informática para Internet
+
+**Período**: 4º
+
 **Disciplina**: Projeto de Desenvolvimento de Sistemas para Internet
 
 **Professor**: Fabiano Papaiz
