@@ -143,6 +143,7 @@
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ConfiguracoesController.cs" />
+    <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\PainelController.cs" />
     <Compile Include="Filters\AutenticacaoFilterAttribute.cs" />
@@ -229,6 +230,7 @@
     </Content>
     <Content Include="Views\Funcionario\Partials\_Lista.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
+    <Content Include="Views\Fornecedor\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
