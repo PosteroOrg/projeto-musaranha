@@ -142,6 +142,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
@@ -237,6 +238,7 @@
     <Content Include="Views\Funcionario\Pagamento.cshtml" />
     <Content Include="Views\Relatorio\Vendas.cshtml" />
     <Content Include="Views\Relatorio\Compras.cshtml" />
+    <Content Include="Views\Compra\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

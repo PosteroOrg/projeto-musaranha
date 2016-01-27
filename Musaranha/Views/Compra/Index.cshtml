@@ -1,0 +1,203 @@
+﻿@{
+    ViewBag.Title = "Compras";
+}
+
+<h3>@ViewBag.Title <i class="medium material-icons right">shopping_basket</i></h3>
+<div class="divider"></div>
+
+<br />
+<button class="incluir waves-effect btn">Incluir</button>
+<a href="@Url.Action("Compras", "Relatorio")" class="waves-effect btn">Relatório</a>
+
+<form method="post" class="acao modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="header">Incluir Compra</h4>
+        <div class="input-control col s9">
+            <label for="txtFornecedor">Fornecedor</label>
+            <select name="txtFornecedor" id="txtFornecedor" required class="validate">
+                <option value="" disabled selected>Fornecedor</option>
+                <option value="1">ARIRANDA</option>
+                <option value="2">Infarte</option>
+            </select>
+        </div>
+        <div class="input-control col s3">
+            <label for="txtData">Data</label>
+            <input type="date" name="txtData" id="txtData" required class="datepicker">
+        </div>
+        <div class="section">
+            <h6>Itens da Compra</h6>
+            <div class="row">
+                <div class="input-control col s4">
+                    <label for="txtProduto">Produto</label>
+                    <select name="txtProduto" id="txtProduto" required class="validate">
+                        <option value="" disabled>Produto</option>
+                        <option value="1" selected>Soja</option>
+                        <option value="2">Milho</option>
+                    </select>
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtUnidade">Unidade</label>
+                    <input type="text" name="txtUnidade" id="txtUnidade" value="SC" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtQuantidade">Quantidade</label>
+                    <input type="text" name="txtQuantidade" id="txtQuantidade" value="50" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtPrecoUnitario">Preço Unitário</label>
+                    <input type="text" name="txtPrecoUnitario" id="txtPrecoUnitario" value="70,00" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtValorTotal">Valor Total</label>
+                    <input type="text" name="txtValorTotal" id="txtValorTotal" value="3500,00" disabled required class="validate">
+                </div>
+            </div>
+            <div class="row">
+                <div class="input-control col s4">
+                    <label for="txtProduto">Produto</label>
+                    <select name="txtProduto" id="txtProduto" required class="validate">
+                        <option value="" disabled selected>Produto</option>
+                        <option value="1">Soja</option>
+                        <option value="2">Milho</option>
+                    </select>
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtUnidade">Unidade</label>
+                    <input type="text" name="txtUnidade" id="txtUnidade" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtQuantidade">Quantidade</label>
+                    <input type="text" name="txtQuantidade" id="txtQuantidade" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtPrecoUnitario">Preço Unitário</label>
+                    <input type="text" name="txtPrecoUnitario" id="txtPrecoUnitario" required class="validate">
+                </div>
+                <div class="input-control col s2">
+                    <label for="txtValorTotal">Valor Total</label>
+                    <input type="text" name="txtValorTotal" id="txtValorTotal" disabled required class="validate">
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-action waves-effect btn primary">Incluir</div>
+        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<form method="post" class="excluir modal">
+    <div class="modal-content">
+        <h4 class="header">Excluir Compra?</h4>
+        <p>Deseja mesmo excluir a compra selecionado?</p>
+        <div class="info">
+            <p><b>Data</b>: 31/08/2015</p>
+            <p><b>Fornecedor</b>: ARIRANDA</p>
+            <p><b>Desconto</b>: 0,00</p>
+            <p><b>Valor Total</b>: 3550,00</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="modal-action waves-effect btn primary">Excluir</button>
+        <button type="reset" class="modal-action modal-close cancelar btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<div id="itens" class="modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="header">Itens da Compra</h4>
+        <div class="input-control col s9">
+            <label for="txtFornecedor">Fornecedor</label>
+            <input type="text" name="txtFornecedor" id="txtFornecedor" value="ARIRANDA" readonly>
+        </div>
+        <div class="input-control col s3">
+            <label for="txtData">Data</label>
+            <input type="text" name="txtData" id="txtData" value="31 de agosto, 2015" readonly>
+        </div>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Quantidade</th>
+                    <th>Preço Unitário</th>
+                    <th>Valor Total</th>
+                </tr>            
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Soja</td>
+                    <td>50 SC</td>
+                    <td>70,00</td>
+                    <td>3500,00</td>
+                </tr>
+                <tr>
+                    <td>Milho</td>
+                    <td>5 SC</td>
+                    <td>25,00</td>
+                    <td>125,00</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="modal-footer">
+        <button class="modal-action modal-close btn-flat">Fechar</button>
+    </div>
+</div>
+
+<table class="table highlight responsive-table produtos">
+    <thead>
+        <tr>
+            <th>Data</th>
+            <th>Fornecedor</th>
+            <th>Desconto</th>
+            <th>Valor Total</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>31/08/2015</td>
+            <td>ARIRANDA</td>
+            <td>0,00</td>
+            <td>3550,00</td>
+            <td>
+                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>31/08/2015</td>
+            <td>ARIRANDA</td>
+            <td>0,00</td>
+            <td>3550,00</td>
+            <td>
+                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr>
+            <td>31/08/2015</td>
+            <td>ARIRANDA</td>
+            <td>0,00</td>
+            <td>3550,00</td>
+            <td>
+                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr>    
+            <td>31/08/2015</td>
+            <td>ARIRANDA</td>
+            <td>0,00</td>
+            <td>3550,00</td>
+            <td>
+                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
