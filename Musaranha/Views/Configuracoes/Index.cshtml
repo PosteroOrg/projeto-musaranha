@@ -3,43 +3,29 @@
     ViewBag.Title = "Configurações";
 }
 
-<h1 class="text-light">@ViewBag.Title <span class="mif-cogs place-right"></span></h1>
-<hr class="thin bg-grayLighter">
+<h2>@ViewBag.Title <i class="medium material-icons right">settings</i></h2>
+<div class="divider"></div>
 
-<form method="post">
-    <h2 class="text-light">Alterar senha</h2>
-    <br />
-    <div class="grid">
-        <div class="row cells">
-            <div class="cell colspan5">
-                <div class="input-control password full-size" data-role="input">
-                    <label>Senha atual</label>
-                    <input type="password" name="txtSenhaAtual"  placeholder="Senha atual" pattern="[A-Za-z0-9]{5,}" required>
-                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
+<div class="row">
+    <div class="col s6">
+        <form method="post">
+            <h5>Alterar Senha</h5>
+            <div class="row">
+                <div class="input-control col s12">
+                    <label for="txtSenhaNova">Senha atual</label>
+                    <input type="password" id="txtSenhaAtual" name="txtSenhaAtual" pattern="[A-Za-z0-9]{5,}" required class="validate">
+                </div>
+                <div class="input-control col s12">
+                    <label for="txtSenhaNova">Senha nova</label>
+                    <input type="password" id="txtSenhaNova" name="txtSenhaNova" pattern="[A-Za-z0-9]{5,}" required class="validate">
+                </div>
+                <div class="input-control col s12">
+                    <label for="txtSenhaNova">Confirmação</label>
+                    <input type="password" id="txtConfirmacao" name="txtConfirmacao" pattern="[A-Za-z0-9]{5,}" required class="validate">
                 </div>
             </div>
-        </div>
-        <div class="row cells2">
-            <div class="cell colspan5">
-                <div class="input-control password full-size" data-role="input">
-                    <label>Senha nova</label>
-                    <input type="password" name="txtSenhaNova" placeholder="Senha nova" pattern="[A-Za-z0-9]{5,}" required>
-                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
-                </div>
-            </div>
-        </div>
-        <div class="row cells2">
-            <div class="cell colspan5">
-                <div class="input-control password full-size" data-role="input">
-                    <label>Confirmação</label>
-                    <input type="password" name="txtConfirmacao"  placeholder="Confirmação" pattern="[A-Za-z0-9]{5,}" required>
-                    <button class="button helper-button reveal"><span class="mif-looks"></span></button>
-                </div>
-            </div>
-        </div>
-    </div> 
-    <div class="form-actions">
-        <button type="submit" class="button primary">Alterar</button>
-        <button type="reset" class="button link">Cancelar</button>
+            <button type="submit" class="waves-effect btn">Alterar</button>
+            <button type="reset" class="waves-effect btn">Cancelar</button>
+        </form>
     </div>
-</form>
+</div>
