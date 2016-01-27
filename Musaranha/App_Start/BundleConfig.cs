@@ -7,8 +7,6 @@ namespace Musaranha
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
-                "~/Scripts/libs/jquery-{version}.js",
-                "~/Scripts/libs/metro.js",
                 "~/Scripts/musaranha.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js/cliente").Include(
@@ -27,12 +25,7 @@ namespace Musaranha
                 "~/Scripts/modules/musaranha.compra.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js/venda").Include(
-                "~/Scripts/modules/musaranha.venda.js"));
-
-            bundles.Add(new StyleBundle("~/bundles/css").Include(
-                "~/Content/metro.css",
-                "~/Content/metro-icons.css",
-                "~/Content/metro-responsive.css"));
+                "~/Scripts/modules/musaranha.venda.js"));            
         }
     }
 }

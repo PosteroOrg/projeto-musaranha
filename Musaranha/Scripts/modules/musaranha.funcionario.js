@@ -1,110 +1,94 @@
 ﻿Musaranha.Funcionario = Musaranha.Funcionario || (function () {
     function iniciar() {
-        $('.incluir.button').off().click(function () {
-            abrirDialogInclusao();
+        $('select').material_select();
+
+        $('button.incluir').off().click(function () {
+            abrirModalInclusao();
         });
 
-        $('.editar.button').off().click(function () {
-            abrirDialogEdicao(this);
+        $('button.editar').off().click(function () {
+            abrirModalEdicao(this);
         });
 
-        $('.excluir.button').off().click(function () {
+        $('button.excluir').off().click(function () {
             var $tr = $(this).parents('[data-funcionario]');
             var codPessoa = $tr.data('funcionario');
             var nome = $tr.find('td').eq(0).text();
             var categoria = $tr.find('td').eq(2).text();
-            abrirDialogExclusao(codPessoa,nome,categoria);
+            abrirModalExclusao(codPessoa, nome, categoria);
         });
-
-        ajustarTamanhoDoConteudo();
     }
 
-    function abrirDialogInclusao() {
-        var $dialog = $('.acao.dialog');
+    function abrirModalInclusao() {
+        var $modal = $('.acao.modal');
 
-        $dialog.find('h1').text('Incluir Funcionário');
-        $dialog.find('.primary.button').text('Incluir').off().click(function () {
+        $modal.find('.header').text('Incluir Funcionário');
+        $modal.find('.primary').text('Incluir').off().click(function () {
             incluir();
         });
-        $dialog.find('.cancelar.button').off().click(function () {
-            $dialog.data('dialog').close();
-        });
 
-        $dialog.data('dialog').open();
+        $modal.openModal();
     }
 
-    function abrirDialogEdicao(button) {
-        var $dialog = $('.acao.dialog');
-        var $tr = $(button).parents('[data-funcionario]');
-        var codPessoa = $tr.data('funcionario');
+    function abrirModalEdicao(button) {
+        var $modal = $('.acao.modal');
+        var $tds = $(button).parents('[data-funcionario]').find('td');
+        var codPessoa = $(button).parents('[data-funcionario]').data('funcionario');
 
-        $dialog.find('h1').text('Editar Funcionário');
+        $modal.find('.header').text('Editar Funcionário');
 
-        $dialog.find('#txtNome').val($tr.find('td').eq(0).text());
-        $dialog.find('#txtTelefone').val($tr.find('td').eq(1).text());
-        $dialog.find('#txtCategoria').val($tr.find('td').eq(2).text()[0]);
-        $dialog.find('#txtIdentidade').val($tr.find('td').eq(3).text());
-        $dialog.find('#txtCarteiraTrabalho').val($tr.find('td').eq(4).text());
-        $dialog.find('#txtSalario').val($tr.find('td').eq(5).text().split('R$ ').pop());
-        $dialog.find('#txtObservacao').text($tr.find('td').eq(6).text());
+        $modal.find('#txtNome').val($tds.eq(0).text());
+        $modal.find('#txtTelefone').val($tds.eq(1).text());
+        $modal.find('#txtCategoria').val($tds.eq(2).text()[0]);
+        $modal.find('#txtIdentidade').val($tds.eq(3).text());
+        $modal.find('#txtCarteiraTrabalho').val($tds.eq(4).text());
+        $modal.find('#txtSalario').val($tds.eq(5).text().split('R$ ').pop());
+        $modal.find('#txtObservacao').text($tds.eq(6).text());
 
-        $dialog.find('.primary.button').text('Editar').off().click(function () {
+        $modal.find('.primary').text('Editar').off().click(function () {
             editar(codPessoa);
         });
-        $dialog.find('.cancelar.button').off().click(function () {
-            $dialog.data('dialog').close();
-        });
 
-
-        $dialog.data('dialog').open();
+        $modal.openModal();
     }
 
-    function abrirDialogExclusao(codPessoa,nome,categoria) {
-        var $dialog = $('.excluir.dialog');
-        $dialog.find('.info').html('');
-        $dialog.find('.info').append('<p><b>Nome: </b>' + nome + '</p>');
-        $dialog.find('.info').append('<p><b>Categoria: </b>' + categoria + '</p>');
+    function abrirModalExclusao(codPessoa, nome, categoria) {
+        var $modal = $('.excluir.modal');
+        $modal.find('.info').html('');
+        $modal.find('.info').append('<p><b>Nome: </b>' + nome + '</p>');
+        $modal.find('.info').append('<p><b>Categoria: </b>' + categoria + '</p>');
 
-        $dialog.find('.primary.button').off().click(function () {
+        $modal.find('.primary').off().click(function () {
             excluir(codPessoa);
         });
-        $dialog.find('.cancelar.button').off().click(function () {
-            $dialog.data('dialog').close();
-        });
 
-        $dialog.data('dialog').open();
+        $modal.openModal();
     }
 
     function incluir() {
         if (validarFormulario()) {
-            var form = $('form').serializeArray();
-            var $center = $('.acao.dialog center');
-            $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
+            var form = $('form.acao.modal').serializeArray();
+            $('form.modal .modal-footer').append(
+                '<div class="progress">' +
+                  '<div class="indeterminate"></div>' +
+                '</div>');
             $.ajax({
                 type: 'POST',
-                url: '/funcionario/Incluir',
+                url: '/funcionario/incluir',
                 data: form,
                 success: function (funcionarios) {
                     var $tbody = $('.table.funcionarios tbody');
                     $tbody.html(funcionarios);
-                    $.Notify({
-                        caption: 'Operação Realizada!',
-                        content: 'Funcionário incluído com sucesso',
-                        type: 'success'
-                    });
+                    Materialize.toast('Funcionário incluído com sucesso', 4000);
                     iniciar();
                 },
                 error: function () {
-                    $.Notify({
-                        caption: 'Erro na operação',
-                        content: 'Ocorreu um erro na inclusão do Funcionário',
-                        type: 'alert'
-                    });
+                    Materialize.toast('Ocorreu um erro na inclusão do Funcionário', 4000);
                 },
                 complete: function () {
-                    $center.html('');
-                    $('.acao.dialog').data('dialog').close();
-                    $('.acao.dialog form .cancelar.button').click();
+                    $('form.acao.modal .modal-footer .progress').remove();
+                    $('form.acao.modal').get(0).reset();
+                    $('form.acao.modal').closeModal();
                 }
             })
         }
@@ -113,33 +97,28 @@
 
     function editar(codPessoa) {
         if (validarFormulario()) {
-            var $center = $('.acao.dialog center');
-            var form = $('.acao.dialog form').serializeArray();
-            $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
+            var form = $('form.acao.modal').serializeArray();
+            $('form.modal .modal-footer').append(
+                '<div class="progress">' +
+                  '<div class="indeterminate"></div>' +
+                '</div>');
             $.ajax({
                 type: 'POST',
                 data: form,
-                url: '/funcionario/Editar/' + codPessoa,
+                url: '/funcionario/editar/' + codPessoa,
                 success: function (funcionarios) {
                     var $tbody = $('.table.funcionarios tbody');
                     $tbody.html(funcionarios);
-                    $.Notify({
-                        caption: 'Operação Realizada!',
-                        content: 'Funcionário editado com sucesso',
-                        type: 'success'
-                    });
+                    Materialize.toast('Funcionário editado com sucesso', 4000);
                     iniciar();
                 },
                 error: function () {
-                    $.Notify({
-                        caption: 'Erro na operação',
-                        content: 'Ocorreu um erro na edição do Funcionário',
-                        type: 'alert'
-                    });
+                    Materialize.toast('Ocorreu um erro na edição do Funcionário', 4000);
                 },
                 complete: function () {
-                    $center.html('');
-                    $('.acao.dialog').data('dialog').close();
+                    $('form.acao.modal .modal-footer .progress').remove();
+                    $('form.acao.modal').get(0).reset();
+                    $('form.acao.modal').closeModal();
                 }
             })
         }
@@ -147,83 +126,73 @@
     }
 
     function excluir(codPessoa) {
-        var $center = $('.excluir.dialog center');
-        $center.append('<div data-role="preloader" data-type="ring" data-style="dark"></div>');
+        $('.excluir.modal .modal-footer').append(
+                '<div class="progress">' +
+                  '<div class="indeterminate"></div>' +
+                '</div>');
         $.ajax({
             type: 'POST',
-            url: '/funcionario/Excluir/'+codPessoa,
+            url: '/funcionario/excluir/'+codPessoa,
             success: function (funcionarios) {
                 var $tbody = $('.table.funcionarios tbody');
                 $tbody.html(funcionarios);
-                $.Notify({
-                    caption: 'Operação Realizada!',
-                    content: 'Funcionário excluído com sucesso',
-                    type: 'success'
-                });
+                Materialize.toast('Funcionário excluído com sucesso', 4000);
                 iniciar();
             },
             error: function () {
-                $.Notify({
-                    caption: 'Erro na operação',
-                    content: 'Ocorreu um erro na exclusão do Funcionário',
-                    type: 'alert'
-                });
+                Materialize.toast('Ocorreu um erro na exclusão do Funcionário', 4000);
             },
             complete: function () {
-                $center.html('');
-                $('.excluir.dialog').find('.info').html('');
-                $('.excluir.dialog').data('dialog').close();
+                $('.excluir.modal .modal-footer .progress').remove();
+                $('.excluir.modal').find('.info').html('');
+                $('.excluir.modal').closeModal();
             }
         })
-    }
-
-    function ajustarTamanhoDoConteudo() {
-        var $conteudo = $('#cell-content');
-        var $appBar = $('[data-role="appbar"');
-        var appBarAltura = $appBar.height();
-        var documentoAltura = $(window).height();
-
-        $conteudo.css('max-height', documentoAltura - appBarAltura)
-                 .css('overflow-y', 'auto');
     }
 
     function validarFormulario() {
         var valido = true;
         var $form = $('form');
-        var $listaErro = $('<div class="lista erro padding10 bg-red fg-white"></div>');
+        //var $listaErro = $('<div class="lista erro padding10 bg-red fg-white"></div>');
 
-        $form.find('.lista.erro').remove();
+        //$form.find('.lista.erro').remove();
 
         if (!$('#txtNome').val()) {
-            $listaErro.append('<li>Preencha o campo Nome</li>');
+            $('#txtNome').addClass("invalid");
+            //$listaErro.append('<li>Preencha o campo Nome</li>');
             valido = false;
         }
         if (!$('#txtTelefone').val()) {
-            $listaErro.append('<li>Preencha o campo Telefone</li>');
+            $('#txtTelefone').addClass("invalid");
+            //$listaErro.append('<li>Preencha o campo Telefone</li>');
             valido = false;
         }
         if (!$('#txtIdentidade').val()) {
-            $listaErro.append('<li>Preencha o campo Identidade</li>');
+            $('#txtIdentidade').addClass("invalid");
+            //$listaErro.append('<li>Preencha o campo Identidade</li>');
             valido = false;
         }
         if (!$('#txtCarteiraTrabalho').val()) {
-            $listaErro.append('<li>Preencha o campo Carteira de Trabalho</li>');
+            $('#txtCarteiraTrabalho').addClass("invalid");
+            //$listaErro.append('<li>Preencha o campo Carteira de Trabalho</li>');
             valido = false;
         }
         if (!$('#txtSalario').val()) {
-            $listaErro.append('<li>Preencha o campo Salário</li>');
+            $('#txtSalario').addClass("invalid");
+            //$listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;
         }
-        if(!Musaranha.eDinheiro($('#txtSalario').val())){
-            $listaErro.append('<li>O campo Salário tem que ser numérico</li>');
+        if (!Musaranha.eDinheiro($('#txtSalario').val())) {
+            $('#txtSalario').addClass("invalid");
+            //$listaErro.append('<li>O campo Salário tem que ser numérico</li>');
             valido = false;
         }
-        if (!valido) {
-            $form.prepend($listaErro);
-            return false;
+        if (!$('#txtCategoria :selected').val()) {
+            //$listaErro.append('<li>Preencha o campo Salário</li>');
+            valido = false;
         }
         
-        return true;
+        return valido;
     }
 
     return {

@@ -1,74 +1,45 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="shortcut icon" href="~/favicon.png" />
-
-    <title>@ViewBag.Title - Projeto Musaranha</title>
-
-    @Styles.Render("~/bundles/css")
+    <title>@ViewBag.Title - Musaranha</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
     @RenderSection("Styles", required: false)
-
-    <style>
-        html, body {
-            height: 100%;
-        }
-        body {
-        }
-        .page-content {
-            padding-top: 3.125rem;
-            min-height: 100%;
-            height: 100%;
-        }
-        .table .input-control.checkbox {
-            line-height: 1;
-            min-height: 0;
-            height: auto;
-        }
-
-        @@media screen and (max-width: 800px){
-            #cell-sidebar {
-                flex-basis: 52px;
-            }
-            #cell-content {
-                flex-basis: calc(100% - 52px);
-            }
-        }
-    </style>    
 </head>
-<body class="bg-steel">
-    <div class="app-bar fixed-top darcula" data-role="appbar">
-        <a href="~/" class="app-bar-element branding">Projeto Musaranha</a>
-        <span class="app-bar-divider"></span>        
-
-        <div class="app-bar-element place-right">
-            <span class="dropdown-toggle">@Session["Usuario"]</span>
-            <div class="app-bar-drop-container padding10 place-right no-margin-top block-shadow fg-dark" data-role="dropdown" data-no-close="true" style="width: 220px">
-                <h2 class="text-light">Ações</h2>
-                <ul class="unstyled-list fg-dark">
-                    <li><a href="@Url.Action("Index", "Configuracoes")" class="fg-white3 fg-hover-yellow">Configurações</a></li>
-                    <li><a href="@Url.Action("Sair", "Autenticacao")" class="fg-white3 fg-hover-yellow">Sair</a></li>
-                </ul>
-            </div>
-        </div>
-    </div>
-
-    <div class="page-content">
-        <div class="flex-grid no-responsive-future" style="height: 100%;">
-            <div class="row" style="height: 100%">
-                <div class="cell size-x200" id="cell-sidebar" style="background-color: #71b1d1; height: 100%">
-                    @Html.Partial("_Sidebar")
-                </div>
-                <div class="cell auto-size padding20 bg-white" id="cell-content">
-                    @RenderBody()
+<body>
+    <header>
+        <ul id="acoes" class="dropdown-content">
+            <li><a href="@Url.Action("Index", "Configuracoes")">config.</a></li>
+            <li><a href="@Url.Action("Sair", "Autenticacao")">sair</a></li>
+        </ul>
+        <nav>
+            <div class="nav-wrapper">
+                <div class="row">
+                    <div class="col s12">
+                        <a href="~/" class="brand-logo center">Musaranha</a>
+                        <a href="#" data-activates="slide-out" class="trigger left"><i class="material-icons">menu</i></a>
+                        <ul class="right">
+                            <li><a class="dropdown-button" href="#!" data-activates="acoes">@Session["Usuario"]<i class="material-icons right">arrow_drop_down</i></a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
+        </nav>
+        @Html.Partial("_Sidebar")
+    </header>
+    <main>
+        <div class="row">
+            <div class="col s12">
+                @RenderBody()
+            </div>
         </div>
-    </div>
+    </main>
 
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     @Scripts.Render("~/bundles/js")
     @Html.Partial("_Modulo")
     @if (ViewBag.Mensagens != null)
@@ -78,16 +49,18 @@
                 @foreach (var mensagem in ViewBag.Mensagens)
                 {
                     <text>
-                    $.Notify({
-                        content: '@mensagem["Conteudo"]',
-                        type: '@mensagem["Tipo"]'
-                    });
+                    Materialize.toast('@mensagem["Conteudo"]', 4000)
                     </text>
                 }
             });
         </script>
     }
+    <script>
+        $(function () {
+            $(".nav-wrapper .trigger").sideNav();
+            $(".dropdown-button").dropdown();
+        });
+    </script>
     @RenderSection("Scripts", required: false)
-
 </body>
 </html>
