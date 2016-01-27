@@ -32,23 +32,13 @@
         </div>
     </form>
 
-    @Scripts.Render("~/bundles/js")
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
-
+    @Scripts.Render("~/bundles/js")
     <script>
         $(function () {
             $('#login').openModal({
                 dismissible: false
-            });
-            var form = $('.login-form');
-
-            form.css({
-                opacity: 1,
-                '-webkit-transform': 'scale(1)',
-                'transform': 'scale(1)',
-                '-webkit-transition': '.5s',
-                'transition': '.5s'
             });
         });
     </script>
