@@ -3,65 +3,44 @@
 }
 
 <!DOCTYPE html>
-<html>
+<html lang="pt-br">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta charset="utf-8">
+    <link href="http://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <link rel="shortcut icon" href="~/favicon.png" />
-
     <title>Autenticação - Projeto Musaranha</title>
-
-    @Styles.Render("~/bundles/css")
-
-    <style>
-        .login-form {
-            width: 25rem;
-            height: 18.75rem;
-            position: fixed;
-            top: 50%;
-            margin-top: -9.375rem;
-            left: 50%;
-            margin-left: -12.5rem;
-            background-color: #ffffff;
-            opacity: 0;
-            -webkit-transform: scale(.8);
-            transform: scale(.8);
-        }
-    </style>    
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">   
 </head>
 <body>
-    <div class="login-form padding20 block-shadow">
-        <form method="post">
-            <h1 class="text-light">Autenticação</h1>
-            <hr class="thin" />
-            <br />
-            <div class="input-control text full-size" data-role="input">
-                <label for="txtUsuario">Nome de usuário:</label>
-                <input type="text" name="txtUsuario" id="txtUsuario" required>
-                <button class="button helper-button clear"><span class="mif-cross"></span></button>
+    <form method="post" id="login" class="modal">
+        <div class="modal-content">
+            <h4>Autenticação</h4>
+            <div class="row">
+                <div class="input-field col s12">
+                    <input name="txtUsuario" id="txtUsuario" type="text" required class="validate">
+                    <label for="txtUsuario">Nome de Usuário</label>
+                </div>
+                <div class="input-field col s12">
+                    <input name="txtSenha" id="txtSenha" type="password" required class="validate">
+                    <label for="txtUsuario">Palavra-chave</label>
+                </div>
             </div>
-            <br />
-            <br />
-            <div class="input-control password full-size" data-role="input">
-                <label for="txtSenha">Palavra-chave:</label>
-                <input type="password" name="txtSenha" id="txtSenha" required>
-                <button class="button helper-button reveal"><span class="mif-looks"></span></button>
-            </div>
-            <br />
-            <br />
-            <div class="form-actions">
-                <button type="submit" class="button primary">Acessar...</button>
-                <button type="reset" class="button link">Cancelar</button>
-            </div>
-        </form>
-    </div>
+        </div>
+        <div class="modal-footer">
+            <button type="submit" class="waves-effect btn-flat">Acessar</button>
+        </div>
+    </form>
 
     @Scripts.Render("~/bundles/js")
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
 
     <script>
         $(function () {
+            $('#login').openModal({
+                dismissible: false
+            });
             var form = $('.login-form');
 
             form.css({
