@@ -1,0 +1,78 @@
+﻿@{
+    ViewBag.Title = "Produtos";
+}
+
+<h2>@ViewBag.Title <i class="medium material-icons right">loyalty</i></h2>
+<div class="divider"></div>
+
+<br />
+<button class="incluir waves-effect btn">Incluir</button>
+
+<form method="post" class="acao modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="header">Incluir Produto</h4>
+        <div class="input-control col s12">
+            <label for="txtCodigo">Código</label>
+            <input type="text" name="txtCodigo" id="txtCodigo" value="7" disabled required class="validate">
+        </div>
+        <div class="input-control col s12">
+            <label for="txtDescricao">Descrição</label>
+            <input type="text" name="txtDescricao" id="txtDescricao" required class="validate">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-action waves-effect btn primary">Incluir</div>
+        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<form method="post" class="excluir modal">
+    <div class="modal-content">
+        <h4 class="header">Excluir Produto?</h4>
+        <p>Deseja mesmo excluir o produto selecionado?</p>
+        <div class="info">
+            <p><b>Código</b>: 7</p>
+            <p><b>Descrição</b>: Frango Carcaça</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="modal-action waves-effect btn primary">Excluir</button>
+        <button type="reset" class="modal-action modal-close cancelar btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<table class="table highlight responsive-table produtos">
+    <thead>
+        <tr>
+            <th>Código</th>
+            <th>Descrição</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-fornecedor="1">
+            <td>7</td>
+            <td>Frango Carcaça</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr data-fornecedor="2">
+            <td>8</td>
+            <td>Frango Refugo</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr data-fornecedor="3">
+            <td>9</td>
+            <td>Frango Vivo</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+</table>

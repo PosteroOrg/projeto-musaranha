@@ -146,6 +146,7 @@
     <Compile Include="Controllers\FornecedorController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\PainelController.cs" />
+    <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Filters\AutenticacaoFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -231,6 +232,8 @@
     <Content Include="Views\Funcionario\Partials\_Lista.cshtml" />
     <Content Include="Views\Cliente\Index.cshtml" />
     <Content Include="Views\Fornecedor\Index.cshtml" />
+    <Content Include="Views\Produto\Index.cshtml" />
+    <Content Include="Views\Funcionario\Pagamento.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

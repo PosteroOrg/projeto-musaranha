@@ -88,5 +88,9 @@ namespace Musaranha.Controllers
             }
             return Json(false);
         }
+
+        //GET: funcionario/pagamento
+        public ActionResult Pagamento(int? funcionario) => View();
+
     }
 }

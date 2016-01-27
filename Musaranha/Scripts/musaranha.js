@@ -6,7 +6,12 @@
                 Musaranha.Cliente.iniciar();
             }
             else if (pathname.indexOf('/funcionario') >= 0) {
-                Musaranha.Funcionario.iniciar();
+                if (pathname.indexOf('/pagamento') >= 0) {
+                    Musaranha.Funcionario.Pagamento.iniciar();
+                }
+                else {
+                    Musaranha.Funcionario.iniciar();
+                }
             }
             else if (pathname.indexOf('/fornecedor')>=0) {
                 Musaranha.Fornecedor.iniciar();
