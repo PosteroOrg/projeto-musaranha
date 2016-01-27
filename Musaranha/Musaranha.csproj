@@ -149,6 +149,7 @@
     <Compile Include="Controllers\PainelController.cs" />
     <Compile Include="Controllers\ProdutoController.cs" />
     <Compile Include="Controllers\RelatorioController.cs" />
+    <Compile Include="Controllers\VendaController.cs" />
     <Compile Include="Filters\AutenticacaoFilterAttribute.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -239,6 +240,7 @@
     <Content Include="Views\Relatorio\Vendas.cshtml" />
     <Content Include="Views\Relatorio\Compras.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Venda\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

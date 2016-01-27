@@ -1,23 +1,23 @@
 ﻿@{
-    ViewBag.Title = "Compras";
+    ViewBag.Title = "Vendas";
 }
 
-<h3>@ViewBag.Title <i class="medium material-icons right">shopping_basket</i></h3>
+<h3>@ViewBag.Title <i class="medium material-icons right">import_export</i></h3>
 <div class="divider"></div>
 
 <br />
 <button class="incluir waves-effect btn">Incluir</button>
-<a href="@Url.Action("Compras", "Relatorio")" class="waves-effect btn">Relatório</a>
+<a href="@Url.Action("Vendas", "Relatorio")" class="waves-effect btn">Relatório</a>
 
 <form method="post" class="acao modal modal-fixed-footer">
     <div class="modal-content">
-        <h4 class="header">Incluir Compra</h4>
+        <h4 class="header">Incluir Venda</h4>
         <div class="input-control col s9">
-            <label for="txtFornecedor">Fornecedor</label>
-            <select name="txtFornecedor" id="txtFornecedor" required class="validate">
-                <option value="" disabled selected>Fornecedor</option>
-                <option value="1">ARIRANDA</option>
-                <option value="2">Infarte</option>
+            <label for="txtCliente">Cliente</label>
+            <select name="txtCliente" id="txtCliente" required class="validate">
+                <option value="" disabled selected>Cliente</option>
+                <option value="1">Felipe Pontes</option>
+                <option value="2">Fabiano Papaiz</option>
             </select>
         </div>
         <div class="input-control col s3">
@@ -25,7 +25,7 @@
             <input type="date" name="txtData" id="txtData" required class="datepicker">
         </div>
         <div class="section">
-            <h6>Itens da Compra</h6>
+            <h6>Itens da Venda</h6>
             <div class="row">
                 <div class="input-control col s4">
                     <label for="txtProduto">Produto</label>
@@ -88,11 +88,11 @@
 
 <form method="post" class="excluir modal">
     <div class="modal-content">
-        <h4 class="header">Excluir Compra?</h4>
-        <p>Deseja mesmo excluir a compra selecionada?</p>
+        <h4 class="header">Excluir Venda?</h4>
+        <p>Deseja mesmo excluir a venda selecionada?</p>
         <div class="info">
             <p><b>Data</b>: 31/08/2015</p>
-            <p><b>Fornecedor</b>: ARIRANDA</p>
+            <p><b>Cliente</b>: Felipe Pontes</p>
             <p><b>Desconto</b>: 0,00</p>
             <p><b>Valor Total</b>: 3550,00</p>
         </div>
@@ -105,10 +105,10 @@
 
 <div id="itens" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4 class="header">Itens da Compra</h4>
+        <h4 class="header">Itens da Venda</h4>
         <div class="input-control col s9">
-            <label for="txtFornecedor">Fornecedor</label>
-            <input type="text" name="txtFornecedor" id="txtFornecedor" value="ARIRANDA" readonly>
+            <label for="txtCliente">Cliente</label>
+            <input type="text" name="txtCliente" id="txtCliente" value="Felipe Pontes" readonly>
         </div>
         <div class="input-control col s3">
             <label for="txtData">Data</label>
@@ -121,7 +121,7 @@
                     <th>Quantidade</th>
                     <th>Preço Unitário</th>
                     <th>Valor Total</th>
-                </tr>            
+                </tr>
             </thead>
             <tbody>
                 <tr>
@@ -148,7 +148,7 @@
     <thead>
         <tr>
             <th>Data</th>
-            <th>Fornecedor</th>
+            <th>Cliente</th>
             <th>Desconto</th>
             <th>Valor Total</th>
             <th></th>
@@ -157,7 +157,7 @@
     <tbody>
         <tr>
             <td>31/08/2015</td>
-            <td>ARIRANDA</td>
+            <td>Felipe Pontes</td>
             <td>0,00</td>
             <td>3550,00</td>
             <td>
@@ -168,7 +168,7 @@
         </tr>
         <tr>
             <td>31/08/2015</td>
-            <td>ARIRANDA</td>
+            <td>Felipe Pontes</td>
             <td>0,00</td>
             <td>3550,00</td>
             <td>
@@ -179,7 +179,7 @@
         </tr>
         <tr>
             <td>31/08/2015</td>
-            <td>ARIRANDA</td>
+            <td>Felipe Pontes</td>
             <td>0,00</td>
             <td>3550,00</td>
             <td>
@@ -188,9 +188,9 @@
                 <button class="excluir btn red darken-1 waves-effect">Excluir</button>
             </td>
         </tr>
-        <tr>    
+        <tr>
             <td>31/08/2015</td>
-            <td>ARIRANDA</td>
+            <td>Felipe Pontes</td>
             <td>0,00</td>
             <td>3550,00</td>
             <td>
