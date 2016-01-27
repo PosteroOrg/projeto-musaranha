@@ -14,7 +14,6 @@ namespace Musaranha.Controllers
         public ActionResult Index()
         {
             List<Funcionario> funcionarios = Funcionario.Listar();
-
             return View(funcionarios);
         }
 

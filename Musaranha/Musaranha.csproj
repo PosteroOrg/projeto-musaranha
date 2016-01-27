@@ -141,6 +141,7 @@
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AutenticacaoController.cs" />
+    <Compile Include="Controllers\ClienteController.cs" />
     <Compile Include="Controllers\ConfiguracoesController.cs" />
     <Compile Include="Controllers\FuncionarioController.cs" />
     <Compile Include="Controllers\PainelController.cs" />
@@ -227,6 +228,7 @@
       <DependentUpon>Repositorio.edmx</DependentUpon>
     </Content>
     <Content Include="Views\Funcionario\Partials\_Lista.cshtml" />
+    <Content Include="Views\Cliente\Index.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
