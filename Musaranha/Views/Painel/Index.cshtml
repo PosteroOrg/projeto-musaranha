@@ -10,10 +10,10 @@
         <div class="section">
             <h5>Gerenciamento</h5>
             <div class="collection">
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">supervisor_account</i>Clientes</a>
+                <a href="@Url.Action("Index", "Cliente")" class="collection-item waves-effect"><i class="material-icons left">supervisor_account</i>Clientes</a>
                 <a href="@Url.Action("Index", "Funcionario")" class="collection-item waves-effect"><i class="material-icons left">contact_phone</i>Funcionários</a>
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">store</i>Fornecedores</a>
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">loyalty</i>Produtos</a>
+                <a href="@Url.Action("Index", "Fornecedor")" class="collection-item waves-effect"><i class="material-icons left">store</i>Fornecedores</a>
+                <a href="@Url.Action("Index", "Produto")" class="collection-item waves-effect"><i class="material-icons left">loyalty</i>Produtos</a>
             </div>
         </div>
     </div>
@@ -21,8 +21,8 @@
         <div class="section">
             <h5>Movimentações</h5>
             <div class="collection">
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">shopping_basket</i>Compras</a>
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">import_export</i>Vendas</a>
+                <a href="@Url.Action("Index", "Compra")" class="collection-item waves-effect"><i class="material-icons left">shopping_basket</i>Compras</a>
+                <a href="@Url.Action("Index", "Venda")" class="collection-item waves-effect"><i class="material-icons left">import_export</i>Vendas</a>
             </div>
         </div>
     </div>
@@ -30,8 +30,8 @@
         <div class="section">
             <h5>Relatórios</h5>
             <div class="collection">
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">equalizer</i>Relatório de Compras</a>
-                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">trending_up</i>Relatório de Vendas</a>
+                <a href="@Url.Action("Compras", "Relatorio")" class="collection-item waves-effect"><i class="material-icons left">equalizer</i>Relatório de Compras</a>
+                <a href="@Url.Action("Vendas", "Relatorio")" class="collection-item waves-effect"><i class="material-icons left">trending_up</i>Relatório de Vendas</a>
             </div>
         </div>
     </div>
