@@ -3,65 +3,37 @@
     ViewBag.Title = "Painel";
 }
 
-<h1 class="text-light">@ViewBag.Title <span class="mif-apps place-right"></span></h1>
-<hr class="thin bg-grayLighter">
+<h2 class="text-light">@ViewBag.Title <i class="medium material-icons right">view_module</i></h2>
+<div class="divider"></div>
 
-<div class="tile-area no-padding">
-    <div class="tile-group double" style="margin-left: 0px;">
-        <span class="tile-group-title fg-black">Gerenciamento</span>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-users"></span>
+<div class="row">
+    <div class="col s12 m4">
+        <div class="section">
+            <h5>Gerenciamento</h5>
+            <div class="collection">
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">supervisor_account</i>Clientes</a>
+                <a href="@Url.Action("Index", "Funcionario")" class="collection-item waves-effect"><i class="material-icons left">contact_phone</i>Funcionários</a>
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">store</i>Fornecedores</a>
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">loyalty</i>Produtos</a>
             </div>
-            <span class="tile-label">Clientes</span>
-        </div>
-        <a href="@Url.Action("","Funcionario")" class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-contacts-mail"></span>
-            </div>
-            <span class="tile-label">Funcionários</span>
-        </a>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-shop"></span>
-            </div>
-            <span class="tile-label">Fornecedores</span>
-        </div>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-files-empty"></span>
-            </div>
-            <span class="tile-label">Produtos</span>
         </div>
     </div>
-    <div class="tile-group double">
-        <span class="tile-group-title fg-black">Movimentações</span>        
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-shopping-basket2"></span>
+    <div class="col s12 m4">
+        <div class="section">
+            <h5>Movimentações</h5>
+            <div class="collection">
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">shopping_basket</i>Compras</a>
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">import_export</i>Vendas</a>
             </div>
-            <span class="tile-label">Compras</span>
-        </div>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-coins"></span>
-            </div>
-            <span class="tile-label">Vendas</span>
         </div>
     </div>
-    <div class="tile-group double">
-        <span class="tile-group-title fg-black">Relatórios</span>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-chart-bars2"></span>
+    <div class="col s12 m4">
+        <div class="section">
+            <h5>Relatórios</h5>
+            <div class="collection">
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">equalizer</i>Relatório de Compras</a>
+                <a href="#!" class="collection-item waves-effect"><i class="material-icons left">trending_up</i>Relatório de Vendas</a>
             </div>
-            <span class="tile-label">Relatório de Compras</span>
-        </div>
-        <div class="tile">
-            <div class="tile-content iconic">
-                <span class="icon mif-chart-bars"></span>
-            </div>
-            <span class="tile-label">Relatório de Vendas</span>
         </div>
     </div>
 </div>
