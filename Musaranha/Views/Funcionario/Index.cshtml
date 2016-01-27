@@ -4,89 +4,68 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h1 class="text-light">@ViewBag.Title<span class="mif-contacts-mail place-right"></span></h1>
-<hr class="thin bg-grayLighter" />
+<h2>@ViewBag.Title <i class="medium material-icons right">contact_phone</i></h2>
+<div class="divider"></div>
 
-<button class="incluir button"><span class="mif-user-plus"></span> Incluir</button>
+<br />
+<button class="incluir waves-effect btn">Incluir</button>
 
-<div data-role="dialog,draggable" class="acao dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
-    <form method="post" data-role="validator">
-        <h1 class="text-light">Título</h1>
-        <hr class="thin" />
-        <br />
-        <div class="input-control text full-size" data-role="input">
-            <label for="txtNome">Nome:</label>
-            <input type="text" name="txtNome" id="txtNome" required>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+<form method="post" class="acao modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="header">Título</h4>
+        <div class="input-control col s12">
+            <label for="txtNome">Nome</label>
+            <input type="text" name="txtNome" id="txtNome" required class="validate">
         </div>
-        <br />
-        <br />
-        <div class="input-control text full-size" data-role="input">
-            <label for="txtTelefone">Telefones:</label>
-            <input type="text" name="txtTelefone" id="txtTelefone" required>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        <div class="input-control col s12">
+            <label for="txtTelefone">Telefones</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" required class="validate">
         </div>
-        <br />
-        <br />
-        <div class="input-control text full-size" data-role="input">
-            <label for="txtIdentidade">Identidade:</label>
-            <input type="text" name="txtIdentidade" id="txtIdentidade" required>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        <div class="input-control col s6">
+            <label for="txtIdentidade">Identidade</label>
+            <input type="text" name="txtIdentidade" id="txtIdentidade" required class="validate">
         </div>
-        <br />
-        <br />
-        <div class="input-control text full-size" data-role="input">
-            <label for="txtCarteiraTrabalho">Carteira de Trabalho:</label>
-            <input type="text" name="txtCarteiraTrabalho" id="txtCarteiraTrabalho" required>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        <div class="input-control col s6">
+            <label for="txtCarteiraTrabalho">Carteira de Trabalho</label>
+            <input type="text" name="txtCarteiraTrabalho" id="txtCarteiraTrabalho" required class="validate">
         </div>
-        <br />
-        <br />
-        <div class="input-control text full-size" data-role="input">
-            <label for="txtSalario">Salário:</label>
-            <input type="text" name="txtSalario" id="txtSalario" required>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
+        <div class="input-control col s6">
+            <label for="txtSalario">Salário</label>
+            <input type="text" name="txtSalario" id="txtSalario" required class="validate">
         </div>
-        <br />
-        <br />
-        <div class="input-control select full-size" data-role="input">
-            <label for="txtCategoria">Categoria:</label>
-            <select type="text" name="txtCategoria" id="txtCategoria" required>
+        <div class="input-control col s6">
+            <label for="txtCategoria">Categoria</label>
+            <select name="txtCategoria" id="txtCategoria" required class="validate">
+                <option value="" disabled selected>Categoria</option>
                 <option value="M">Motorista</option>
                 <option value="T">Técnico</option>
             </select>
-            <button class="button helper-button clear"><span class="mif-cross"></span></button>
         </div>
-        <br />
-        <div class="input-control textarea full-size" data-role="input">
-            <label for="txtObservacao">Observação:</label>
-            <textarea name="txtObservacao" id="txtObservacao"></textarea>
+        <div class="input-control col s12" data-role="input">
+            <label for="txtObservacao">Observação</label>
+            <textarea name="txtObservacao" id="txtObservacao" class="materialize-textarea" length="255"></textarea>
         </div>
-        <div class="form-actions">
-            <div class="button primary">Incluir</div>
-            <button type="reset" class="cancelar button link">Cancelar</button>
-        </div>
-        <center></center>
-    </form>
-</div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-action waves-effect btn primary">Incluir</div>
+        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+    </div>
+</form>
 
-<div data-role="dialog,draggable" class="excluir dialog padding20 block-shadow" data-overlay-color="op-dark" data-overlay-click-close="true" data-overlay="true" data-close-button="true">
-    <form method="post">
-        <h1 class="text-light">Excluir funcionário?</h1>
-        <hr class="thin" />
-        <br />
+<form method="post" class="excluir modal">
+    <div class="modal-content">
+        <h4 class="header">Excluir Funcionário?</h4>
         <p>Deseja mesmo excluir o funcionário selecionado?</p>
         <div class="info">
         </div>
-        <div class="form-actions">
-            <button type="reset" class="button primary">Excluir</button>
-            <button type="reset" class="cancelar button link">Cancelar</button>
-        </div>
-        <center></center>
-    </form>
-</div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="modal-action waves-effect btn primary">Excluir</button>
+        <button type="reset" class="modal-action modal-close cancelar btn-flat">Cancelar</button>
+    </div>
+</form>
 
-<table class="table hovered funcionarios">
+<table class="table highlight responsive-table funcionarios">
     <thead>
         <tr>
             <th>Nome</th>
