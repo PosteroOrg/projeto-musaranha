@@ -206,7 +206,7 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
         $('.datepicker').pickadate({
             selectMonths: true,
             selectYears: true
-        })
+        });
 
         $('button.incluir').off().click(function () {
             $('.acao.modal').openModal();
