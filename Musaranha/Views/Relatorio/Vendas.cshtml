@@ -1,0 +1,47 @@
+﻿@{
+    ViewBag.Title = "Relatório de Vendas";
+}
+
+<h3>@ViewBag.Title <i class="medium material-icons right">import_export</i></h3>
+<div class="divider"></div>
+<br />
+<form method="post">
+    <div class="row">
+        <div class="input-control col s6">
+            <label for="txtDataInicio">Data Ínicio</label>
+            <input type="date" name="txtDataInicio" id="txtDataInicio" required class="datepicker">
+        </div>
+        <div class="input-control col s6">
+            <label for="txtDataTermino">Data Término</label>
+            <input type="date" name="txtDataTermino" id="txtDataTermino" required class="datepicker">
+        </div>
+        <div class="input-control col s12">
+            <label for="txtProduto">Produto</label>
+            <select name="txtProduto" id="txtProduto" required class="validate">
+                <option value="0" selected>Todos</option>
+                <option value="1">Frango Vivo</option>
+                <option value="2">Galinha Caipira</option>
+            </select>
+        </div>
+        <div class="input-control col s12">
+            <label for="txtCliente">Cliente</label>
+            <select name="txtCliente" id="txtCliente" required class="validate">
+                <option value="0" selected>Todos</option>
+                <option value="1">Felipe Pontes</option>
+                <option value="2">Paulo Trindade</option>
+            </select>
+        </div>
+    </div>
+    <button type="submit" class="waves-effect btn">Imprimir</button>
+    <a href="@Url.Action("Index")" class="waves-effect btn-flat">Cancelar</a>
+</form>
+
+@section Scripts {
+    <script>
+        $('select').material_select();
+        $('.datepicker').pickadate({
+            selectMonths: true,
+            selectYears: true
+        });
+    </script>
+}

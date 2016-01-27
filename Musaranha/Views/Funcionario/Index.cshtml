@@ -1,14 +1,14 @@
 ﻿@model List<Funcionario>
 @{
     ViewBag.Title = "Funcionários";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>@ViewBag.Title <i class="medium material-icons right">contact_phone</i></h2>
+<h3>@ViewBag.Title <i class="medium material-icons right">contact_phone</i></h3>
 <div class="divider"></div>
 
 <br />
 <button class="incluir waves-effect btn">Incluir</button>
+<a href="@Url.Action("Pagamento")" class="waves-effect btn">Pagamentos</a>
 
 <form method="post" class="acao modal modal-fixed-footer">
     <div class="modal-content">
@@ -75,13 +75,10 @@
             <th>CLT</th>
             <th>Salário</th>
             <th>Observação</th>
+            <th></th>
         </tr>
     </thead>
     <tbody>
         @Html.Partial("_Lista")
     </tbody>
 </table>
-
-@section Scripts{
-    @Scripts.Render("~/bundles/js/funcionario")
-}

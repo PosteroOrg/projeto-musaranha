@@ -14,7 +14,6 @@ namespace Musaranha.Controllers
         public ActionResult Index()
         {
             List<Funcionario> funcionarios = Funcionario.Listar();
-
             return View(funcionarios);
         }
 
@@ -89,5 +88,9 @@ namespace Musaranha.Controllers
             }
             return Json(false);
         }
+
+        //GET: funcionario/pagamento
+        public ActionResult Pagamento(int? funcionario) => View();
+
     }
 }

@@ -1,0 +1,142 @@
+﻿@{
+    ViewBag.Title = "Clientes";
+}
+
+<h3>@ViewBag.Title <i class="medium material-icons right">supervisor_account</i></h3>
+<div class="divider"></div>
+
+<br />
+<button class="incluir waves-effect btn">Incluir</button>
+
+<form method="post" class="acao modal modal-fixed-footer">
+    <div class="modal-content">
+        <h4 class="header">Incluir Cliente</h4>
+        <div class="input-control col s12">
+            <label for="txtNome">Nome</label>
+            <input type="text" name="txtNome" id="txtNome" required class="validate">
+        </div>
+        <div class="input-control col s12">
+            <label for="txtTelefone">Telefones</label>
+            <input type="text" name="txtTelefone" id="txtTelefone" required class="validate">
+        </div>
+        <div class="input-control col s10">
+            <label for="txtLogradouro">Logradouro</label>
+            <input type="text" name="txtLogradouro" id="txtLogradouro" required class="validate">
+        </div>
+        <div class="input-control col s2">
+            <label for="txtNumero">Número</label>
+            <input type="text" name="txtNumero" id="txtNumero" required class="validate">
+        </div>
+        <div class="input-control col s9">
+            <label for="txtComplemento">Complemento</label>
+            <input type="text" name="txtComplemento" id="txtComplemento" required class="validate">
+        </div>
+        <div class="input-control col s3">
+            <label for="txtCEP">CEP</label>
+            <input type="text" name="txtCEP" id="txtCEP" required class="validate">
+        </div>
+        <div class="input-control col s5">
+            <label for="txtBairro">Bairro</label>
+            <input type="text" name="txtBairro" id="txtBairro" required class="validate">
+        </div>
+        <div class="input-control col s5">
+            <label for="txtCidade">Cidade</label>
+            <input type="text" name="txtCidade" id="txtCidade" required class="validate">
+        </div>
+        <div class="input-control col s2">
+            <label for="txtEstado">Estado</label>
+            <input type="text" name="txtEstado" id="txtEstado" required class="validate">
+        </div>
+        <div class="input-control col s6">
+            <label for="txtTipo">Tipo de Pessoa</label>
+            <select name="txtTipo" id="txtTipo" required class="validate">
+                <option value="" disabled selected>Tipo de Pessoa</option>
+                <option value="F">Física</option>
+                <option value="J">Jurídica</option>
+            </select>
+        </div>
+        <div class="input-control col s6">
+            <label for="txtCPFOuCNPJ">CPF/CNPJ</label>
+            <input type="text" name="txtCPFOuCNPJ" id="txtCPFOuCNPJ" required class="validate">
+        </div>
+        <div class="input-control col s12">
+            <label for="txtEmail">Email</label>
+            <input type="email" name="txtEmail" id="txtEmail" required class="validate">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-action waves-effect btn primary">Incluir</div>
+        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<form method="post" class="excluir modal">
+    <div class="modal-content">
+        <h4 class="header">Excluir Cliente?</h4>
+        <p>Deseja mesmo excluir o cliente selecionado?</p>
+        <div class="info">
+            <p><b>Nome</b>: Felipe Pontes</p>
+            <p><b>CPF/CNPJ</b>: 800.625.262-85</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="reset" class="modal-action waves-effect btn primary">Excluir</button>
+        <button type="reset" class="modal-action modal-close cancelar btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<table class="table highlight responsive-table clientes">
+    <thead>
+        <tr>
+            <th>Nome</th>
+            <th>Telefones</th>
+            <th>Cidade</th>
+            <th>Estado</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr data-cliente="1">
+            <td>Felipe Pontes</td>
+            <td>84 96388882</td>
+            <td>Natal</td>
+            <td>RN</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr data-cliente="2">
+            <td>Francisco Bento</td>
+            <td>84 96998555</td>
+            <td>Natal</td>
+            <td>RN</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+        <tr data-cliente="3">
+            <td>Paulo Trindade</td>
+            <td>84 98555555</td>
+            <td>Natal</td>
+            <td>RN</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+    </tbody>
+    <tfoot class="grey lighten-4">
+        <tr>
+            <th>Endereço</th>
+            <td colspan="4">Rua Alvorado, 2222, Planalto</td>
+        </tr>
+        <tr>
+            <th>CPF/CNPJ</th>
+            <td>488.894.722-86</td>
+            <th>Email</th>
+            <td colspan="2">felipe@contato.com</td>
+        </tr>
+    </tfoot>
+</table>

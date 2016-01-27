@@ -9,7 +9,7 @@
         </a>
     </li>
     <li class="@(pathname.StartsWith("/cliente") ? "active" : "")">
-        <a class="waves-effect" href="#">
+        <a class="waves-effect" href="@Url.Action("Index", "Cliente")">
             Clientes
         </a>
     </li>
@@ -19,32 +19,32 @@
         </a>
     </li>
     <li class="@(pathname.StartsWith("/fornecedor") ? "active" : "")">
-        <a class="waves-effect" href="#">
+        <a class="waves-effect" href="@Url.Action("Index", "Fornecedor")">
             Fornecedores
         </a>
     </li>
     <li class="@(pathname.StartsWith("/produto") ? "active" : "")">
-        <a class="waves-effect" href="#">
+        <a class="waves-effect" href="@Url.Action("Index", "Produto")">
             Produtos
         </a>
     </li>
     <li class="@(pathname.StartsWith("/compra") ? "active" : "")">
-        <a class="waves-effect" href="#">
+        <a class="waves-effect" href="@Url.Action("Index", "Compra")">
             Compras
         </a>
     </li>
     <li class="@(pathname.StartsWith("/venda") ? "active" : "")">
-        <a class="waves-effect" href="#">
+        <a class="waves-effect" href="@Url.Action("Index", "Venda")">
             Vendas
         </a>
     </li>
-    <li class="@(pathname.StartsWith("/relatorio/compra") ? "active" : "")">
-        <a class="waves-effect" href="#">
+    <li class="@(pathname.StartsWith("/relatorio/compras") ? "active" : "")">
+        <a class="waves-effect" href="@Url.Action("Compras", "Relatorio")">
             Relatório de Compras
         </a>
     </li>
-    <li class="@(pathname.StartsWith("/relatorio/venda") ? "active" : "")">
-        <a class="waves-effect" href="#">
+    <li class="@(pathname.StartsWith("/relatorio/vendas") ? "active" : "")">
+        <a class="waves-effect" href="@Url.Action("Vendas", "Relatorio")">
             Relatório de Vendas
         </a>
     </li>
