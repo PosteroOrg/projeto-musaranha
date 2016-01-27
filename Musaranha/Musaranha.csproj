@@ -116,10 +116,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\fonts\metro.svg" />
-    <Content Include="Content\metro-icons.css" />
-    <Content Include="Content\metro-responsive.css" />
-    <Content Include="Content\metro.css" />
     <Content Include="favicon.png" />
     <Content Include="Global.asax" />
     <Content Include="Models\Repositorio.Context.tt">
@@ -132,8 +128,6 @@
       <DependentUpon>Repositorio.edmx</DependentUpon>
       <LastGenOutput>Repositorio.cs</LastGenOutput>
     </Content>
-    <Content Include="Scripts\libs\jquery-2.1.4.js" />
-    <Content Include="Scripts\libs\metro.js" />
     <Content Include="Scripts\modules\musaranha.fornecedor.js" />
     <Content Include="Scripts\modules\musaranha.venda.js" />
     <Content Include="Scripts\modules\musaranha.compra.js" />
@@ -217,10 +211,6 @@
   <ItemGroup>
     <Content Include="Views\web.config" />
     <Content Include="packages.config" />
-    <Content Include="Content\fonts\metro.eot" />
-    <Content Include="Content\fonts\metro.ttf" />
-    <Content Include="Content\fonts\metro.woff" />
-    <Content Include="Content\fonts\selection.json" />
     <Content Include="Views\Autenticacao\Index.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\_ViewStart.cshtml" />
@@ -246,6 +236,7 @@
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="Content\" />
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
