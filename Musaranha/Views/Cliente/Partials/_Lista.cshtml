@@ -1,0 +1,14 @@
+﻿@model List<Cliente>
+@foreach (Cliente cliente in Model)
+{
+    <tr data-cliente="@cliente.CodPessoa" data-endereco="@(cliente.Pessoa.Endereco?.ToString())" data-email="@cliente.Pessoa.Email" data-tipo="@cliente.Pessoa.Tipo" data-cpf="@cliente.Pessoa.CPF" data-cnpj="@cliente.Pessoa.CNPJ">
+        <td>@cliente.Pessoa.Nome</td>
+        <td>@cliente.Pessoa.Telefone.First().NumTelefone</td>
+        <td>@(cliente.Pessoa.Endereco?.Cidade)</td>
+        <td>@(cliente.Pessoa.Endereco?.Estado)</td>
+        <td>
+            <button class="editar btn blue darken-1 waves-effect">Editar</button>
+            <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+        </td>
+    </tr>
+}
