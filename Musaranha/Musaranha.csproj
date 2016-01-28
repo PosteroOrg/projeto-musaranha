@@ -181,6 +181,8 @@
     <Compile Include="Models\Pagamento.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pCliente.cs" />
+    <Compile Include="Models\pEndereco.cs" />
     <Compile Include="Models\Pessoa.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
@@ -241,6 +243,7 @@
     <Content Include="Views\Relatorio\Compras.cshtml" />
     <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Venda\Index.cshtml" />
+    <Content Include="Views\Cliente\Partials\_Lista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
