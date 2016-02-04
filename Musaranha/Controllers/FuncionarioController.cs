@@ -35,7 +35,7 @@ namespace Musaranha.Controllers
                 /* Funcionario */
                 funcionario.NumIdentidade = form["txtIdentidade"];
                 funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"];
-                funcionario.Salario = Decimal.Parse(form["txtSalario"]);
+                funcionario.Salario = Decimal.Parse(form["txtSalario"].Replace(".", "").Replace(",", "."));
                 funcionario.Categoria = form["txtCategoria"];
                 funcionario.Observacao = form["txtObservacao"];
 
@@ -63,7 +63,7 @@ namespace Musaranha.Controllers
                 /* Funcionario */
                 funcionario.NumIdentidade = form["txtIdentidade"];
                 funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"];
-                funcionario.Salario = Decimal.Parse(form["txtSalario"]);
+                funcionario.Salario = Decimal.Parse(form["txtSalario"].Replace(".", "").Replace(",", "."));
                 funcionario.Categoria = form["txtCategoria"];
                 funcionario.Observacao = form["txtObservacao"];
 
