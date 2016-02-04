@@ -68,7 +68,7 @@
     function incluir() {
         if (validarFormulario()) {
             var form = $('form.acao.modal').serializeArray();
-            $('form.modal .modal-footer').append(
+            $('form.acao.modal .modal-footer').append(
                 '<div class="progress">' +
                   '<div class="indeterminate"></div>' +
                 '</div>');
@@ -98,7 +98,7 @@
     function editar(codPessoa) {
         if (validarFormulario()) {
             var form = $('form.acao.modal').serializeArray();
-            $('form.modal .modal-footer').append(
+            $('form.acao.modal .modal-footer').append(
                 '<div class="progress">' +
                   '<div class="indeterminate"></div>' +
                 '</div>');
