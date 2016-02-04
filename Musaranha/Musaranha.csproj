@@ -189,6 +189,7 @@
     </Compile>
     <Compile Include="Models\pFornecedor.cs" />
     <Compile Include="Models\pFuncionario.cs" />
+    <Compile Include="Models\pProduto.cs" />
     <Compile Include="Models\Produto.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
@@ -246,6 +247,7 @@
     <Content Include="Views\Compra\Index.cshtml" />
     <Content Include="Views\Venda\Index.cshtml" />
     <Content Include="Views\Cliente\Partials\_Lista.cshtml" />
+    <Content Include="Views\Produto\Partials\_Lista.cshtml" />
     <Content Include="Views\Fornecedor\Partials\_Lista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
