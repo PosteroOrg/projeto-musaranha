@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Fornecedor>
+
+@{
     ViewBag.Title = "Fornecedores";
 }
 
@@ -16,7 +18,7 @@
             <input type="text" name="txtNome" id="txtNome" required class="validate">
         </div>
         <div class="input-control col s12">
-            <label for="txtTelefone">Telefones</label>
+            <label for="txtTelefone">Telefone(s)</label>
             <input type="text" name="txtTelefone" id="txtTelefone" required class="validate">
         </div>
         <div class="input-control col s10">
@@ -75,8 +77,6 @@
         <h4 class="header">Excluir Fornecedor?</h4>
         <p>Deseja mesmo excluir o fornecedor selecionado?</p>
         <div class="info">
-            <p><b>Nome</b>: Infarte</p>
-            <p><b>CPF/CNPJ</b>: 17.272.787/0001-43</p>
         </div>
     </div>
     <div class="modal-footer">
@@ -89,54 +89,25 @@
     <thead>
         <tr>
             <th>Nome</th>
-            <th>Telefones</th>
+            <th>Telefone(s)</th>
             <th>Cidade</th>
             <th>Estado</th>
             <th></th>
         </tr>
     </thead>
     <tbody>
-        <tr data-fornecedor="1">
-            <td>Infarte</td>
-            <td>84 96388882</td>
-            <td>Natal</td>
-            <td>RN</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr data-fornecedor="2">
-            <td>AMARGOLÂNIA</td>
-            <td>84 96998555</td>
-            <td>Natal</td>
-            <td>RN</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr data-fornecedor="3">
-            <td>ARIRANDA</td>
-            <td>84 98555555</td>
-            <td>Natal</td>
-            <td>RN</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
+        @Html.Partial("_Lista")
     </tbody>
     <tfoot class="grey lighten-4">
         <tr>
             <th>Endereço</th>
-            <td colspan="4">Rua Alvorado, 2222, Planalto</td>
+            <td data-campo="endereco" colspan="4"></td>
         </tr>
         <tr>
             <th>CPF/CNPJ</th>
-            <td>488.894.722-86</td>
+            <td data-campo="cpfcnpj"></td>
             <th>Email</th>
-            <td colspan="2">felipe@contato.com</td>
+            <td data-campo="email" colspan="2"></td>
         </tr>
     </tfoot>
 </table>

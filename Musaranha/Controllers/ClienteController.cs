@@ -89,14 +89,21 @@ namespace Musaranha.Controllers
                 /* Endereço */
                 if (!String.IsNullOrWhiteSpace(form["txtLogradouro"]))
                 {
-                    cliente.Pessoa.Endereco = new Endereco();
+                    if (cliente.Pessoa.Endereco == null)
+                        cliente.Pessoa.Endereco = new Endereco();
                     cliente.Pessoa.Endereco.Logradouro = form["txtLogradouro"];
                     cliente.Pessoa.Endereco.Numero = form["txtNumero"];
-                    cliente.Pessoa.Endereco.Complemento = form["txtComplemento"];
+                    cliente.Pessoa.Endereco.Complemento = form["txtComplemento"] ?? null;
                     cliente.Pessoa.Endereco.Bairro = form["txtBairro"];
                     cliente.Pessoa.Endereco.Cidade = form["txtCidade"];
                     cliente.Pessoa.Endereco.Estado = form["txtEstado"];
                     cliente.Pessoa.Endereco.CEP = form["txtCEP"];
+                }
+                else
+                {
+                    if (cliente.Pessoa.Endereco != null)
+                        Contexto.Current.Endereco.Remove(cliente.Pessoa.Endereco);
+                    cliente.Pessoa.Endereco = null;
                 }
 
                 Cliente.Editar(cliente);
