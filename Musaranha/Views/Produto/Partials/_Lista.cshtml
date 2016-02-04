@@ -1,0 +1,12 @@
+﻿@model List<Produto>
+@foreach (Produto produto in Model)
+{
+    <tr data-produto="@produto.CodProduto">
+        <td>@produto.CodProduto</td>
+        <td>@produto.Descricao</td>
+        <td>
+            <button class="editar btn blue darken-1 waves-effect">Editar</button>
+            <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+        </td>
+    </tr>
+}

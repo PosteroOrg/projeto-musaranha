@@ -1,4 +1,6 @@
-﻿@{
+﻿@model List<Produto>
+
+@{
     ViewBag.Title = "Produtos";
 }
 
@@ -13,7 +15,7 @@
         <h4 class="header">Incluir Produto</h4>
         <div class="input-control col s12">
             <label for="txtCodigo">Código</label>
-            <input type="text" name="txtCodigo" id="txtCodigo" value="7" disabled required class="validate">
+            <input type="text" name="txtCodigo" id="txtCodigo" value="Automático" disabled required class="validate">
         </div>
         <div class="input-control col s12">
             <label for="txtDescricao">Descrição</label>
@@ -50,29 +52,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr data-fornecedor="1">
-            <td>7</td>
-            <td>Frango Carcaça</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr data-fornecedor="2">
-            <td>8</td>
-            <td>Frango Refugo</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr data-fornecedor="3">
-            <td>9</td>
-            <td>Frango Vivo</td>
-            <td>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
+        @Html.Partial("_Lista")        
     </tbody>
 </table>
