@@ -11,7 +11,7 @@ namespace Musaranha.Controllers
     public class FornecedorController : Controller
     {
         // GET: fornecedor
-        public ActionResult Index() => View();
+        public ActionResult Index() => View(Fornecedor.Listar());
 
         // POST: fornecedor/incluir
         [HttpPost]

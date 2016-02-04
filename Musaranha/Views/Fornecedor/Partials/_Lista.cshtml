@@ -1,0 +1,14 @@
+﻿@model List<Fornecedor>
+@foreach (Fornecedor fornecedor in Model)
+{
+    <tr data-fornecedor="@fornecedor.CodPessoa" data-endereco="@(fornecedor.Pessoa.Endereco?.ToString())" data-email="@fornecedor.Pessoa.Email" data-tipo="@fornecedor.Pessoa.Tipo" data-cpf="@fornecedor.Pessoa.CPF" data-cnpj="@fornecedor.Pessoa.CNPJ">
+        <td>@fornecedor.Pessoa.Nome</td>
+        <td>@fornecedor.Pessoa.Telefone.First().NumTelefone</td>
+        <td>@(fornecedor.Pessoa.Endereco?.Cidade)</td>
+        <td>@(fornecedor.Pessoa.Endereco?.Estado)</td>
+        <td>
+            <button class="editar btn blue darken-1 waves-effect">Editar</button>
+            <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+        </td>
+    </tr>
+}

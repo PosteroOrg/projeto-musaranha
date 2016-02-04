@@ -44,7 +44,7 @@
         var $tds = $(button).parents('tr').find('td');
         var codPessoa = $(button).parents('tr').data('cliente');
 
-        $modal.find('.header').text('Editar Funcionário');
+        $modal.find('.header').text('Editar Cliente');
         
         $.ajax({
             url: '/cliente/json/' + codPessoa,
@@ -76,7 +76,7 @@
         var $modal = $('.excluir.modal');
         $modal.find('.info').html('');
         $modal.find('.info').append('<p><b>Nome: </b>' + nome + '</p>');
-        $modal.find('.info').append('<p><b>Telefone: </b>' + telefone + '</p>');
+        $modal.find('.info').append('<p><b>Telefone(s): </b>' + telefone + '</p>');
 
         $modal.find('.primary').off().click(function () {
             excluir(codPessoa);
