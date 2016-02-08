@@ -14,6 +14,23 @@ namespace Musaranha
             return new Regex("\\D").Replace(str, ""); 
         }
 
+        public static string MaskTelefone(this string str)
+        {
+            Int64 telefone = 0;
+            if (Int64.TryParse(str, out telefone))
+            {
+                if (str.Length == 11)
+                {
+                    return telefone.ToString("'('##') '#####'-'####", CultureInfo.InvariantCulture);
+                }
+                else
+                {
+                    return telefone.ToString("'('##') '####'-'####", CultureInfo.InvariantCulture);
+                }
+            }
+            return str;
+        }
+
         public static string MaskCPF(this string str)
         {
             Int64 cpf = 0;

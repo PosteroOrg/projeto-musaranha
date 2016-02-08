@@ -49,6 +49,8 @@
             editar(codPessoa);
         });
 
+        Musaranha.reativarMask();
+
         $modal.openModal();
     }
 
@@ -182,11 +184,11 @@
             //$listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;
         }
-        if (!Musaranha.eDinheiro($('#txtSalario').val())) {
-            $('#txtSalario').addClass("invalid");
-            //$listaErro.append('<li>O campo Salário tem que ser numérico</li>');
-            valido = false;
-        }
+        //if (!Musaranha.eDinheiro($('#txtSalario').val())) {
+        //    $('#txtSalario').addClass("invalid");
+        //    $listaErro.append('<li>O campo Salário tem que ser numérico</li>');
+        //    valido = false;
+        //}
         if (!$('#txtCategoria :selected').val()) {
             //$listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;

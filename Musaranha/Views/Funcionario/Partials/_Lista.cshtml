@@ -3,7 +3,7 @@
 {
     <tr data-funcionario="@funcionario.CodPessoa">
         <td>@funcionario.Pessoa.Nome</td>
-        <td>@funcionario.Pessoa.Telefone.First().NumTelefone</td>
+        <td>@funcionario.Pessoa.Telefone.First().NumTelefone.MaskTelefone()</td>
         <td>@funcionario.GetCategoria</td>
         <td>@funcionario.NumIdentidade</td>
         <td>@funcionario.NumCarteiraTrabalho</td>
