@@ -18,31 +18,62 @@
         });
 
         $(function () {
-            var pathname = window.location.pathname.toLowerCase();
-            if (pathname.indexOf('/cliente') == 0) {
-                Musaranha.Cliente.iniciar();
-            }
-            else if (pathname.indexOf('/funcionario') == 0) {
-                if (pathname.indexOf('/pagamento') >= 0) {
-                    Musaranha.Funcionario.Pagamento.iniciar();
-                }
-                else {
-                    Musaranha.Funcionario.iniciar();
-                }
-            }
-            else if (pathname.indexOf('/fornecedor')==0) {
-                Musaranha.Fornecedor.iniciar();
-            }
-            else if (pathname.indexOf('/produto')==0) {
-                Musaranha.Produto.iniciar();
-            }
-            else if (pathname.indexOf('/compra')==0) {
-                Musaranha.Compra.iniciar();
-            }
-            else if (pathname.indexOf('/venda')==0) {
-                Musaranha.Venda.iniciar();
-            }
+            ativarMask();
+            carregar();
         });
+    }
+
+    function carregar() {
+        var pathname = window.location.pathname.toLowerCase();
+        if (pathname.indexOf('/cliente') == 0) {
+            Musaranha.Cliente.iniciar();
+        }
+        else if (pathname.indexOf('/funcionario') == 0) {
+            if (pathname.indexOf('/pagamento') >= 0) {
+                Musaranha.Funcionario.Pagamento.iniciar();
+            }
+            else {
+                Musaranha.Funcionario.iniciar();
+            }
+        }
+        else if (pathname.indexOf('/fornecedor') == 0) {
+            Musaranha.Fornecedor.iniciar();
+        }
+        else if (pathname.indexOf('/produto') == 0) {
+            Musaranha.Produto.iniciar();
+        }
+        else if (pathname.indexOf('/compra') == 0) {
+            Musaranha.Compra.iniciar();
+        }
+        else if (pathname.indexOf('/venda') == 0) {
+            Musaranha.Venda.iniciar();
+        }
+    }
+
+    function ativarMask() {
+        $('.mask-cep').unmask().mask('00000-000');
+        $('.mask-dinheiro').unmask().mask('#.##0,00', { reverse: true });
+        $('.mask-numero').unmask().mask('#0', { reverse: true });
+
+        var telefoneMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length === 11 ? '(00) 00000-0000' : '(00) 0000-00009';
+        },
+	    telefoneOptions = {
+	        onKeyPress: function (val, e, field, options) {
+	            field.mask(telefoneMaskBehavior.apply({}, arguments), options);
+	        }
+	    };
+        $('.mask-telefone').unmask().mask(telefoneMaskBehavior, telefoneOptions);
+
+        var cpfCnpjMaskBehavior = function (val) {
+            return val.replace(/\D/g, '').length > 11 ? '00.000.000/0000-00' : '000.000.000-009';
+        }
+        var cpfCnpjOptions = {
+            onKeyPress: function (val, e, field, options) {
+                field.mask(cpfCnpjMaskBehavior.apply({}, arguments), options);
+            }
+        }
+        $('.mask-cpf-cnpj').unmask().mask(cpfCnpjMaskBehavior, cpfCnpjOptions);
     }
 
     function eDinheiro(n) {
@@ -58,7 +89,8 @@
     return {
         iniciar: iniciar,
         eDinheiro: eDinheiro,
-        eNumero: eNumero
+        eNumero: eNumero,
+        reativarMask: ativarMask
     }
 })();
 

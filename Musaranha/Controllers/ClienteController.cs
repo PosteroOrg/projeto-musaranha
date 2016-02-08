@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Text.RegularExpressions;
 
 namespace Musaranha.Controllers
 {
@@ -24,14 +25,14 @@ namespace Musaranha.Controllers
                 cliente.Pessoa = new Pessoa();
                 cliente.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 cliente.Pessoa.Nome = form["txtNome"];
-                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
                 switch (cliente.Pessoa.Tipo)
                 {
                     case "F":
-                        cliente.Pessoa.CPF = form["txtCPFOuCNPJ"] ?? null;
+                        cliente.Pessoa.CPF = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         break;
                     case "J":
-                        cliente.Pessoa.CNPJ = form["txtCPFOuCNPJ"] ?? null;
+                        cliente.Pessoa.CNPJ = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         break;
                     default:
                         break;
@@ -48,7 +49,7 @@ namespace Musaranha.Controllers
                     cliente.Pessoa.Endereco.Bairro = form["txtBairro"];
                     cliente.Pessoa.Endereco.Cidade = form["txtCidade"];
                     cliente.Pessoa.Endereco.Estado = form["txtEstado"];
-                    cliente.Pessoa.Endereco.CEP = form["txtCEP"];
+                    cliente.Pessoa.Endereco.CEP = form["txtCEP"].SomenteNumeros();
                 }
 
                 Cliente.Incluir(cliente);
@@ -70,15 +71,15 @@ namespace Musaranha.Controllers
                 cliente.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 cliente.Pessoa.Nome = form["txtNome"];
                 cliente.Pessoa.Telefone.Clear();
-                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
                 switch (cliente.Pessoa.Tipo)
                 {
                     case "F":
-                        cliente.Pessoa.CPF = form["txtCPFOuCNPJ"] ?? null;
+                        cliente.Pessoa.CPF = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         cliente.Pessoa.CNPJ = null;
                         break;
                     case "J":
-                        cliente.Pessoa.CNPJ = form["txtCPFOuCNPJ"] ?? null;
+                        cliente.Pessoa.CNPJ = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         cliente.Pessoa.CPF = null;
                         break;
                     default:
@@ -97,7 +98,7 @@ namespace Musaranha.Controllers
                     cliente.Pessoa.Endereco.Bairro = form["txtBairro"];
                     cliente.Pessoa.Endereco.Cidade = form["txtCidade"];
                     cliente.Pessoa.Endereco.Estado = form["txtEstado"];
-                    cliente.Pessoa.Endereco.CEP = form["txtCEP"];
+                    cliente.Pessoa.Endereco.CEP = form["txtCEP"].SomenteNumeros();
                 }
                 else
                 {
