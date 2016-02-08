@@ -7,6 +7,7 @@ namespace Musaranha
         public static void RegisterBundles(BundleCollection bundles)
         {
             bundles.Add(new ScriptBundle("~/bundles/js").Include(
+                "~/scripts/plugins/jquery.mask-1.13.4.min.js",
                 "~/Scripts/musaranha.js"));
 
             bundles.Add(new ScriptBundle("~/bundles/js/cliente").Include(

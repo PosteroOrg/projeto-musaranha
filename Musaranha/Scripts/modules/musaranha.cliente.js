@@ -67,6 +67,8 @@
                     editar(codPessoa);
                 });
 
+                Musaranha.reativarMask();
+
                 $modal.openModal();
             }
         });        

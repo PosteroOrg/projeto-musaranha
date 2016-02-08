@@ -129,6 +129,7 @@
       <DependentUpon>Repositorio.edmx</DependentUpon>
       <LastGenOutput>Repositorio.cs</LastGenOutput>
     </Content>
+    <Content Include="Scripts\plugins\jquery.mask-1.13.4.min.js" />
     <Content Include="Scripts\modules\musaranha.fornecedor.js" />
     <Content Include="Scripts\modules\musaranha.venda.js" />
     <Content Include="Scripts\modules\musaranha.compra.js" />
@@ -156,6 +157,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Helpers\Criptografia.cs" />
+    <Compile Include="Helpers\StringExt.cs" />
     <Compile Include="Models\Acesso.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>

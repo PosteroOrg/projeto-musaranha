@@ -25,14 +25,14 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa = new Pessoa();
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
-                        fornecedor.Pessoa.CPF = form["txtCPFOuCNPJ"] ?? null;
+                        fornecedor.Pessoa.CPF = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         break;
                     case "J":
-                        fornecedor.Pessoa.CNPJ = form["txtCPFOuCNPJ"] ?? null;
+                        fornecedor.Pessoa.CNPJ = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         break;
                     default:
                         break;
@@ -49,7 +49,7 @@ namespace Musaranha.Controllers
                     fornecedor.Pessoa.Endereco.Bairro = form["txtBairro"];
                     fornecedor.Pessoa.Endereco.Cidade = form["txtCidade"];
                     fornecedor.Pessoa.Endereco.Estado = form["txtEstado"];
-                    fornecedor.Pessoa.Endereco.CEP = form["txtCEP"];
+                    fornecedor.Pessoa.Endereco.CEP = form["txtCEP"].SomenteNumeros();
                 }
 
                 Fornecedor.Incluir(fornecedor);
@@ -71,15 +71,15 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
                 fornecedor.Pessoa.Telefone.Clear();
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
-                        fornecedor.Pessoa.CPF = form["txtCPFOuCNPJ"] ?? null;
+                        fornecedor.Pessoa.CPF = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         fornecedor.Pessoa.CNPJ = null;
                         break;
                     case "J":
-                        fornecedor.Pessoa.CNPJ = form["txtCPFOuCNPJ"] ?? null;
+                        fornecedor.Pessoa.CNPJ = form["txtCPFOuCNPJ"].SomenteNumeros() ?? null;
                         fornecedor.Pessoa.CPF = null;
                         break;
                     default:
@@ -97,7 +97,7 @@ namespace Musaranha.Controllers
                     fornecedor.Pessoa.Endereco.Bairro = form["txtBairro"];
                     fornecedor.Pessoa.Endereco.Cidade = form["txtCidade"];
                     fornecedor.Pessoa.Endereco.Estado = form["txtEstado"];
-                    fornecedor.Pessoa.Endereco.CEP = form["txtCEP"];
+                    fornecedor.Pessoa.Endereco.CEP = form["txtCEP"].SomenteNumeros();
                 }
 
                 Fornecedor.Editar(fornecedor);

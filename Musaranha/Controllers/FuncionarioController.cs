@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -29,13 +30,13 @@ namespace Musaranha.Controllers
                 funcionario.Pessoa = new Pessoa();
                 funcionario.Pessoa.Tipo = "F";
                 funcionario.Pessoa.Nome = form["txtNome"];
-                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
+                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
                 
 
                 /* Funcionario */
-                funcionario.NumIdentidade = form["txtIdentidade"];
-                funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"];
-                funcionario.Salario = Decimal.Parse(form["txtSalario"].Replace(".", "").Replace(",", "."));
+                funcionario.NumIdentidade = form["txtIdentidade"].SomenteNumeros();
+                funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"].SomenteNumeros();
+                funcionario.Salario = Decimal.Parse(form["txtSalario"], new CultureInfo("pt-BR"));
                 funcionario.Categoria = form["txtCategoria"];
                 funcionario.Observacao = form["txtObservacao"];
 
@@ -57,13 +58,12 @@ namespace Musaranha.Controllers
                 /* Dados Pessoais */
                 funcionario.Pessoa.Nome = form["txtNome"];
                 funcionario.Pessoa.Telefone.Clear();
-                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"] });
-
+                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
 
                 /* Funcionario */
-                funcionario.NumIdentidade = form["txtIdentidade"];
-                funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"];
-                funcionario.Salario = Decimal.Parse(form["txtSalario"].Replace(".", "").Replace(",", "."));
+                funcionario.NumIdentidade = form["txtIdentidade"].SomenteNumeros();
+                funcionario.NumCarteiraTrabalho = form["txtCarteiraTrabalho"].SomenteNumeros();
+                funcionario.Salario = Decimal.Parse(form["txtSalario"], new CultureInfo("pt-BR"));
                 funcionario.Categoria = form["txtCategoria"];
                 funcionario.Observacao = form["txtObservacao"];
 
