@@ -9,7 +9,7 @@
         });
 
         $('button.editar').off('click').click(function () {
-            $('.acao.modal').openModal();
+            abrirModalEdicao($(this).closest('[data-venda]').data('venda'));
         });
 
         $('button.excluir').off('click').click(function () {
@@ -32,7 +32,7 @@
             novoItem($(this));
         });
 
-        $('#txtDesconto').off('change').change(function () {
+        $('input#txtDesconto').off('change').change(function () {
             apresentarValorVenda($(this));
         });
 
@@ -40,6 +40,68 @@
             carregarItens($(this).closest('[data-venda]').data('venda'));
             $('#itens.modal').openModal();
         });
+    }
+
+    function abrirModalEdicao(venda) {
+        var $modal = $('.editar.modal');
+
+        $.ajax({
+            type: 'POST',
+            url: '/venda/carregareditar/' + venda,
+            success: function (conteudo) {
+                $modal.find('.modal-content').html(conteudo);
+            },
+            error: function () {
+                Materialize.toast('Ocorreu um erro no carregamento da Venda', 4000);
+            },
+            complete: function () {
+                iniciar();
+                Musaranha.reativarMask();
+            }
+        });
+
+        $modal.find('.primary').off('click').click(function () {
+            editar(venda);
+        });
+
+        $modal.openModal();
+    }
+
+    function editar(venda) {
+        if (validar('form.editar.modal')) {
+            var form = $('form.editar.modal').serializeArray();
+            $.ajax({
+                type: 'POST',
+                url: '/venda/editar/' + venda,
+                data: form,
+                beforeSend: function () {
+                    $('form.editar.modal .modal-footer').append(
+                        '<div class="progress">' +
+                          '<div class="indeterminate"></div>' +
+                        '</div>');
+                },
+                success: function (vendas) {
+                    var $tbody = $('.table.vendas tbody');
+                    $tbody.html(vendas);
+                    Materialize.toast('Venda editada com sucesso', 4000);
+                    iniciar();
+                },
+                error: function () {
+                    Materialize.toast('Ocorreu um erro na edição da Venda', 4000);
+                },
+                complete: function () {                    
+                    $('form.editar.modal .modal-footer .progress').remove();
+                    $('form.editar.modal .modal-content').html(
+                        '<div class="progress">'+
+                            '<div class="indeterminate"></div>' +
+                        '</div>'
+                    );
+                    $('form.editar.modal').get(0).reset();
+                    $('form.editar.modal').closeModal();
+                }
+            })
+        }
+        else return false;
     }
 
     function abrirModalExclusao(venda, data, cliente, desconto, valorTotal) {

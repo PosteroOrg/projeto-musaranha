@@ -15,6 +15,25 @@ namespace Musaranha.Models
 
         public static Venda ObterPorCodigo(int cod) => c.Venda.Find(cod);
 
+        public static void Incluir(Venda venda)
+        {
+            c.Venda.Add(venda);
+            c.SaveChanges();
+        }
+
+        public static void Editar(Venda venda)
+        {
+            if(venda.VendaProduto.Count > 0)
+            {
+                c.SaveChanges();
+            }
+            else
+            {
+                c.Dispose();
+                Contexto.Current = new MusaranhaEntities();
+            }
+        }
+
         public static void Excluir(Venda venda)
         {
             Venda temp = ObterPorCodigo(venda.CodVenda);

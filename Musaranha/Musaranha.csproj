@@ -233,6 +233,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FuncionarioPagamentoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioReciboViewModel.cs" />
+    <Compile Include="ViewModels\VendaEditarViewModel.cs" />
     <Compile Include="ViewModels\VendaIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -269,6 +270,7 @@
     <Content Include="Views\Funcionario\Recibo.cshtml" />
     <Content Include="Views\Venda\Partials\_Lista.cshtml" />
     <Content Include="Views\Venda\Partials\_Itens.cshtml" />
+    <Content Include="Views\Venda\Partials\_Editar.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
