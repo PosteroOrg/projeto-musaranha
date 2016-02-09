@@ -249,7 +249,7 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
             }
         });
 
-        $('button.recibo').click(function () {
+        $('button.recibo').off().click(function () {
             var splitedMesAno = $('#txtMesAnoReferencia').val().split('/'),
                 codigo = $('#txtCodigoFuncionario').val(),
                 mes = splitedMesAno[0],
