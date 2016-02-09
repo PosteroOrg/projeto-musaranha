@@ -1,0 +1,32 @@
+﻿@model Venda
+
+<h4 class="header">Itens da Venda</h4>
+<div class="input-control col s9">
+    <label for="txtItensCliente">Cliente</label>
+    <input type="text" name="txtItensCliente" id="txtItensCliente" value="@Model.Cliente.Pessoa.Nome" readonly>
+</div>
+<div class="input-control col s3">
+    <label for="txtItensData">Data</label>
+    <input type="text" name="txtItensData" id="txtItensData" value="@Model.DtVenda.ToString("dd/MM/yyyy")" readonly>
+</div>
+<table class="table">
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço Unitário</th>
+            <th>Valor Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VendaProduto item in Model.VendaProduto)
+        {
+            <tr>
+                <td>@item.Produto.Descricao</td>
+                <td>@item.QuantidadeUnidade</td>
+                <td>@item.PrecoUnitario.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+                <td>@item.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+            </tr>
+        }
+    </tbody>
+</table>

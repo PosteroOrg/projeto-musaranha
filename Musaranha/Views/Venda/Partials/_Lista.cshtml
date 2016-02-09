@@ -1,0 +1,16 @@
+﻿@model List<Venda>
+
+@foreach (Venda venda in Model)
+{
+    <tr data-venda="@venda.CodVenda">
+        <td>@venda.DtVenda.ToString("dd/MM/yyyy")</td>
+        <td>@venda.Cliente.Pessoa.Nome</td>
+        <td>@(venda.Desconto?.ToString("C",new System.Globalization.CultureInfo("pt-BR")) ?? "R$ 0,00")</td>
+        <td>@venda.ValorTotal.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+        <td>
+            <button data-target="itens" class="itens modal-trigger btn green darken-1 waves-effect">Itens</button>
+            <button class="editar btn blue darken-1 waves-effect">Editar</button>
+            <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+        </td>
+    </tr>
+}
