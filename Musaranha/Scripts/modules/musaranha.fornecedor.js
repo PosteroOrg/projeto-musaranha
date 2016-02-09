@@ -184,6 +184,25 @@
             $('#txtTelefone').addClass("invalid");
             valido = false;
         }
+        if ($('#txtCPFOuCNPJ').val()) {
+            var CPFOuCNPJ = $('#txtCPFOuCNPJ').val().replace(/\D/g, '');
+            if (CPFOuCNPJ.length == 11) {
+                if (!Musaranha.validarCPF(CPFOuCNPJ)) {
+                    $('#txtCPFOuCNPJ').addClass("invalid");
+                    valido = false;
+                }
+            }
+            else if (CPFOuCNPJ.length == 14) {
+                if (!Musaranha.validarCNPJ(CPFOuCNPJ)) {
+                    $('#txtCPFOuCNPJ').addClass("invalid");
+                    valido = false;
+                }
+            }
+            else {
+                $('#txtCPFOuCNPJ').addClass("invalid");
+                valido = false;
+            }
+        }
 
         return valido;
     }
