@@ -254,7 +254,9 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                 codigo = $('#txtCodigoFuncionario').val(),
                 mes = splitedMesAno[0],
                 ano = splitedMesAno[1];
-            location.replace("/funcionario/recibo/"+codigo+"?ano="+ano+"&mes="+mes);
+            if (codigo && mes && ano) {
+                location.replace("/funcionario/recibo/" + codigo + "?ano=" + ano + "&mes=" + mes);
+            }
         });
     }
 
