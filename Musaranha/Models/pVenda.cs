@@ -14,5 +14,15 @@ namespace Musaranha.Models
         public static List<Venda> Listar() => c.Venda.ToList();
 
         public static Venda ObterPorCodigo(int cod) => c.Venda.Find(cod);
+
+        public static void Excluir(Venda venda)
+        {
+            Venda temp = ObterPorCodigo(venda.CodVenda);
+            if (temp != null)
+            {
+                c.Venda.Remove(temp);
+                c.SaveChanges();
+            }
+        }
     }
 }

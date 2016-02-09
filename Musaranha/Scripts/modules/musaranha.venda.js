@@ -4,7 +4,6 @@
         $('.datepicker').pickadate();
         $('.modal-trigger').leanModal();
 
-
         $('button.incluir').off('click').click(function () {
             abrirModalInclusao();
         });
@@ -14,7 +13,13 @@
         });
 
         $('button.excluir').off('click').click(function () {
-            $('.excluir.modal').openModal();
+            var $tr = $(this).parents('tr');
+            var venda = $tr.data('venda');
+            var data = $tr.find('td').eq(0).text();
+            var cliente = $tr.find('td').eq(1).text();
+            var desconto = $tr.find('td').eq(2).text();
+            var valorTotal = $tr.find('td').eq(3).text();
+            abrirModalExclusao(venda, data, cliente, desconto, valorTotal);
         });
 
         $('#txtProduto, #txtUnidade').off('change').change(function () {
@@ -37,6 +42,49 @@
         });
     }
 
+    function abrirModalExclusao(venda, data, cliente, desconto, valorTotal) {
+        var $modal = $('.excluir.modal');
+        $modal.find('.info').html('');
+        $modal.find('.info').append('<p><b>Data: </b>' + data + '</p>');
+        $modal.find('.info').append('<p><b>Cliente: </b>' + cliente + '</p>');
+        $modal.find('.info').append('<p><b>Desconto: </b>' + desconto + '</p>');
+        $modal.find('.info').append('<p><b>Valor Total: </b>' + valorTotal + '</p>');
+
+        $modal.find('.primary').off('click').click(function () {
+            excluir(venda);
+        });
+
+        $modal.openModal();
+    }
+
+    function excluir(venda) {
+        $.ajax({
+            type: 'POST',
+            url: '/venda/excluir/' + venda,
+            beforeSend: function () {
+                $('form.excluir.modal .modal-footer').append(
+                   '<div class="progress">' +
+                     '<div class="indeterminate"></div>' +
+                   '</div>'
+               );
+            },
+            success: function (vendas) {
+                var $tbody = $('.table.vendas tbody');
+                $tbody.html(vendas);
+                Materialize.toast('Venda excluída com sucesso', 4000);
+                iniciar();
+            },
+            error: function () {
+                Materialize.toast('Ocorreu um erro na exclusão da Venda', 4000);
+            },
+            complete: function () {
+                $('form.excluir.modal .modal-footer .progress').remove();
+                $('form.excluir.modal').find('.info').html('');
+                $('form.excluir.modal').closeModal();
+            }
+        })
+    }
+
     function carregarItens(venda) {
         $.ajax({
             type: 'POST',
@@ -56,7 +104,7 @@
         $('select').material_select();
 
         $modal.find('.header').text('Incluir Venda');
-        $modal.find('.primary').text('Incluir').off().click(function () {
+        $modal.find('.primary').text('Incluir').off('click').click(function () {
             incluir();
         });
 

@@ -69,5 +69,18 @@ namespace Musaranha.Controllers
             }
             return Json(false);
         }
+
+        // POST: venda/excluir/5
+        [HttpPost]
+        public ActionResult Excluir(int cod)
+        {
+            if (cod != 0)
+            {
+                Venda venda = Venda.ObterPorCodigo(cod);
+                Venda.Excluir(venda);
+                return PartialView("_Lista", Venda.Listar());
+            }
+            return Json(false);
+        }
     }
 }
