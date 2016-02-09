@@ -13,7 +13,7 @@
             today: 'Hoje',
             clear: 'Limpar',
             close: 'Fechar',
-            format: 'd !de mmmm !de yyyy',
+            format: 'dd/mm/yyyy',
             formatSubmit: 'yyyy-mm-dd'
         });
 
@@ -51,6 +51,7 @@
     }
 
     function ativarMask() {
+        $('.mask-mes-ano').unmask().mask('00/0000', { clearIfNotMatch: true });
         $('.mask-cep').unmask().mask('00000-000');
         $('.mask-dinheiro').unmask().mask('#.##0,00', { reverse: true });
         $('.mask-numero').unmask().mask('#0', { reverse: true });
