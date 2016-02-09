@@ -1,4 +1,6 @@
 ﻿Musaranha.Venda = Musaranha.Venda || (function () {
+    var _ajax;
+
     function iniciar() {
         $('select').material_select();
         $('.datepicker').pickadate();
@@ -39,6 +41,37 @@
         $('button.itens').off('click').click(function () {
             carregarItens($(this).closest('[data-venda]').data('venda'));
             $('#itens.modal').openModal();
+        });
+
+        $('section#filtro :input').off('change').change(function () {
+            filtrar();
+        });
+    }
+
+    function limparFiltro()
+    {
+        $('section#filtro :input').val('');
+    }
+
+    function filtrar() {
+        var cliente = $('#txtFiltroCliente').val(),
+            produto = $('#txtFiltroProduto').val(),
+            dataInicio = $('#txtFiltroDataInicio').val(),
+            dataTermino = $('#txtFiltroDataTermino').val();
+
+        if (_ajax && _ajax.readyState != 4) {
+            _ajax.abort();
+        }
+
+        _ajax = $.ajax({
+            type: 'POST',
+            url: '/venda/listar',
+            data: { cliente, produto, dataInicio, dataTermino },
+            success: function (vendas) {
+                var $tbody = $('.table.vendas tbody');
+                $tbody.html(vendas);
+                iniciar();
+            }
         });
     }
 
@@ -85,6 +118,7 @@
                     $tbody.html(vendas);
                     Materialize.toast('Venda editada com sucesso', 4000);
                     iniciar();
+                    limparFiltro();
                 },
                 error: function () {
                     Materialize.toast('Ocorreu um erro na edição da Venda', 4000);
@@ -135,6 +169,7 @@
                 $tbody.html(vendas);
                 Materialize.toast('Venda excluída com sucesso', 4000);
                 iniciar();
+                limparFiltro();
             },
             error: function () {
                 Materialize.toast('Ocorreu um erro na exclusão da Venda', 4000);
@@ -191,6 +226,7 @@
                     $tbody.html(vendas);
                     Materialize.toast('Venda incluída com sucesso', 4000);
                     iniciar();
+                    limparFiltro();
                 },
                 error: function () {
                     Materialize.toast('Ocorreu um erro na inclusão da Venda', 4000);

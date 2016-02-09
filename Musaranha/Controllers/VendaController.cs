@@ -13,11 +13,43 @@ namespace Musaranha.Controllers
     public class VendaController : Controller
     {
         // GET: Venda
-        public ActionResult Index() => View(new VendaIndexViewModel {
-            Clientes = Cliente.Listar().OrderBy(c=>c.Pessoa.Nome).ToList(),
-            Produtos = Produto.Listar().OrderBy(p=>p.Descricao).ToList(),
-            Vendas = Venda.Listar().OrderByDescending(v=>v.DtVenda).ToList()
+        public ActionResult Index() => View(new VendaIndexViewModel
+        {
+            Clientes = Cliente.Listar().OrderBy(c => c.Pessoa.Nome).ToList(),
+            Produtos = Produto.Listar().OrderBy(p => p.Descricao).ToList(),
+            Vendas = Venda.Listar().OrderByDescending(v => v.DtVenda).ToList()
         });
+
+        // POST: venda/listar
+        [HttpPost]
+        public ActionResult Listar(int cliente, int produto, string dataInicio, string dataTermino)
+        {
+            List<Venda> vendas = Venda.Listar();
+
+            if (cliente > 0)
+            {
+                vendas = vendas.Where(v => v.CodCliente == cliente).ToList();
+            }
+
+            if (produto > 0)
+            {
+                vendas = vendas.Where(v => v.VendaProduto.FirstOrDefault(vp => vp.CodProduto == produto) != null).ToList();
+            }
+
+            if (!String.IsNullOrWhiteSpace(dataInicio))
+            {
+                DateTime data = DateTime.Parse(dataInicio);
+                vendas = vendas.Where(v => v.DtVenda > data).ToList();
+            }
+
+            if (!String.IsNullOrWhiteSpace(dataTermino))
+            {
+                DateTime data = DateTime.Parse(dataTermino + " 23:59:59");
+                vendas = vendas.Where(v => v.DtVenda < data).ToList();
+            }
+
+            return PartialView("_Lista", vendas);
+        }
 
         // POST: venda/itens
         [HttpPost]
@@ -47,9 +79,10 @@ namespace Musaranha.Controllers
                     double quantidade = Double.Parse(form[$"txtQuantidade{n}"], new CultureInfo("pt-BR"));
                     decimal precoUnitario = Decimal.Parse(form[$"txtPrecoUnitario{n}"], new CultureInfo("pt-BR"));
 
-                    if(produto > 0 && !String.IsNullOrWhiteSpace(unidade) && quantidade > 0 && precoUnitario > 0)
+                    if (produto > 0 && !String.IsNullOrWhiteSpace(unidade) && quantidade > 0 && precoUnitario > 0)
                     {
-                        venda.VendaProduto.Add(new VendaProduto {
+                        venda.VendaProduto.Add(new VendaProduto
+                        {
                             CodProduto = produto,
                             Unidade = unidade,
                             Quantidade = quantidade,
@@ -62,7 +95,7 @@ namespace Musaranha.Controllers
                 if (venda.VendaProduto.Count > 0)
                 {
                     Venda.Incluir(venda);
-                }          
+                }
 
                 return PartialView("_Lista", Venda.Listar());
             }
@@ -119,7 +152,7 @@ namespace Musaranha.Controllers
                     }
                     n++;
                 }
-                
+
                 Venda.Editar(venda);
 
                 return PartialView("_Lista", Venda.Listar());
