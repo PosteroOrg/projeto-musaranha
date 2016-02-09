@@ -248,6 +248,14 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                 carregarPagamentos($('#txtFiltroFuncionario').val(), $(this).val());
             }
         });
+
+        $('button.recibo').off().click(function () {
+            var splitedMesAno = $('#txtMesAnoReferencia').val().split('/'),
+                codigo = $('#txtCodigoFuncionario').val(),
+                mes = splitedMesAno[0],
+                ano = splitedMesAno[1];
+            location.replace("/funcionario/recibo/"+codigo+"?ano="+ano+"&mes="+mes);
+        });
     }
 
     function abrirModalInclusao() {

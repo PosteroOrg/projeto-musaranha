@@ -1,0 +1,49 @@
+﻿@model FuncionarioReciboViewModel
+
+@{
+    Layout = null;
+    decimal soma = Model.Pagamentos.Sum(p => p.Valor);
+}
+<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
+    <paragraph style="font-size:18;font-weight:bold;">
+        <chunk>Recibo de Pagamentos</chunk>
+    </paragraph>
+    <newline />
+    <paragraph style="font-family:Helvetica;font-size:12;">
+        <chunk style="font-weight:bold;">Funcionário: </chunk>
+        <chunk>@Model.Funcionario.Pessoa.Nome</chunk>
+        <newline />
+        <chunk style="font-weight:bold;">Carteira de Trabalho: </chunk>
+        <chunk>@Model.Funcionario.NumCarteiraTrabalho</chunk>
+        <newline />
+        <chunk style="font-weight:bold;">Salário: </chunk>
+        <chunk>@Model.Funcionario.Salario.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</chunk>
+        <newline />
+        <chunk style="font-weight:bold;">Mês/Ano de Referência: </chunk>
+        <chunk>@Model.MesReferencia.ToString("00")/@Model.AnoReferencia.ToString("0000")</chunk>
+    </paragraph>
+    <newline />
+    <table width="100%" cellpadding="1.0" cellspacing="1.0" widths="1;1;1">
+        <row>
+            <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true"><chunk style="font-weight:bold;">Data</chunk></cell>
+            <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true"><chunk style="font-weight:bold;">Mês/Ano de Referência</chunk></cell>
+            <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true"><chunk style="font-weight:bold;">Valor Pago</chunk></cell>
+        </row>
+        @foreach (Pagamento pagamento in Model.Pagamentos)
+        {
+            <row>
+                <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@pagamento.DtPagamento.ToString("dd/MM/yyyy")</cell>
+                <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@pagamento.MesReferencia.ToString("00")/@pagamento.AnoReferencia.ToString("0000")</cell>
+                <cell borderwidth="0.5" left="false" right="false" top="false" bottom="true">@pagamento.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</cell>
+            </row>
+        }
+    </table>
+    <newline />
+    <paragraph style="font-family:Helvetica;font-size:12;">
+        <chunk style="font-weight:bold;">Valor dos Pagamentos Feitos: </chunk>
+        <chunk>@soma.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</chunk>
+        <newline />
+        <chunk style="font-weight:bold;">Valor Devendo: </chunk>
+        <chunk>@(((Model.Funcionario.Salario - soma).ToString("C", new System.Globalization.CultureInfo("pt-BR"))) ?? "R$ 0,00")</chunk>
+    </paragraph>
+</itext>

@@ -7,6 +7,8 @@ using System.Web.Mvc;
 using Musaranha.Models;
 using Musaranha.ViewModels;
 
+using RazorPDF;
+
 namespace Musaranha.Controllers
 {
     [Filters.AutenticacaoFilter]
@@ -144,6 +146,18 @@ namespace Musaranha.Controllers
             Contexto.Current.Pagamento.Remove(temp);
             Contexto.Current.SaveChanges();
             return PartialView("_Pagamentos", funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList());
+        }
+
+        // GET: funcionario/recibo/5?ano=2015&mes=5
+        public ActionResult Recibo(int cod, int ano, int mes)
+        {
+            FuncionarioReciboViewModel model = new FuncionarioReciboViewModel();
+            model.Funcionario = Funcionario.ObterPorCodigo(cod);
+            model.Pagamentos = model.Funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList();
+            model.AnoReferencia = ano;
+            model.MesReferencia = mes;
+            Response.AddHeader("Content-Disposition", "attachment; filename=\"recibo-"+model.Funcionario.Pessoa.Nome.Split().First().ToLower()+"-"+mes+"-"+ano+".pdf\"");
+            return new PdfResult(model, "Recibo");
         }
     }
 }

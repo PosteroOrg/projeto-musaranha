@@ -28,7 +28,7 @@
     <tr>
         <th>Valor dos Pagamentos Feitos</th>
         <td>@soma.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
-        <th>Valor Devido</th>
+        <th>Valor Devendo</th>
         <td>@((((Model.FirstOrDefault()?.Funcionario.Salario - soma) as Nullable<decimal>)?.ToString("C", new System.Globalization.CultureInfo("pt-BR"))) ?? "R$ 0,00")</td>
     </tr>
 </tfoot>
