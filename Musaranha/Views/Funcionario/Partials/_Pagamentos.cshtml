@@ -1,0 +1,34 @@
+﻿@model List<Pagamento>
+@{ 
+    decimal soma = Model.Sum(p => p.Valor);
+}
+<thead>
+    <tr>
+        <th>Data</th>
+        <th>Mês/Ano de Referência</th>
+        <th>Valor Pago</th>
+        <th></th>
+    </tr>
+</thead>
+<tbody>
+    @foreach (Pagamento pagamento in Model)
+    {
+        <tr data-pagamento="@pagamento.CodPagamento">
+            <td>@pagamento.DtPagamento.ToString("dd/MM/yyyy")</td>
+            <td>@pagamento.MesReferencia.ToString("00")/@pagamento.AnoReferencia.ToString("0000")</td>
+            <td>@pagamento.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+            <td>
+                <button class="editar btn blue darken-1 waves-effect">Editar</button>
+                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
+            </td>
+        </tr>
+    }    
+</tbody>
+<tfoot class="grey lighten-4">
+    <tr>
+        <th>Valor dos Pagamentos Feitos</th>
+        <td>@soma.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+        <th>Valor Devido</th>
+        <td>@((((Model.FirstOrDefault()?.Funcionario.Salario - soma) as Nullable<decimal>)?.ToString("C", new System.Globalization.CultureInfo("pt-BR"))) ?? "R$ 0,00")</td>
+    </tr>
+</tfoot>

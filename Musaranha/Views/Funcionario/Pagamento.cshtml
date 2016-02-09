@@ -1,4 +1,6 @@
-﻿@{
+﻿@model FuncionarioPagamentoViewModel
+
+@{
     ViewBag.Title = "Pagamento de Salários";
 }
 
@@ -8,26 +10,27 @@
 <form method="post" class="acao modal modal-fixed-footer">
     <div class="modal-content">
         <h4 class="header">Incluir Pagamento</h4>
-        <div class="input-control col s12">
+        <div class="input-control col s8">
             <label for="txtFuncionario">Funcionário</label>
-            <input type="text" name="txtFuncionario" id="txtFuncionario" value="Felipe Pontes" disabled required class="validate">
-        </div>
-        <div class="input-control col s4">
-            <label for="txtData">Data</label>
-            <input type="date" name="txtData" id="txtData" required class="datepicker">
+            <input type="text" name="txtFuncionario" id="txtFuncionario" disabled required class="validate">
+            <input type="text" name="txtCodigoFuncionario" id="txtCodigoFuncionario" hidden disabled>
         </div>
         <div class="input-control col s4">
             <label for="txtMesAnoReferencia">Mês/Ano de Referência</label>
-            <input type="text" name="txtMesAnoReferencia" id="txtMesAnoReferencia" required class="validate">
+            <input type="text" name="txtMesAnoReferencia" id="txtMesAnoReferencia" disabled value="@DateTime.Today.ToString("MM/yyyy")" required class="validate mask-mes-ano">
         </div>
-        <div class="input-control col s4">
+        <div class="input-control col s6">
+            <label for="txtData">Data</label>
+            <input type="date" name="txtData" id="txtData" value="@DateTime.Today.ToString("dd/MM/yyyy")" required class="datepicker">
+        </div>
+        <div class="input-control col s6">
             <label for="txtValorPago">Valor Pago</label>
-            <input type="text" name="txtValorPago" id="txtValorPago" required class="validate">
+            <input type="text" name="txtValorPago" id="txtValorPago" required class="validate mask-dinheiro">
         </div>
     </div>
     <div class="modal-footer">
         <div class="modal-action waves-effect btn primary">Incluir</div>
-        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+        <div class="modal-action modal-close waves-effect btn-flat">Cancelar</div>
     </div>
 </form>
 
@@ -47,69 +50,37 @@
         <button type="reset" class="modal-action modal-close cancelar btn-flat">Cancelar</button>
     </div>
 </form>
+
 <div class="row">
     <div class="col s12 m4">
         <div class="row">
             <div class="input-control col s12">
                 <label for="txtFiltroFuncionario">Funcionário</label>
-                <select name="txtFuncionario" id="txtFuncionario" required class="validate">
-                    <option value="" disabled>Funcionário</option>
-                    <option value="1" selected>Felipe Pontes</option>
-                    <option value="2">Cesar Vagner</option>
+                <select name="txtFiltroFuncionario" id="txtFiltroFuncionario" required class="validate">
+                    <option value="" selected disabled>Funcionário</option>
+                    @foreach (Funcionario funcionario in Model.Funcionarios)
+                    {
+                        <option data-salario="@(funcionario.Salario.ToString("C", new System.Globalization.CultureInfo("pt-BR")))" value="@funcionario.CodPessoa">@funcionario.Pessoa.Nome</option>
+                    }
                 </select>
             </div>
             <div class="input-control col s12">
                 <label for="txtFiltroMesAnoReferencia">Mês/Ano de Referência</label>
-                <input type="text" name="txtFiltroMesAnoReferencia" id="txtFiltroMesAnoReferencia" value="11/2015" required class="validate">
+                <input type="text" name="txtFiltroMesAnoReferencia" id="txtFiltroMesAnoReferencia" value="@DateTime.Today.ToString("MM/yyyy")" required class="validate mask-mes-ano">
             </div>
             <div class="input-control col s12">
                 <label for="txtFiltroSalario">Salário</label>
-                <input type="text" name="txtFiltroSalario" id="txtFiltroSalario" value="780,00" disabled required class="validate">
+                <input type="text" name="txtFiltroSalario" id="txtFiltroSalario" value="" disabled>
             </div>
         </div>
 
         <button class="incluir waves-effect btn">Incluir</button>
-        <button class="waves-effect btn">Pesquisar</button>
+        @*<button class="waves-effect btn">Pesquisar</button>*@
         <button class="waves-effect btn">Recibo</button>
     </div>
     <div class="col s12 m8">
         <table class="table highlight responsive-table pagamentos">
-            <thead>
-                <tr>
-                    <th>Data</th>
-                    <th>Mês/Ano de Referência</th>
-                    <th>Valor Pago</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr data-pagamento="1">
-                    <td>14 de out. de 2015</td>
-                    <td>11/2015</td>
-                    <td>200,00</td>
-                    <td>
-                        <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                        <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-                    </td>
-                </tr>
-                <tr data-pagamento="2">
-                    <td>25 de out. de 2015</td>
-                    <td>11/2015</td>
-                    <td>220,00</td>
-                    <td>
-                        <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                        <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-                    </td>
-                </tr>
-            </tbody>
-            <tfoot class="grey lighten-4">
-                <tr>
-                    <th>Valor dos Pagamentos Feitos</th>
-                    <td>440,00</td>
-                    <th>Valor Devido</th>
-                    <td>340,00</td>
-                </tr>
-            </tfoot>
+            
         </table>
     </div>
 </div>
