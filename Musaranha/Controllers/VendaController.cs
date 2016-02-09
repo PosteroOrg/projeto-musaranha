@@ -39,13 +39,13 @@ namespace Musaranha.Controllers
             if (!String.IsNullOrWhiteSpace(dataInicio))
             {
                 DateTime data = DateTime.Parse(dataInicio);
-                vendas = vendas.Where(v => v.DtVenda > data).ToList();
+                vendas = vendas.Where(v => v.DtVenda >= data).ToList();
             }
 
             if (!String.IsNullOrWhiteSpace(dataTermino))
             {
                 DateTime data = DateTime.Parse(dataTermino + " 23:59:59");
-                vendas = vendas.Where(v => v.DtVenda < data).ToList();
+                vendas = vendas.Where(v => v.DtVenda <= data).ToList();
             }
 
             return PartialView("_Lista", vendas);

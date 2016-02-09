@@ -50,7 +50,9 @@
 
     function limparFiltro()
     {
-        $('section#filtro :input').val('');
+        $('#txtFiltroCliente, #txtFiltroProduto').material_select('destroy');
+        $('#txtFiltroDataInicio, #txtFiltroDataTermino').val('');
+        $('section#filtro select').val(0).material_select();
     }
 
     function filtrar() {
