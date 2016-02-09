@@ -8,6 +8,7 @@ using System.Text.RegularExpressions;
 
 namespace Musaranha.Controllers
 {
+    [Filters.AutenticacaoFilter]
     public class ClienteController : Controller
     {
         // GET: cliente

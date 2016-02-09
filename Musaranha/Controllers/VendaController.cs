@@ -6,6 +6,7 @@ using System.Web.Mvc;
 
 namespace Musaranha.Controllers
 {
+    [Filters.AutenticacaoFilter]
     public class VendaController : Controller
     {
         // GET: Venda

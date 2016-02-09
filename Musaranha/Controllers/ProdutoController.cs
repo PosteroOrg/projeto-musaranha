@@ -7,6 +7,7 @@ using Musaranha.Models;
 
 namespace Musaranha.Controllers
 {
+    [Filters.AutenticacaoFilter]
     public class ProdutoController : Controller
     {
         // GET: produto
