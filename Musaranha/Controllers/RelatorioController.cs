@@ -119,7 +119,9 @@ namespace Musaranha.Controllers
                 tabela.SetWidths(new float[] { 1, 1, 1, 1, 1, 1 });
                 tabela.TotalWidth = document.PageSize.Width - document.RightMargin - document.LeftMargin;
                 tabela.LockedWidth = true;
-                tabela.DefaultCell.Border = Rectangle.BOTTOM_BORDER;
+                tabela.DefaultCell.MinimumHeight = 20;
+                tabela.DefaultCell.Border = Rectangle.BOTTOM_BORDER | Rectangle.TOP_BORDER;
+                tabela.DefaultCell.BorderWidthBottom = 2;
                 Font fontBold = new Font();
                 fontBold.SetStyle(Font.BOLD);
                 tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
@@ -131,6 +133,8 @@ namespace Musaranha.Controllers
                 tabela.AddCell(new Phrase("Quantidade", fontBold));
                 tabela.AddCell(new Phrase("Preço Unitário", fontBold));
                 tabela.AddCell(new Phrase("Valor Total", fontBold));
+                tabela.DefaultCell.Border = Rectangle.BOTTOM_BORDER;
+                tabela.DefaultCell.BorderWidthBottom = 1;
 
                 foreach (Venda venda in vendas)
                 {
@@ -156,17 +160,67 @@ namespace Musaranha.Controllers
 
                 document.Add(Chunk.NEWLINE);
 
-                Phrase totaisDesconto = new Phrase($"Desconto Total: {vendas.Sum(v => v.Desconto)?.ToString("C", new System.Globalization.CultureInfo("pt-BR")) ?? "R$ 0,00"}");
-                totaisDesconto.Font.SetStyle(Font.BOLD);
-                document.Add(totaisDesconto);
-                document.Add(Chunk.TABBING);
-                Phrase totaisValor = new Phrase($"Valor Total (com desconto): {vendas.Sum(v=>v.ValorTotal).ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
-                totaisValor.Font.SetStyle(Font.BOLD);
-                document.Add(totaisValor);
-                document.Add(Chunk.TABBING);
-                Phrase totaisValorSemDesconto = new Phrase($"Valor Total (sem desconto): {vendas.Sum(v => v.ValorTotalSemDesconto).ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
-                totaisValorSemDesconto.Font.SetStyle(Font.BOLD);
-                document.Add(totaisValorSemDesconto);
+                PdfPTable tabelaTotais = new PdfPTable(2);
+                tabelaTotais.SetWidths(new float[] { 1, 1 });
+                tabelaTotais.TotalWidth = document.PageSize.Width - document.RightMargin - document.LeftMargin;
+                tabelaTotais.LockedWidth = true;
+                tabelaTotais.DefaultCell.Border = Rectangle.BOTTOM_BORDER;
+                tabelaTotais.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+
+                PdfPCell totais = new PdfPCell(new Phrase("TOTAIS", fontBold));
+                totais.Colspan = 2;
+                totais.Border = Rectangle.BOTTOM_BORDER;
+                totais.HorizontalAlignment = Element.ALIGN_CENTER;
+                tabelaTotais.AddCell(totais);
+                tabelaTotais.AddCell(new Phrase("Quantidades", fontBold));
+                tabelaTotais.AddCell(new Phrase("Valores", fontBold));
+
+                PdfPTable tabelaQuantidades = new PdfPTable(1);
+                tabelaQuantidades.SetWidths(new float[] { 1 });
+                tabelaQuantidades.TotalWidth = (document.PageSize.Width - document.RightMargin - document.LeftMargin) / 2;
+                tabelaQuantidades.LockedWidth = true;
+                tabelaQuantidades.DefaultCell.Border = Rectangle.NO_BORDER;
+                tabelaQuantidades.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+                Dictionary<string, double> totaisQuantidadePorUnidade = new Dictionary<string, double>();
+                foreach (Venda venda in vendas)
+                {
+                    foreach (string unidade in venda.QuantidadePorUnidade.Keys)
+                    {
+                        if (totaisQuantidadePorUnidade.ContainsKey(unidade))
+                        {
+                            totaisQuantidadePorUnidade[unidade] += venda.QuantidadePorUnidade[unidade];
+                        }
+                        else
+                        {
+                            totaisQuantidadePorUnidade[unidade] = venda.QuantidadePorUnidade[unidade];
+                        }
+                    }
+                }
+                foreach (string unidade in totaisQuantidadePorUnidade.Keys)
+                {
+                    tabelaQuantidades.AddCell($"{totaisQuantidadePorUnidade[unidade]} {unidade}\n");
+                }
+                tabelaTotais.AddCell(tabelaQuantidades);
+
+                PdfPTable tabelaValores = new PdfPTable(2);
+                tabelaValores.SetWidths(new float[] { 3, 1 });
+                tabelaValores.TotalWidth = (document.PageSize.Width - document.RightMargin - document.LeftMargin)/2;
+                tabelaValores.LockedWidth = true;
+                tabelaValores.DefaultCell.Border = Rectangle.NO_BORDER;
+                tabelaValores.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
+
+                tabelaValores.AddCell(new Phrase("Desconto Total:", fontBold));
+                tabelaValores.AddCell(new Phrase(vendas.Sum(v => v.Desconto)?.ToString("C", new System.Globalization.CultureInfo("pt-BR")) ?? "R$ 0,00"));
+
+                tabelaValores.AddCell(new Phrase("Valor Total (com desconto):", fontBold));
+                tabelaValores.AddCell(new Phrase(vendas.Sum(v => v.ValorTotal).ToString("C", new System.Globalization.CultureInfo("pt-BR"))));
+
+                tabelaValores.AddCell(new Phrase("Valor Total (sem desconto):", fontBold));
+                tabelaValores.AddCell(new Phrase(vendas.Sum(v => v.ValorTotalSemDesconto).ToString("C", new System.Globalization.CultureInfo("pt-BR"))));
+
+                tabelaTotais.AddCell(tabelaValores);
+
+                document.Add(tabelaTotais);
 
                 document.Close();
 
