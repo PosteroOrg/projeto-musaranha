@@ -1,4 +1,6 @@
-﻿@{
+﻿@model VendaIndexViewModel
+
+@{
     ViewBag.Title = "Vendas";
 }
 
@@ -8,80 +10,114 @@
 <br />
 <button class="incluir waves-effect btn">Incluir</button>
 <a href="@Url.Action("Vendas", "Relatorio")" class="waves-effect btn">Relatório</a>
+<br />
 
-<form method="post" class="acao modal modal-fixed-footer">
+<section id="filtro">
+    <h5>Filtrar</h5>
+    <div class="input-control col s3">
+        <label for="txtFiltroCliente">Cliente</label>
+        <select name="txtFiltroCliente" id="txtFiltroCliente">
+            <option value="0" selected>Todos</option>
+            @foreach (Cliente cliente in Model.Clientes)
+            {
+                <option value="@cliente.CodPessoa">@cliente.Pessoa.Nome</option>
+            }
+        </select>
+    </div>
+    <div class="input-control col s3">
+        <label for="txtFiltroDataInicio">Data de Início</label>
+        <input type="date" name="txtFiltroDataInicio" id="txtFiltroDataInicio" placeholder="Data de Início" class="datepicker">
+    </div>
+    <div class="input-control col s3">
+        <label for="txtFiltroDataTermino">Data de Término</label>
+        <input type="date" name="txtFiltroDataTermino" id="txtFiltroDataTermino" placeholder="Data de Término" class="datepicker">
+    </div>
+    <div class="input-control col s3">
+        <label for="txtFiltroProduto">Produto</label>
+        <select name="txtFiltroProduto" id="txtFiltroProduto">
+            <option value="0" selected>Todos</option>
+            @foreach (Produto produto in Model.Produtos)
+            {
+                <option value="@produto.CodProduto">@produto.Descricao</option>
+
+            }
+        </select>
+    </div>
+
+</section>
+
+<form method="post" class="incluir modal modal-fixed-footer">
     <div class="modal-content">
         <h4 class="header">Incluir Venda</h4>
         <div class="input-control col s9">
             <label for="txtCliente">Cliente</label>
             <select name="txtCliente" id="txtCliente" required class="validate">
                 <option value="" disabled selected>Cliente</option>
-                <option value="1">Felipe Pontes</option>
-                <option value="2">Fabiano Papaiz</option>
+                @foreach (Cliente cliente in Model.Clientes)
+                {
+                    <option value="@cliente.CodPessoa">@cliente.Pessoa.Nome</option>
+                }
             </select>
         </div>
         <div class="input-control col s3">
             <label for="txtData">Data</label>
-            <input type="date" name="txtData" id="txtData" required class="datepicker">
+            <input type="date" name="txtData" id="txtData" value="@DateTime.Today.ToString("dd/MM/yyyy")" required class="datepicker">
         </div>
-        <div class="section">
+        <section class="itens">
             <h6>Itens da Venda</h6>
             <div class="row">
                 <div class="input-control col s4">
                     <label for="txtProduto">Produto</label>
-                    <select name="txtProduto" id="txtProduto" required class="validate">
-                        <option value="" disabled>Produto</option>
-                        <option value="1" selected>Soja</option>
-                        <option value="2">Milho</option>
+                    <select name="txtProduto1" id="txtProduto" required class="validate">
+                        <option value="" selected disabled>Produto</option>
+                        @foreach (Produto produto in Model.Produtos)
+                        {
+                            <option value="@produto.CodProduto">@produto.Descricao</option>
+
+                        }
                     </select>
                 </div>
                 <div class="input-control col s2">
                     <label for="txtUnidade">Unidade</label>
-                    <input type="text" name="txtUnidade" id="txtUnidade" value="SC" required class="validate">
+                    <input type="text" name="txtUnidade1" id="txtUnidade" maxlength="5" required class="validate">
                 </div>
                 <div class="input-control col s2">
                     <label for="txtQuantidade">Quantidade</label>
-                    <input type="text" name="txtQuantidade" id="txtQuantidade" value="50" required class="validate">
+                    <input type="text" name="txtQuantidade1" id="txtQuantidade" required class="validate mask-numero">
                 </div>
                 <div class="input-control col s2">
                     <label for="txtPrecoUnitario">Preço Unitário</label>
-                    <input type="text" name="txtPrecoUnitario" id="txtPrecoUnitario" value="70,00" required class="validate">
+                    <input type="text" name="txtPrecoUnitario1" id="txtPrecoUnitario" required class="validate mask-dinheiro">
                 </div>
                 <div class="input-control col s2">
                     <label for="txtValorTotal">Valor Total</label>
-                    <input type="text" name="txtValorTotal" id="txtValorTotal" value="3500,00" disabled required class="validate">
+                    <input type="text" name="txtValorTotal1" id="txtValorTotal" disabled class="validate mask-dinheiro">
                 </div>
             </div>
-            <div class="row">
-                <div class="input-control col s4">
-                    <label for="txtProduto">Produto</label>
-                    <select name="txtProduto" id="txtProduto" required class="validate">
-                        <option value="" disabled selected>Produto</option>
-                        <option value="1">Soja</option>
-                        <option value="2">Milho</option>
-                    </select>
-                </div>
-                <div class="input-control col s2">
-                    <label for="txtUnidade">Unidade</label>
-                    <input type="text" name="txtUnidade" id="txtUnidade" required class="validate">
-                </div>
-                <div class="input-control col s2">
-                    <label for="txtQuantidade">Quantidade</label>
-                    <input type="text" name="txtQuantidade" id="txtQuantidade" required class="validate">
-                </div>
-                <div class="input-control col s2">
-                    <label for="txtPrecoUnitario">Preço Unitário</label>
-                    <input type="text" name="txtPrecoUnitario" id="txtPrecoUnitario" required class="validate">
-                </div>
-                <div class="input-control col s2">
-                    <label for="txtValorTotal">Valor Total</label>
-                    <input type="text" name="txtValorTotal" id="txtValorTotal" disabled required class="validate">
-                </div>
-            </div>
+        </section>
+        <div class="input-control col s6">
+            <label for="txtDesconto">Desconto</label>
+            <input type="text" name="txtDesconto" id="txtDesconto" value="0,00" required class="validate mask-dinheiro">
+        </div>
+        <div class="input-control col s6">
+            <label for="txtVendaValor">Valor Total</label>
+            <input type="date" name="txtVendaValor" id="txtVendaValor" value="0,00" disabled class="validate mask-dinheiro">
         </div>
     </div>
     <div class="modal-footer">
         <div class="modal-action waves-effect btn primary">Incluir</div>
+        <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
+    </div>
+</form>
+
+<form method="post" class="editar modal modal-fixed-footer">
+    <div class="modal-content">
+        <div class="progress">
+            <div class="indeterminate"></div>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <div class="modal-action waves-effect btn primary">Editar</div>
         <button type="reset" class="modal-action modal-close waves-effect btn-flat">Cancelar</button>
     </div>
 </form>
@@ -105,46 +141,16 @@
 
 <div id="itens" class="modal modal-fixed-footer">
     <div class="modal-content">
-        <h4 class="header">Itens da Venda</h4>
-        <div class="input-control col s9">
-            <label for="txtCliente">Cliente</label>
-            <input type="text" name="txtCliente" id="txtCliente" value="Felipe Pontes" readonly>
+        <div class="progress">
+            <div class="indeterminate"></div>
         </div>
-        <div class="input-control col s3">
-            <label for="txtData">Data</label>
-            <input type="text" name="txtData" id="txtData" value="31 de agosto, 2015" readonly>
-        </div>
-        <table class="table">
-            <thead>
-                <tr>
-                    <th>Produto</th>
-                    <th>Quantidade</th>
-                    <th>Preço Unitário</th>
-                    <th>Valor Total</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>Soja</td>
-                    <td>50 SC</td>
-                    <td>70,00</td>
-                    <td>3500,00</td>
-                </tr>
-                <tr>
-                    <td>Milho</td>
-                    <td>5 SC</td>
-                    <td>25,00</td>
-                    <td>125,00</td>
-                </tr>
-            </tbody>
-        </table>
     </div>
     <div class="modal-footer">
         <button class="modal-action modal-close btn-flat">Fechar</button>
     </div>
 </div>
 
-<table class="table highlight responsive-table produtos">
+<table class="table highlight responsive-table vendas">
     <thead>
         <tr>
             <th>Data</th>
@@ -155,49 +161,6 @@
         </tr>
     </thead>
     <tbody>
-        <tr>
-            <td>31/08/2015</td>
-            <td>Felipe Pontes</td>
-            <td>0,00</td>
-            <td>3550,00</td>
-            <td>
-                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr>
-            <td>31/08/2015</td>
-            <td>Felipe Pontes</td>
-            <td>0,00</td>
-            <td>3550,00</td>
-            <td>
-                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr>
-            <td>31/08/2015</td>
-            <td>Felipe Pontes</td>
-            <td>0,00</td>
-            <td>3550,00</td>
-            <td>
-                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
-        <tr>
-            <td>31/08/2015</td>
-            <td>Felipe Pontes</td>
-            <td>0,00</td>
-            <td>3550,00</td>
-            <td>
-                <button data-target="itens" class="modal-trigger btn green darken-1 waves-effect">Itens</button>
-                <button class="editar btn blue darken-1 waves-effect">Editar</button>
-                <button class="excluir btn red darken-1 waves-effect">Excluir</button>
-            </td>
-        </tr>
+        @Html.Partial("_Lista", Model.Vendas)        
     </tbody>
 </table>

@@ -18,6 +18,10 @@ namespace Musaranha.Models
 
                 return HttpContext.Current?.Session?["Contexto"] as MusaranhaEntities;
             }
+            set
+            {
+                HttpContext.Current?.Session?.Add("Contexto", value);
+            }
         }
     }
 }
