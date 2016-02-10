@@ -122,9 +122,12 @@ namespace Musaranha.Controllers
                 tabela.DefaultCell.Border = Rectangle.BOTTOM_BORDER;
                 Font fontBold = new Font();
                 fontBold.SetStyle(Font.BOLD);
+                tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
                 tabela.AddCell(new Phrase("Data", fontBold));
+                tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
                 tabela.AddCell(new Phrase("Cliente", fontBold));
                 tabela.AddCell(new Phrase("Produto", fontBold));
+                tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
                 tabela.AddCell(new Phrase("Quantidade", fontBold));
                 tabela.AddCell(new Phrase("Preço Unitário", fontBold));
                 tabela.AddCell(new Phrase("Valor Total", fontBold));
@@ -133,9 +136,16 @@ namespace Musaranha.Controllers
                 {
                     foreach (VendaProduto vendaProduto in venda.VendaProduto)
                     {
+                        if (produto > 0 && vendaProduto.CodProduto != produto)
+                        {
+                            continue;
+                        }
+                        tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_CENTER;
                         tabela.AddCell(venda.DtVenda.ToString("dd/MM/yyyy"));
+                        tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_LEFT;
                         tabela.AddCell(venda.Cliente.Pessoa.Nome);
                         tabela.AddCell(vendaProduto.Produto.Descricao);
+                        tabela.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
                         tabela.AddCell(vendaProduto.QuantidadeUnidade);
                         tabela.AddCell(vendaProduto.PrecoUnitario.ToString("C", new System.Globalization.CultureInfo("pt-BR")));
                         tabela.AddCell(vendaProduto.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR")));
