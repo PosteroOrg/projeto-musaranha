@@ -168,7 +168,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Helpers\BinaryContentResult.cs" />
     <Compile Include="Helpers\Criptografia.cs" />
+    <Compile Include="Helpers\PaginacaoPdfPageEventHelper.cs" />
     <Compile Include="Helpers\StringExt.cs" />
     <Compile Include="Models\Acesso.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
@@ -236,6 +238,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\FuncionarioPagamentoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioReciboViewModel.cs" />
+    <Compile Include="ViewModels\RelatorioVendasViewModel.cs" />
     <Compile Include="ViewModels\VendaEditarViewModel.cs" />
     <Compile Include="ViewModels\VendaIndexViewModel.cs" />
   </ItemGroup>

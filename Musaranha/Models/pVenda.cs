@@ -8,6 +8,28 @@ namespace Musaranha.Models
     public partial class Venda
     {
         public decimal ValorTotal => this.VendaProduto.Sum(p => p.Valor) - (this.Desconto ?? 0);
+        public decimal ValorTotalSemDesconto => this.VendaProduto.Sum(p => p.Valor);
+        public Dictionary<string, double> QuantidadePorUnidade
+        {
+            get
+            {
+                Dictionary<string, double> retorno = new Dictionary<string, double>();
+
+                foreach (VendaProduto vendaProduto in this.VendaProduto)
+                {
+                    if (retorno.ContainsKey(vendaProduto.Unidade))
+                    {
+                        retorno[vendaProduto.Unidade] += vendaProduto.Quantidade;
+                    }
+                    else
+                    {
+                        retorno[vendaProduto.Unidade] = vendaProduto.Quantidade;
+                    }
+                }
+
+                return retorno;
+            }
+        }
 
         private static MusaranhaEntities c => Contexto.Current;
 

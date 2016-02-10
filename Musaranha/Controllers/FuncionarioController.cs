@@ -1,10 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using iTextSharp.text;
+using iTextSharp.text.pdf;
 using Musaranha.Models;
 using Musaranha.ViewModels;
 
@@ -155,7 +157,7 @@ namespace Musaranha.Controllers
             model.Pagamentos = model.Funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList();
             model.AnoReferencia = ano;
             model.MesReferencia = mes;
-            Response.AddHeader("Content-Disposition", "attachment; filename=\"recibo-"+model.Funcionario.Pessoa.Nome.Split().First().ToLower()+"-"+mes+"-"+ano+".pdf\"");
+            Response.AddHeader("Content-Disposition", "attachment; filename=\"recibo-" + model.Funcionario.Pessoa.Nome.Split().First().ToLower() + "-" + mes + "-" + ano + ".pdf\"");
             return new MvcRazorToPdf.PdfActionResult("Recibo", model, (writer, document) =>
             {
                 document.SetPageSize(PageSize.A4);
