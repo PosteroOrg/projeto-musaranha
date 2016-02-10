@@ -160,9 +160,13 @@ namespace Musaranha.Controllers
                 totaisDesconto.Font.SetStyle(Font.BOLD);
                 document.Add(totaisDesconto);
                 document.Add(Chunk.TABBING);
-                Phrase totaisValor = new Phrase($"Valor Total: {vendas.Sum(v=>v.ValorTotal).ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
+                Phrase totaisValor = new Phrase($"Valor Total (com desconto): {vendas.Sum(v=>v.ValorTotal).ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
                 totaisValor.Font.SetStyle(Font.BOLD);
                 document.Add(totaisValor);
+                document.Add(Chunk.TABBING);
+                Phrase totaisValorSemDesconto = new Phrase($"Valor Total (sem desconto): {vendas.Sum(v => v.ValorTotalSemDesconto).ToString("C", new System.Globalization.CultureInfo("pt-BR"))}");
+                totaisValorSemDesconto.Font.SetStyle(Font.BOLD);
+                document.Add(totaisValorSemDesconto);
 
                 document.Close();
 

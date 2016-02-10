@@ -8,6 +8,7 @@ namespace Musaranha.Models
     public partial class Venda
     {
         public decimal ValorTotal => this.VendaProduto.Sum(p => p.Valor) - (this.Desconto ?? 0);
+        public decimal ValorTotalSemDesconto => this.VendaProduto.Sum(p => p.Valor);
 
         private static MusaranhaEntities c => Contexto.Current;
 
