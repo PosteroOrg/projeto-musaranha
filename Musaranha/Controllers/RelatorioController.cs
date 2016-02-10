@@ -154,7 +154,6 @@ namespace Musaranha.Controllers
                 totaisValor.Font.SetStyle(Font.BOLD);
                 document.Add(totaisValor);
 
-
                 document.Close();
 
                 Response.AddHeader("Content-Disposition", "attachment; filename=\"relatorio-vendas-"+ DateTime.Today.ToString("dd-MM-yyyy") +".pdf\"");

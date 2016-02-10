@@ -158,30 +158,11 @@ namespace Musaranha.Controllers
             model.AnoReferencia = ano;
             model.MesReferencia = mes;
             Response.AddHeader("Content-Disposition", "attachment; filename=\"recibo-" + model.Funcionario.Pessoa.Nome.Split().First().ToLower() + "-" + mes + "-" + ano + ".pdf\"");
-            //return new MvcRazorToPdf.PdfActionResult("Recibo", model, (writer, document) =>
-            //{
-            //    document.SetPageSize(PageSize.A4);
-            //    document.NewPage();
-            //});
-
-            MemoryStream memStream = new MemoryStream();
-            Document document = new Document(PageSize.A4, 36, 36, 54, 36);
-            PdfWriter writer = PdfWriter.GetInstance(document, memStream);
-            writer.CloseStream = false;
-            writer.PageEvent = new PaginacaoPdfPageEventHelper();
-
-            document.Open();
-            for (int i = 0; i < 30; i++)
+            return new MvcRazorToPdf.PdfActionResult("Recibo", model, (writer, document) =>
             {
-                document.Add(new Paragraph("Maecenas laoreet turpis ac fringilla rutrum. Proin porta odio id consectetur maximus. Curabitur lobortis nisl felis, varius pellentesque est facilisis et. Phasellus nec pulvinar sem, vel tincidunt arcu. Aenean sit amet lacus ac tortor suscipit malesuada in eu ante. Donec eleifend quis urna at lacinia. Nam tristique et elit non efficitur. Etiam et scelerisque velit. Mauris auctor lectus nec pharetra varius. Quisque pharetra erat nec ante gravida, auctor pretium velit fringilla."));
-            }
-            document.Close();
-
-            byte[] buf = new byte[memStream.Position];
-            memStream.Position = 0;
-            memStream.Read(buf, 0, buf.Length);
-
-            return new BinaryContentResult(buf, "application/pdf");
+                document.SetPageSize(PageSize.A4);
+                document.NewPage();
+            });
         }
     }
 }
