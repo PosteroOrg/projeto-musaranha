@@ -1,11 +1,13 @@
-﻿@{
+﻿@model RelatorioVendasViewModel
+
+@{
     ViewBag.Title = "Relatório de Vendas";
 }
 
 <h3>@ViewBag.Title <i class="medium material-icons right">import_export</i></h3>
 <div class="divider"></div>
 <br />
-<form method="post">
+<form action="@Url.Action("Vendas")" method="post">
     <div class="row">
         <div class="input-control col s6">
             <label for="txtDataInicio">Data Ínicio</label>
@@ -15,20 +17,24 @@
             <label for="txtDataTermino">Data Término</label>
             <input type="date" name="txtDataTermino" id="txtDataTermino" required class="datepicker">
         </div>
-        <div class="input-control col s12">
-            <label for="txtProduto">Produto</label>
-            <select name="txtProduto" id="txtProduto" required class="validate">
-                <option value="0" selected>Todos</option>
-                <option value="1">Frango Vivo</option>
-                <option value="2">Galinha Caipira</option>
-            </select>
-        </div>
-        <div class="input-control col s12">
+        <div class="input-control col s6">
             <label for="txtCliente">Cliente</label>
             <select name="txtCliente" id="txtCliente" required class="validate">
                 <option value="0" selected>Todos</option>
-                <option value="1">Felipe Pontes</option>
-                <option value="2">Paulo Trindade</option>
+                @foreach (Cliente cliente in Model.Clientes)
+                {
+                    <option value="@cliente.CodPessoa">@cliente.Pessoa.Nome</option>
+                }
+            </select>
+        </div>
+        <div class="input-control col s6">
+            <label for="txtProduto">Produto</label>
+            <select name="txtProduto" id="txtProduto" required class="validate">
+                <option value="0" selected>Todos</option>
+                @foreach (Produto produto in Model.Produtos)
+                {
+                    <option value="@produto.CodProduto">@produto.Descricao</option>
+                }
             </select>
         </div>
     </div>
