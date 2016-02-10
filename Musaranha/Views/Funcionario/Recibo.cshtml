@@ -4,7 +4,95 @@
     Layout = null;
     decimal soma = Model.Pagamentos.Sum(p => p.Valor);
 }
-<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Recibo de Pagamentos</title>
+    <style>
+        html {
+            font-family: Arial, sans-serif;
+        }
+
+        dl dt {
+            font-weight: bold;
+        }
+
+        table {
+            border-collapse: collapse;
+            border-spacing: 0px;
+            width: 100%;
+        }
+
+            table tr th {
+                text-align: right;
+                padding: 2px;
+            }
+
+            table tr td {
+                text-align: right;
+                margin: 0px;
+                padding: 2px;
+            }
+
+        table, td, th {
+            border: .5px solid black;
+        }
+    </style>
+</head>
+<body>
+    <h1>
+        Recibo de Pagamentos
+    </h1>
+    <p>
+        <b>Funcionário:</b>
+        @Model.Funcionario.Pessoa.Nome
+    </p>
+    <p>
+        <b>Categoria:</b>
+        @Model.Funcionario.GetCategoria
+    </p>
+    <p>
+        <b>Carteira de Trabalho:</b>
+        @Model.Funcionario.NumCarteiraTrabalho
+    </p>
+    <p>
+        <b>Salário:</b>
+        @Model.Funcionario.Salario.ToString("C", new System.Globalization.CultureInfo("pt-BR"))
+    </p>
+    <br />
+    <table>
+        <tr>
+            <th style="text-align: left;">Data</th>
+            <th>Mês de Referência</th>
+            <th>Valor Pago</th>
+        </tr>
+        @foreach (Pagamento pagamento in Model.Pagamentos)
+        {
+            <tr>
+                <td style="text-align: left;">@pagamento.DtPagamento.ToString("dd/MM/yyyy")</td>
+                <td>@pagamento.MesReferencia.ToString("00")/@pagamento.AnoReferencia.ToString("0000")</td>
+                <td>@pagamento.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+            </tr>
+        }
+    </table>
+    <br />
+    <table>
+        <tr>
+            <th colspan="2">Valor dos Pagamentos Feitos</th>
+            <td>@soma.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
+        </tr>
+        <tr>
+            <th colspan="2">Valor Devendo</th>
+            <td>@(((Model.Funcionario.Salario - soma).ToString("C", new System.Globalization.CultureInfo("pt-BR"))) ?? "R$ 0,00")</td>
+        </tr>
+    </table>
+</body>
+</html>
+
+
+@*<itext creationdate="@DateTime.Now.ToString()" producer="RazorPDF">
     <paragraph style="font-size:18;font-weight:bold;">
         <chunk>Recibo de Pagamentos</chunk>
     </paragraph>
@@ -46,4 +134,4 @@
         <chunk style="font-weight:bold;">Valor Devendo: </chunk>
         <chunk>@(((Model.Funcionario.Salario - soma).ToString("C", new System.Globalization.CultureInfo("pt-BR"))) ?? "R$ 0,00")</chunk>
     </paragraph>
-</itext>
+</itext>*@

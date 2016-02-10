@@ -4,10 +4,9 @@ using System.Globalization;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using iTextSharp.text;
 using Musaranha.Models;
 using Musaranha.ViewModels;
-
-using RazorPDF;
 
 namespace Musaranha.Controllers
 {
@@ -157,7 +156,11 @@ namespace Musaranha.Controllers
             model.AnoReferencia = ano;
             model.MesReferencia = mes;
             Response.AddHeader("Content-Disposition", "attachment; filename=\"recibo-"+model.Funcionario.Pessoa.Nome.Split().First().ToLower()+"-"+mes+"-"+ano+".pdf\"");
-            return new PdfResult(model, "Recibo");
+            return new MvcRazorToPdf.PdfActionResult("Recibo", model, (writer, document) =>
+            {
+                document.SetPageSize(PageSize.A4);
+                document.NewPage();
+            });
         }
     }
 }
