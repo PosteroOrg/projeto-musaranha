@@ -20,20 +20,16 @@ namespace Musaranha.Controllers
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
-            var mensagens = new List<Dictionary<string, string>>();
+            var mensagens = new List<string>();
 
             if (form["txtSenhaNova"] == form["txtConfirmacao"] && Acesso.Autenticado((string)Session["Usuario"], form["txtSenhaAtual"]))
             {
                 Acesso.AlterarSenha((string)Session["Usuario"], form["txtSenhaNova"]);
-                mensagens.Add(new Dictionary<string, string>() {
-                    { "Conteudo", "Senha alterada com sucesso." }, { "Tipo", "success" }
-                });
+                mensagens.Add("Senha alterada com sucesso.");
             }
             else
             {
-                mensagens.Add(new Dictionary<string, string>() {
-                    { "Conteudo", "Ocorreu um erro na tentativa de alterar a senha." }, { "Tipo", "alert" }
-                });
+                mensagens.Add("Ocorreu um erro na tentativa de alterar a senha.");
             }
 
             ViewBag.Mensagens = mensagens;
