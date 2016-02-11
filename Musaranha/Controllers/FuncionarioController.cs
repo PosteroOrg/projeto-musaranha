@@ -130,7 +130,7 @@ namespace Musaranha.Controllers
             Funcionario funcionario = Funcionario.ObterPorCodigo(codigo);
             funcionario.Pagamento.Add(new Pagamento
             {
-                DtPagamento = DateTime.Parse(data),
+                DtPagamento = DateTime.Parse(data, new CultureInfo("pt-BR")),
                 MesReferencia = mes,
                 AnoReferencia = ano,
                 Valor = Decimal.Parse(valor, new CultureInfo("pt-BR"))
@@ -145,7 +145,7 @@ namespace Musaranha.Controllers
         {
             Funcionario funcionario = Funcionario.ObterPorCodigo(codigo);
             Pagamento temp = funcionario.Pagamento.FirstOrDefault(p => p.CodPagamento == pagamento);
-            temp.DtPagamento = DateTime.Parse(data);
+            temp.DtPagamento = DateTime.Parse(data, new CultureInfo("pt-BR"));
             temp.MesReferencia = mes;
             temp.AnoReferencia = ano;
             temp.Valor = Decimal.Parse(valor, new CultureInfo("pt-BR"));
