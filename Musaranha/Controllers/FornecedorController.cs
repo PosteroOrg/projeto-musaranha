@@ -23,7 +23,16 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa = new Pessoa();
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    string numTelefone = form[$"txtTelefone{n}"].SomenteNumeros();
+                    if (numTelefone.Length == 11 || numTelefone.Length == 10)
+                    {
+                        fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = numTelefone });
+                    }
+                    n++;
+                }
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
@@ -69,7 +78,12 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
                 fornecedor.Pessoa.Telefone.Clear();
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form[$"txtTelefone{n}"].SomenteNumeros() });
+                    n++;
+                }
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
@@ -128,7 +142,7 @@ namespace Musaranha.Controllers
             return Json(new
             {
                 Nome = fornecedor.Pessoa.Nome,
-                Telefone = fornecedor.Pessoa.Telefone.First()?.NumTelefone,
+                Telefones = fornecedor.Pessoa.Telefone.Select(t => t.NumTelefone),
                 Logradouro = fornecedor.Pessoa.Endereco?.Logradouro ?? "",
                 Numero = fornecedor.Pessoa.Endereco?.Numero ?? "",
                 Complemento = fornecedor.Pessoa.Endereco?.Complemento ?? "",

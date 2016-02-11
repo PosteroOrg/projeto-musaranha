@@ -273,7 +273,7 @@
         var $lastRow = $section.find('div.row').last();
 
         if (checarItem($lastRow)) {
-            var $cloneRow = $row.clone();
+            var $cloneRow = $lastRow.clone();
             var $select = $cloneRow.find('#txtProduto').clone();
             $cloneRow.find('#txtProduto').closest('div.select-wrapper').remove();
             $cloneRow.find('div.input-control').first().append($select);

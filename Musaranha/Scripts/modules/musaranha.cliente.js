@@ -2,15 +2,15 @@
     function iniciar() {
         $('select').material_select();
 
-        $('button.incluir').off().click(function () {
+        $('button.incluir').off('click').click(function () {
             abrirModalInclusao();
         });
 
-        $('button.editar').off().click(function () {
+        $('button.editar').off('click').click(function () {
             abrirModalEdicao(this);
         });
 
-        $('button.excluir').off().click(function () {
+        $('button.excluir').off('click').click(function () {
             var $tr = $(this).parents('tr');
             var codPessoa = $tr.data('cliente');
             var nome = $tr.find('td').eq(0).text();
@@ -18,13 +18,40 @@
             abrirModalExclusao(codPessoa, nome, telefone);
         });
 
-        $('table tr').hover(function () {
+        $('table tr').off('hover').hover(function () {
             var $tr = $(this);
             var $tfoot = $tr.parents('table').find('tfoot');
             $tfoot.find('[data-campo=endereco]').text($tr.data('endereco'));
             $tfoot.find('[data-campo=cpfcnpj]').text($tr.data('cnpj') || $tr.data('cpf'));
             $tfoot.find('[data-campo=email]').text($tr.data('email'));
         });
+
+        $('input#txtTelefone').off('change').change(function () {
+            novoTelefone($(this));
+        });
+    }
+
+    function novoTelefone($input) {
+        var $section = $input.closest('div.telefones');
+        var $lastInput = $section.find('input[id^=txtTelefone]').last();
+        if (checarTelefone($lastInput)) {
+            var $cloneInput = $lastInput.clone();
+            var n = parseInt($cloneInput.attr('name').replace(/\D/g, ''));
+            var name = $cloneInput.attr('name').replace(/\d/g, '') + (++n);
+            $cloneInput.val('');
+            $cloneInput.attr('name', name);
+            $section.append($cloneInput);
+            iniciar();
+            Musaranha.reativarMask();
+        }
+        else if ($input.val().trim().length == 0) {
+            $lastInput.remove();
+        }
+    }
+
+    function checarTelefone($input) {
+        var telefone = $input.val().replace(/\D/g, '');
+        return (telefone.length == 11 || telefone.length == 10);
     }
 
     function abrirModalInclusao() {
@@ -32,6 +59,9 @@
         $('select').material_select();
 
         $modal.find('.header').text('Incluir Cliente');
+        while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+            $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+        }
         $modal.find('.primary').text('Incluir').off().click(function () {
             incluir();
         });
@@ -45,13 +75,19 @@
         var codPessoa = $(button).parents('tr').data('cliente');
 
         $modal.find('.header').text('Editar Cliente');
-
+        while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+            $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+        }
         $.ajax({
             url: '/cliente/json/' + codPessoa,
             type: 'POST',
             success: function (cliente) {
                 $modal.find('#txtNome').val(cliente.Nome);
-                $modal.find('#txtTelefone').val(cliente.Telefone);
+                for (var i = 0, length = cliente.Telefones.length; i < length; i++) {
+                    var $input = $modal.find('input[id^=txtTelefone]').last();
+                    $input.val(cliente.Telefones[i]);
+                    novoTelefone($input);
+                }
                 $modal.find('#txtLogradouro').val(cliente.Logradouro);
                 $modal.find('#txtNumero').val(cliente.Numero);
                 $modal.find('#txtComplemento').val(cliente.Complemento);
@@ -68,6 +104,7 @@
                 });
 
                 Musaranha.reativarMask();
+                iniciar();
 
                 $modal.openModal();
             }
@@ -109,6 +146,9 @@
                 },
                 complete: function () {
                     $('form.acao.modal .modal-footer .progress').remove();
+                    while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+                        $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+                    }
                     $('form.acao.modal').get(0).reset();
                     $('form.acao.modal').closeModal();
                 }
@@ -139,6 +179,9 @@
                 },
                 complete: function () {
                     $('form.acao.modal .modal-footer .progress').remove();
+                    while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+                        $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+                    }
                     $('form.acao.modal').get(0).reset();
                     $('form.acao.modal').closeModal();
                 }
@@ -183,6 +226,13 @@
         if (!$('#txtTelefone').val()) {
             $('#txtTelefone').addClass("invalid");
             valido = false;
+        }
+        if ($('#txtTelefone').val()) {
+            var telefone = $('#txtTelefone').val().replace(/\D/g, '');
+            if (telefone.length != 10 && telefone.length != 11) {
+                $('#txtTelefone').addClass("invalid");
+                valido = false;
+            }
         }
         if ($('#txtCPFOuCNPJ').val()) {
             var CPFOuCNPJ = $('#txtCPFOuCNPJ').val().replace(/\D/g, '');

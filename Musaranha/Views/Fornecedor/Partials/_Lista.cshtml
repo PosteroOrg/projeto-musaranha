@@ -3,7 +3,7 @@
 {
     <tr data-fornecedor="@fornecedor.CodPessoa" data-endereco="@(fornecedor.Pessoa.Endereco?.ToString())" data-email="@fornecedor.Pessoa.Email" data-tipo="@fornecedor.Pessoa.Tipo" data-cpf="@(fornecedor.Pessoa.CPF?.MaskCPF())" data-cnpj="@(fornecedor.Pessoa.CNPJ?.MaskCNPJ())">
         <td>@fornecedor.Pessoa.Nome</td>
-        <td>@fornecedor.Pessoa.Telefone.First().NumTelefone.MaskTelefone()</td>
+        <td>@fornecedor.Telefone</td>
         <td>@(fornecedor.Pessoa.Endereco?.Cidade)</td>
         <td>@(fornecedor.Pessoa.Endereco?.Estado)</td>
         <td>

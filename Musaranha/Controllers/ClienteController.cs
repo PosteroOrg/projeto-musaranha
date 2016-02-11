@@ -23,7 +23,18 @@ namespace Musaranha.Controllers
                 cliente.Pessoa = new Pessoa();
                 cliente.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 cliente.Pessoa.Nome = form["txtNome"];
-                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    string numTelefone = form[$"txtTelefone{n}"].SomenteNumeros();
+                    if (numTelefone.Length == 11 || numTelefone.Length == 10)
+                    {
+                        cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone =  numTelefone});
+                    }
+                    n++;
+                }
+
                 switch (cliente.Pessoa.Tipo)
                 {
                     case "F":
@@ -69,7 +80,12 @@ namespace Musaranha.Controllers
                 cliente.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 cliente.Pessoa.Nome = form["txtNome"];
                 cliente.Pessoa.Telefone.Clear();
-                cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    cliente.Pessoa.Telefone.Add(new Telefone { NumTelefone = form[$"txtTelefone{n}"].SomenteNumeros() });
+                    n++;
+                }
                 switch (cliente.Pessoa.Tipo)
                 {
                     case "F":
@@ -135,7 +151,7 @@ namespace Musaranha.Controllers
             return Json(new
             {
                 Nome = cliente.Pessoa.Nome,
-                Telefone = cliente.Pessoa.Telefone.First()?.NumTelefone,
+                Telefones = cliente.Pessoa.Telefone.Select(t => t.NumTelefone),
                 Logradouro = cliente.Pessoa.Endereco?.Logradouro ?? "",
                 Numero = cliente.Pessoa.Endereco?.Numero ?? "",
                 Complemento = cliente.Pessoa.Endereco?.Complemento ?? "",
