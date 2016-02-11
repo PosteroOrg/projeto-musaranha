@@ -7,14 +7,19 @@
 <h3>@ViewBag.Title <i class="medium material-icons right">shopping_basket</i></h3>
 <div class="divider"></div>
 
-<br />
-<button class="incluir waves-effect btn">Incluir</button>
-<a href="@Url.Action("Compras", "Relatorio")" class="waves-effect btn">Relatório</a>
-<br />
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <button class="incluir btn-floating btn-large waves-effect" title="Incluir">
+        <i class="large material-icons">add</i>
+    </button>
+    <ul>
+        <li><a href="@Url.Action("Compras", "Relatorio")"  title="Relatório" class="btn-floating waves-effect"><i class="material-icons">equalizer</i></a></li>
+    </ul>
+</div>
+
 
 <section id="filtro">
     <h5>Filtrar</h5>
-    <div class="input-control col s3">
+    <div class="input-control col s12 m3">
         <label for="txtFiltroFornecedor">Fornecedor</label>
         <select name="txtFiltroFornecedor" id="txtFiltroFornecedor">
             <option value="0" selected>Todos</option>
@@ -24,15 +29,15 @@
             }
         </select>
     </div>
-    <div class="input-control col s3">
+    <div class="input-control col s12 m3">
         <label for="txtFiltroDataInicio">Data de Início</label>
         <input type="date" name="txtFiltroDataInicio" id="txtFiltroDataInicio" placeholder="Data de Início" class="datepicker">
     </div>
-    <div class="input-control col s3">
+    <div class="input-control col s12 m3">
         <label for="txtFiltroDataTermino">Data de Término</label>
         <input type="date" name="txtFiltroDataTermino" id="txtFiltroDataTermino" placeholder="Data de Término" class="datepicker">
     </div>
-    <div class="input-control col s3">
+    <div class="input-control col s12 m3">
         <label for="txtFiltroProduto">Produto</label>
         <select name="txtFiltroProduto" id="txtFiltroProduto">
             <option value="0" selected>Todos</option>
@@ -150,7 +155,7 @@
     </div>
 </div>
 
-<table class="table highlight responsive-table compras">
+<table class="table highlight responsive-table bordered compras">
     <thead>
         <tr>
             <th>Data</th>

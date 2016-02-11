@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Linq;
 
 namespace Musaranha.Models
 {
@@ -17,8 +14,8 @@ namespace Musaranha.Models
                 return true;
             }
             return false;
-        }     
-        
+        }
+
         public static void AlterarSenha(string usuario, string senha)
         {
             var acesso = c.Acesso.FirstOrDefault(x => x.Usuario == usuario);
@@ -26,7 +23,7 @@ namespace Musaranha.Models
             {
                 acesso.Senha = Criptografia.GerarMD5Hash(senha);
                 c.SaveChanges();
-            }            
-        }   
+            }
+        }
     }
 }

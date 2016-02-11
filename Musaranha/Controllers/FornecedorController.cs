@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Musaranha.Models;
 
@@ -11,10 +8,10 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class FornecedorController : Controller
     {
-        // GET: fornecedor
+        // GET: /fornecedor
         public ActionResult Index() => View(Fornecedor.Listar());
 
-        // POST: fornecedor/incluir
+        // POST: /fornecedor/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -26,7 +23,16 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa = new Pessoa();
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    string numTelefone = form[$"txtTelefone{n}"].SomenteNumeros();
+                    if (numTelefone.Length == 11 || numTelefone.Length == 10)
+                    {
+                        fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = numTelefone });
+                    }
+                    n++;
+                }
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
@@ -60,7 +66,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/editar/5
+        // POST: /fornecedor/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -72,7 +78,12 @@ namespace Musaranha.Controllers
                 fornecedor.Pessoa.Tipo = form["txtTipo"] ?? "N";
                 fornecedor.Pessoa.Nome = form["txtNome"];
                 fornecedor.Pessoa.Telefone.Clear();
-                fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    fornecedor.Pessoa.Telefone.Add(new Telefone { NumTelefone = form[$"txtTelefone{n}"].SomenteNumeros() });
+                    n++;
+                }
                 switch (fornecedor.Pessoa.Tipo)
                 {
                     case "F":
@@ -108,7 +119,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/excluir/5
+        // POST: /fornecedor/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {
@@ -123,7 +134,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/json/5
+        // POST: /fornecedor/json/5
         [HttpPost]
         public ActionResult Json(int cod)
         {
@@ -131,7 +142,7 @@ namespace Musaranha.Controllers
             return Json(new
             {
                 Nome = fornecedor.Pessoa.Nome,
-                Telefone = fornecedor.Pessoa.Telefone.First()?.NumTelefone,
+                Telefones = fornecedor.Pessoa.Telefone.Select(t => t.NumTelefone),
                 Logradouro = fornecedor.Pessoa.Endereco?.Logradouro ?? "",
                 Numero = fornecedor.Pessoa.Endereco?.Numero ?? "",
                 Complemento = fornecedor.Pessoa.Endereco?.Complemento ?? "",

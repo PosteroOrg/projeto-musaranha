@@ -3,11 +3,11 @@
 {
     <tr data-funcionario="@funcionario.CodPessoa">
         <td>@funcionario.Pessoa.Nome</td>
-        <td>@funcionario.Pessoa.Telefone.First().NumTelefone.MaskTelefone()</td>
-        <td>@funcionario.GetCategoria</td>
+        <td>@funcionario.Telefone</td>
+        <td>@funcionario.CategoriaDescricao</td>
         <td>@funcionario.NumIdentidade</td>
         <td>@funcionario.NumCarteiraTrabalho</td>
-        <td>@funcionario.Salario.ToString("C",new System.Globalization.CultureInfo("pt-BR"))</td>
+        <td>@funcionario.Salario.ToString("C", new System.Globalization.CultureInfo("pt-BR"))</td>
         <td>@funcionario.Observacao</td>
         <td>
             <button class="editar btn blue darken-1 waves-effect">Editar</button>

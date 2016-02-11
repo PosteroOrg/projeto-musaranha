@@ -7,8 +7,11 @@
 <h3>@ViewBag.Title <i class="medium material-icons right">loyalty</i></h3>
 <div class="divider"></div>
 
-<br />
-<button class="incluir waves-effect btn">Incluir</button>
+<div class="fixed-action-btn" style="bottom: 45px; right: 24px;">
+    <button class="incluir btn-floating btn-large waves-effect" title="Incluir">
+        <i class="large material-icons">add</i>
+    </button>
+</div>
 
 <form method="post" class="acao modal modal-fixed-footer">
     <div class="modal-content">
@@ -43,7 +46,7 @@
     </div>
 </form>
 
-<table class="table highlight responsive-table produtos">
+<table class="table highlight responsive-table bordered produtos">
     <thead>
         <tr>
             <th>Código</th>

@@ -1,13 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 
 namespace Musaranha.Models
 {
     public class Contexto
     {
-        public static MusaranhaEntities  Current
+        public static MusaranhaEntities Current
         {
             get
             {

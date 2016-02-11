@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
 
@@ -26,7 +23,7 @@ namespace Musaranha
             table.DefaultCell.FixedHeight = 20;
             table.DefaultCell.Border = Rectangle.NO_BORDER;
             table.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
-            table.AddCell(new Phrase (String.Format("Página {0} de", writer.CurrentPageNumber), ffont));
+            table.AddCell(new Phrase(String.Format("Página {0} de", writer.CurrentPageNumber), ffont));
             PdfPCell cell = new PdfPCell(Image.GetInstance(pageCount));
             cell.Border = Rectangle.NO_BORDER;
             table.AddCell(cell);

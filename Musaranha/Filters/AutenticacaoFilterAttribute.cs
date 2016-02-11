@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Web;
 using System.Web.Mvc;
 
 namespace Musaranha.Filters
@@ -13,7 +10,14 @@ namespace Musaranha.Filters
             var autenticado = HttpContext.Current.Session["Autenticado"];
             if (autenticado == null || autenticado.Equals(false))
             {
-                filterContext.Result = new RedirectResult("~/?continuar=" + filterContext.HttpContext.Request.Path);
+                if (filterContext.HttpContext.Request.HttpMethod.ToUpper() == "GET")
+                {
+                    filterContext.Result = new RedirectResult("~/?continuar=" + filterContext.HttpContext.Request.Path);
+                }
+                else
+                {
+                    filterContext.Result = new JsonResult();
+                }
             }
             base.OnActionExecuting(filterContext);
         }

@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Musaranha.Models;
 
@@ -9,6 +6,7 @@ namespace Musaranha.Controllers
 {
     public class AutenticacaoController : Controller
     {
+        // GET: /
         [HttpGet]
         public ActionResult Index()
         {
@@ -19,6 +17,7 @@ namespace Musaranha.Controllers
             return View();
         }
 
+        // POST: /
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {
@@ -35,6 +34,7 @@ namespace Musaranha.Controllers
             return View();
         }
 
+        // GET: /autenticacao/sair
         public ActionResult Sair()
         {
             Session.Clear();

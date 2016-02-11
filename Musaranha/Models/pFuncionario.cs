@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Musaranha.Models
 {
     public partial class Funcionario
     {
-        public string GetCategoria
+        public string CategoriaDescricao
         {
             get
             {
-                switch (this.Categoria)
+                switch (this.Categoria.ToUpper())
                 {
                     case "M":
                         return "Motorista";
@@ -22,6 +21,8 @@ namespace Musaranha.Models
                 }
             }
         }
+
+        public string Telefone => this.Pessoa.Telefone.Count > 1 ? $"{this.Pessoa.Telefone.First().NumTelefone.MaskTelefone()} +{this.Pessoa.Telefone.Count - 1}" : $"{this.Pessoa.Telefone.FirstOrDefault()?.NumTelefone.MaskTelefone()}";
 
         private static MusaranhaEntities c => Contexto.Current;
 
@@ -72,6 +73,6 @@ namespace Musaranha.Models
         {
             return c.Funcionario.Find(codPessoa);
         }
-        
+
     }
 }

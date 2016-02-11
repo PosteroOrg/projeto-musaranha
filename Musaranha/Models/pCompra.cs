@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Musaranha.Models
 {
@@ -45,7 +43,7 @@ namespace Musaranha.Models
 
         public static void Editar(Compra compra)
         {
-            if(compra.CompraProduto.Count > 0)
+            if (compra.CompraProduto.Count > 0)
             {
                 c.SaveChanges();
             }

@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using Musaranha.Models;
 
 namespace Musaranha.Controllers
@@ -10,10 +6,10 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class ProdutoController : Controller
     {
-        // GET: produto
+        // GET: /produto
         public ActionResult Index() => View(Produto.Listar());
 
-        // POST: produto/incluir
+        // POST: /produto/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -27,7 +23,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: produto/editar/5
+        // POST: /produto/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -41,7 +37,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: produto/excluir/5
+        // POST: /produto/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {

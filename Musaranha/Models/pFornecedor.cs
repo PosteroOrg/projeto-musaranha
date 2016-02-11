@@ -1,12 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Musaranha.Models
 {
     public partial class Fornecedor
     {
+        public string Telefone => this.Pessoa.Telefone.Count > 1 ? $"{this.Pessoa.Telefone.First().NumTelefone.MaskTelefone()} +{this.Pessoa.Telefone.Count - 1}" : $"{this.Pessoa.Telefone.FirstOrDefault()?.NumTelefone.MaskTelefone()}";
+
         private static MusaranhaEntities c => Contexto.Current;
 
         public static void Incluir(Fornecedor fornecedor)
