@@ -45,7 +45,7 @@
         var codPessoa = $(button).parents('tr').data('cliente');
 
         $modal.find('.header').text('Editar Cliente');
-        
+
         $.ajax({
             url: '/cliente/json/' + codPessoa,
             type: 'POST',
@@ -71,7 +71,7 @@
 
                 $modal.openModal();
             }
-        });        
+        });
     }
 
     function abrirModalExclusao(codPessoa, nome, telefone) {
@@ -201,7 +201,7 @@
             else {
                 $('#txtCPFOuCNPJ').addClass("invalid");
                 valido = false;
-            }            
+            }
         }
 
         return valido;

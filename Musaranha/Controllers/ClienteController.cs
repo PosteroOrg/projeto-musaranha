@@ -1,20 +1,17 @@
-﻿using Musaranha.Models;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
-using System.Text.RegularExpressions;
+using Musaranha.Models;
 
 namespace Musaranha.Controllers
 {
     [Filters.AutenticacaoFilter]
     public class ClienteController : Controller
     {
-        // GET: cliente
+        // GET: /cliente
         public ActionResult Index() => View(Cliente.Listar());
 
-        // POST: cliente/incluir
+        // POST: /cliente/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -60,7 +57,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: cliente/editar/5
+        // POST: /cliente/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -115,7 +112,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: cliente/excluir/5
+        // POST: /cliente/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {
@@ -130,7 +127,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: cliente/json/5
+        // POST: /cliente/json/5
         [HttpPost]
         public ActionResult Json(int cod)
         {

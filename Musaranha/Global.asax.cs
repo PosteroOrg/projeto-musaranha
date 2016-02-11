@@ -14,8 +14,6 @@ namespace Musaranha
             BundleConfig.RegisterBundles(BundleTable.Bundles);
             ViewEngines.Engines.Add(new MusaranhaViewEngine());
         }
-
-
     }
 
     public class MusaranhaViewEngine : RazorViewEngine

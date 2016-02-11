@@ -1,7 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Musaranha.Models
 {
@@ -29,7 +27,8 @@ namespace Musaranha.Models
         public static void Excluir(Cliente cliente)
         {
             Cliente temp = ObterPorCodigo(cliente.CodPessoa);
-            if (temp != null) {
+            if (temp != null)
+            {
                 c.Cliente.Remove(temp);
                 c.SaveChanges();
             }

@@ -1,17 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 
 namespace Musaranha.Models
 {
     public partial class Funcionario
     {
-        public string GetCategoria
+        public string CategoriaDescricao
         {
             get
             {
-                switch (this.Categoria)
+                switch (this.Categoria.ToUpper())
                 {
                     case "M":
                         return "Motorista";
@@ -72,6 +71,6 @@ namespace Musaranha.Models
         {
             return c.Funcionario.Find(codPessoa);
         }
-        
+
     }
 }

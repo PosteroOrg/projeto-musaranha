@@ -1,12 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using iTextSharp.text;
-using iTextSharp.text.pdf;
 using Musaranha.Models;
 using Musaranha.ViewModels;
 
@@ -15,14 +12,14 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class FuncionarioController : Controller
     {
-        // GET: Funcionario
+        // GET: /funcionario
         public ActionResult Index()
         {
             List<Funcionario> funcionarios = Funcionario.Listar();
             return View(funcionarios);
         }
 
-        // POST: funcionario/Incluir
+        // POST: /funcionario/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -51,7 +48,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: funcionario/Editar
+        // POST: /funcionario/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -78,7 +75,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: funcionario/Excluir
+        // POST: /funcionario/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {
@@ -93,7 +90,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // GET: funcionario/pagamento
+        // GET: /funcionario/pagamento
         public ActionResult Pagamento()
         {
             FuncionarioPagamentoViewModel model = new FuncionarioPagamentoViewModel();
@@ -101,7 +98,7 @@ namespace Musaranha.Controllers
             return View(model);
         }
 
-        // POST: funcionario/carregarpagamentos
+        // POST: /funcionario/carregarpagamentos
         [HttpPost]
         public ActionResult CarregarPagamentos(int codigo, int mes, int ano)
         {
@@ -109,12 +106,13 @@ namespace Musaranha.Controllers
             return PartialView("_Pagamentos", funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList());
         }
 
-        // POST: funcioanario/incluirpagamento
+        // POST: /funcioanario/incluirpagamento
         [HttpPost]
         public ActionResult IncluirPagamento(int codigo, string data, int mes, int ano, string valor)
         {
             Funcionario funcionario = Funcionario.ObterPorCodigo(codigo);
-            funcionario.Pagamento.Add(new Pagamento {
+            funcionario.Pagamento.Add(new Pagamento
+            {
                 DtPagamento = DateTime.Parse(data),
                 MesReferencia = mes,
                 AnoReferencia = ano,
@@ -124,7 +122,7 @@ namespace Musaranha.Controllers
             return PartialView("_Pagamentos", funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList());
         }
 
-        // POST: funcioanario/editarpagamento
+        // POST: /funcioanario/editarpagamento
         [HttpPost]
         public ActionResult EditarPagamento(int codigo, int pagamento, string data, int mes, int ano, string valor)
         {
@@ -138,7 +136,7 @@ namespace Musaranha.Controllers
             return PartialView("_Pagamentos", funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList());
         }
 
-        // POST: funcioanario/excluirpagamento
+        // POST: /funcioanario/excluirpagamento
         [HttpPost]
         public ActionResult ExcluirPagamento(int codigo, int pagamento, int ano, int mes)
         {
@@ -149,7 +147,7 @@ namespace Musaranha.Controllers
             return PartialView("_Pagamentos", funcionario.Pagamento.Where(p => p.AnoReferencia == ano && p.MesReferencia == mes).ToList());
         }
 
-        // GET: funcionario/recibo/5?ano=2015&mes=5
+        // GET: /funcionario/recibo/5?ano=2015&mes=5
         public ActionResult Recibo(int cod, int ano, int mes)
         {
             FuncionarioReciboViewModel model = new FuncionarioReciboViewModel();

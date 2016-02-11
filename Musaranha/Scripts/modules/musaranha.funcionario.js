@@ -134,7 +134,7 @@
                 '</div>');
         $.ajax({
             type: 'POST',
-            url: '/funcionario/excluir/'+codPessoa,
+            url: '/funcionario/excluir/' + codPessoa,
             success: function (funcionarios) {
                 var $tbody = $('.table.funcionarios tbody');
                 $tbody.html(funcionarios);
@@ -154,46 +154,31 @@
 
     function validarFormulario() {
         var valido = true;
-        var $form = $('form');
-        //var $listaErro = $('<div class="lista erro padding10 bg-red fg-white"></div>');
-
-        //$form.find('.lista.erro').remove();
 
         if (!$('#txtNome').val()) {
             $('#txtNome').addClass("invalid");
-            //$listaErro.append('<li>Preencha o campo Nome</li>');
             valido = false;
         }
         if (!$('#txtTelefone').val()) {
             $('#txtTelefone').addClass("invalid");
-            //$listaErro.append('<li>Preencha o campo Telefone</li>');
             valido = false;
         }
         if (!$('#txtIdentidade').val()) {
             $('#txtIdentidade').addClass("invalid");
-            //$listaErro.append('<li>Preencha o campo Identidade</li>');
             valido = false;
         }
         if (!$('#txtCarteiraTrabalho').val()) {
             $('#txtCarteiraTrabalho').addClass("invalid");
-            //$listaErro.append('<li>Preencha o campo Carteira de Trabalho</li>');
             valido = false;
         }
         if (!$('#txtSalario').val()) {
             $('#txtSalario').addClass("invalid");
-            //$listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;
         }
-        //if (!Musaranha.eDinheiro($('#txtSalario').val())) {
-        //    $('#txtSalario').addClass("invalid");
-        //    $listaErro.append('<li>O campo Salário tem que ser numérico</li>');
-        //    valido = false;
-        //}
         if (!$('#txtCategoria :selected').val()) {
-            //$listaErro.append('<li>Preencha o campo Salário</li>');
             valido = false;
         }
-        
+
         return valido;
     }
 
@@ -279,14 +264,14 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                 valor = $('#txtValorPago').val(),
                 mes = splitedMesAno[0],
                 ano = splitedMesAno[1];
-            
+
             $.ajax({
                 type: 'POST',
                 url: '/funcionario/incluirpagamento',
                 data: {
                     codigo, mes, ano, data, valor
                 },
-                beforeSend: function() {
+                beforeSend: function () {
                     $('form.acao.modal .modal-footer').append(
                         '<div class="progress">' +
                           '<div class="indeterminate"></div>' +
@@ -308,7 +293,7 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                     $('form.acao.modal').closeModal();
                 }
             });
-        }        
+        }
     }
 
     function abrirModalEdicao(button) {
@@ -344,7 +329,7 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                 url: '/funcionario/editarpagamento',
                 data: {
                     codigo, pagamento, mes, ano, data, valor
-                    },
+                },
                 beforeSend: function () {
                     $('form.acao.modal .modal-footer').append(
                         '<div class="progress">' +
@@ -395,8 +380,8 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
             url: '/funcionario/excluirpagamento',
             data: {
                 codigo, pagamento, ano, mes
-            },
-            beforeSend: function() {
+                },
+            beforeSend: function () {
                 $('.excluir.modal .modal-footer').append(
                     '<div class="progress">' +
                       '<div class="indeterminate"></div>' +
@@ -446,8 +431,10 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
                 type: 'POST',
                 url: '/funcionario/carregarpagamentos',
                 data: {
-                    codigo, mes, ano
-                },
+                    codigo,
+                    mes,
+                    ano
+                    },
                 success: function (pagamentos) {
                     var $table = $('table.pagamentos');
                     $table.html(pagamentos);

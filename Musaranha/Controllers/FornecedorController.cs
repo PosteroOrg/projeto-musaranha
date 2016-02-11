@@ -1,8 +1,5 @@
-﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
+﻿using System;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Musaranha.Models;
 
@@ -11,10 +8,10 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class FornecedorController : Controller
     {
-        // GET: fornecedor
+        // GET: /fornecedor
         public ActionResult Index() => View(Fornecedor.Listar());
 
-        // POST: fornecedor/incluir
+        // POST: /fornecedor/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -60,7 +57,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/editar/5
+        // POST: /fornecedor/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -108,7 +105,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/excluir/5
+        // POST: /fornecedor/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {
@@ -123,7 +120,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: fornecedor/json/5
+        // POST: /fornecedor/json/5
         [HttpPost]
         public ActionResult Json(int cod)
         {

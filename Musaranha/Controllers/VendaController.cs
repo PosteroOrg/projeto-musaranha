@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Musaranha.Models;
 using Musaranha.ViewModels;
@@ -12,7 +11,7 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class VendaController : Controller
     {
-        // GET: Venda
+        // GET: /venda
         public ActionResult Index() => View(new VendaIndexViewModel
         {
             Clientes = Cliente.Listar().OrderBy(c => c.Pessoa.Nome).ToList(),
@@ -20,7 +19,7 @@ namespace Musaranha.Controllers
             Vendas = Venda.Listar().OrderByDescending(v => v.DtVenda).ToList()
         });
 
-        // POST: venda/listar
+        // POST: /venda/listar
         [HttpPost]
         public ActionResult Listar(int cliente, int produto, string dataInicio, string dataTermino)
         {
@@ -51,14 +50,14 @@ namespace Musaranha.Controllers
             return PartialView("_Lista", vendas.OrderByDescending(c => c.DtVenda).ToList());
         }
 
-        // POST: venda/itens
+        // POST: /venda/itens/5
         [HttpPost]
         public ActionResult Itens(int cod)
         {
             return PartialView("_Itens", Venda.ObterPorCodigo(cod));
         }
 
-        // POST: venda/incluir
+        // POST: /venda/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -102,7 +101,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: venda/carregareditar/5
+        // POST: /venda/carregareditar/5
         [HttpPost]
         public ActionResult CarregarEditar(int cod)
         {
@@ -117,7 +116,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: venda/editar/5
+        // POST: /venda/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -160,7 +159,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: venda/excluir/5
+        // POST: /venda/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {

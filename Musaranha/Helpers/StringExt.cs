@@ -1,9 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Text.RegularExpressions;
-using System.Web;
 
 namespace Musaranha
 {
@@ -27,7 +24,7 @@ namespace Musaranha
 
         public static string SomenteNumeros(this string str)
         {
-            return new Regex("\\D").Replace(str, ""); 
+            return new Regex("\\D").Replace(str, "");
         }
 
         public static string MaskTelefone(this string str)
@@ -55,8 +52,8 @@ namespace Musaranha
                 return cpf.ToString("###'.'###'.'###'-'##", CultureInfo.InvariantCulture);
             }
             return str;
-        }           
-        
+        }
+
         public static string MaskCNPJ(this string str)
         {
             Int64 cnpj = 0;

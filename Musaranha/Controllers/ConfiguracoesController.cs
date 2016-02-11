@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using System.Collections.Generic;
 using System.Web.Mvc;
 
 using Musaranha.Models;
@@ -11,12 +8,14 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class ConfiguracoesController : Controller
     {
+        // GET: /configuracoes
         [HttpGet]
         public ActionResult Index()
         {
             return View();
         }
 
+        // POST: /configuracoes
         [HttpPost]
         public ActionResult Index(FormCollection form)
         {

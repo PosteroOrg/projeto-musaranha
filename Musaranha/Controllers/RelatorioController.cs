@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Globalization;
 using System.IO;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using iTextSharp.text;
 using iTextSharp.text.pdf;
@@ -15,10 +14,10 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class RelatorioController : Controller
     {
-        // GET: relatorio
+        // GET: /relatorio
         public ActionResult Index() => RedirectToAction("Index", "Painel");
 
-        // GET: relatorio/vendas
+        // GET: /relatorio/vendas
         [HttpGet]
         public ActionResult Vendas()
         {
@@ -30,7 +29,7 @@ namespace Musaranha.Controllers
             });
         }
 
-        // POST: relatorio/vendas
+        // POST: /relatorio/vendas
         [HttpPost]
         public ActionResult Vendas(FormCollection form)
         {
@@ -217,7 +216,7 @@ namespace Musaranha.Controllers
 
                 PdfPTable tabelaValores = new PdfPTable(2);
                 tabelaValores.SetWidths(new float[] { 3, 1 });
-                tabelaValores.TotalWidth = (document.PageSize.Width - document.RightMargin - document.LeftMargin)/2;
+                tabelaValores.TotalWidth = (document.PageSize.Width - document.RightMargin - document.LeftMargin) / 2;
                 tabelaValores.LockedWidth = true;
                 tabelaValores.DefaultCell.Border = Rectangle.NO_BORDER;
                 tabelaValores.DefaultCell.HorizontalAlignment = Element.ALIGN_RIGHT;
@@ -237,7 +236,7 @@ namespace Musaranha.Controllers
 
                 document.Close();
 
-                Response.AddHeader("Content-Disposition", "attachment; filename=\"relatorio-vendas-"+ DateTime.Today.ToString("dd-MM-yyyy") +".pdf\"");
+                Response.AddHeader("Content-Disposition", "attachment; filename=\"relatorio-vendas-" + DateTime.Today.ToString("dd-MM-yyyy") + ".pdf\"");
 
                 byte[] buf = new byte[memStream.Position];
                 memStream.Position = 0;
@@ -249,7 +248,7 @@ namespace Musaranha.Controllers
             return RedirectToAction("Vendas");
         }
 
-        // GET: relatorio/compras
+        // GET: /relatorio/compras
         [HttpGet]
         public ActionResult Compras()
         {
@@ -261,7 +260,7 @@ namespace Musaranha.Controllers
             });
         }
 
-        // POST: relatorio/compras
+        // POST: /relatorio/compras
         [HttpPost]
         public ActionResult Compras(FormCollection form)
         {

@@ -48,8 +48,7 @@
         });
     }
 
-    function limparFiltro()
-    {
+    function limparFiltro() {
         $('#txtFiltroCliente, #txtFiltroProduto').material_select('destroy');
         $('#txtFiltroDataInicio, #txtFiltroDataTermino').val('');
         $('section#filtro select').val(0).material_select();
@@ -125,10 +124,10 @@
                 error: function () {
                     Materialize.toast('Ocorreu um erro na edição da Venda', 4000);
                 },
-                complete: function () {                    
+                complete: function () {
                     $('form.editar.modal .modal-footer .progress').remove();
                     $('form.editar.modal .modal-content').html(
-                        '<div class="progress">'+
+                        '<div class="progress">' +
                             '<div class="indeterminate"></div>' +
                         '</div>'
                     );
@@ -235,7 +234,7 @@
                 },
                 complete: function () {
                     $('form.incluir.modal .modal-footer .progress').remove();
-                    while($('form.incluir.modal section.itens div.row').length > 1) {
+                    while ($('form.incluir.modal section.itens div.row').length > 1) {
                         $('form.incluir.modal section.itens div.row').last().remove();
                     }
                     $('form.incluir.modal').get(0).reset();
@@ -260,8 +259,7 @@
             valido = false;
         }
 
-        if (!checarItem($modal.find('section.itens div.row').first()))
-        {
+        if (!checarItem($modal.find('section.itens div.row').first())) {
             valido = false;
         }
 

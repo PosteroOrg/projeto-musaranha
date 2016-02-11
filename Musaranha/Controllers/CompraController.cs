@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Globalization;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using Musaranha.Models;
 using Musaranha.ViewModels;
@@ -12,7 +11,7 @@ namespace Musaranha.Controllers
     [Filters.AutenticacaoFilter]
     public class CompraController : Controller
     {
-        // GET: Compra
+        // GET: /compra
         public ActionResult Index() => View(new CompraIndexViewModel
         {
             Fornecedores = Fornecedor.Listar().OrderBy(f => f.Pessoa.Nome).ToList(),
@@ -20,7 +19,7 @@ namespace Musaranha.Controllers
             Compras = Compra.Listar().OrderByDescending(c => c.DtCompra).ToList()
         });
 
-        // POST: compra/listar
+        // POST: /compra/listar
         [HttpPost]
         public ActionResult Listar(int fornecedor, int produto, string dataInicio, string dataTermino)
         {
@@ -48,17 +47,17 @@ namespace Musaranha.Controllers
                 compras = compras.Where(v => v.DtCompra <= data).ToList();
             }
 
-            return PartialView("_Lista", compras.OrderByDescending(c=>c.DtCompra).ToList());
+            return PartialView("_Lista", compras.OrderByDescending(c => c.DtCompra).ToList());
         }
 
-        // POST: compra/itens
+        // POST: /compra/itens
         [HttpPost]
         public ActionResult Itens(int cod)
         {
             return PartialView("_Itens", Compra.ObterPorCodigo(cod));
         }
 
-        // POST: compra/incluir
+        // POST: /compra/incluir
         [HttpPost]
         public ActionResult Incluir(FormCollection form)
         {
@@ -102,7 +101,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: compra/carregareditar/5
+        // POST: /compra/carregareditar/5
         [HttpPost]
         public ActionResult CarregarEditar(int cod)
         {
@@ -117,7 +116,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: compra/editar/5
+        // POST: /compra/editar/5
         [HttpPost]
         public ActionResult Editar(int cod, FormCollection form)
         {
@@ -160,7 +159,7 @@ namespace Musaranha.Controllers
             return Json(false);
         }
 
-        // POST: compra/excluir/5
+        // POST: /compra/excluir/5
         [HttpPost]
         public ActionResult Excluir(int cod)
         {
