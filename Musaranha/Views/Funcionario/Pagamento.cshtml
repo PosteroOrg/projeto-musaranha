@@ -60,7 +60,7 @@
                     <option value="" selected disabled>Funcionário</option>
                     @foreach (Funcionario funcionario in Model.Funcionarios)
                     {
-                        <option data-salario="@(funcionario.Salario.ToString("C", new System.Globalization.CultureInfo("pt-BR")))" value="@funcionario.CodPessoa">@funcionario.Pessoa.Nome</option>
+                        <option data-salario="@(funcionario.Salario.ToString("0.00", new System.Globalization.CultureInfo("pt-BR")))" value="@funcionario.CodPessoa">@funcionario.Pessoa.Nome</option>
                     }
                 </select>
             </div>

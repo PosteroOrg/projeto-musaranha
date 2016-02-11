@@ -1,0 +1,89 @@
+﻿@model CompraEditarViewModel
+
+<h4 class="header">Editar Compra</h4>
+<div class="input-control col s9">
+    <label for="txtFornecedor">Fornecedor</label>
+    <select name="txtFornecedor" id="txtFornecedor" required class="validate">
+        <option value="" disabled>Fornecedor</option>
+        @foreach (Fornecedor fornecedor in Model.Fornecedores)
+        {
+            <option @(fornecedor.CodPessoa == Model.Compra.CodFornecedor ? "selected" : "") value="@fornecedor.CodPessoa">@fornecedor.Pessoa.Nome</option>
+        }
+    </select>
+</div>
+<div class="input-control col s3">
+    <label for="txtData">Data</label>
+    <input type="date" name="txtData" id="txtData" value="@Model.Compra.DtCompra.ToString("dd/MM/yyyy")" required class="datepicker">
+</div>
+<section class="itens">
+    <h6>Itens da Compra</h6>
+    @for (int i = 0; i < Model.Compra.CompraProduto.Count; i++)
+    {
+        CompraProduto compraProduto = Model.Compra.CompraProduto.ElementAt(i);
+        <div class="row">
+            <div class="input-control col s4">
+                <label for="txtProduto">Produto</label>
+                <select name="txtProduto@(i + 1)" id="txtProduto" required class="validate">
+                    <option value="" disabled>Produto</option>
+                    @foreach (Produto produto in Model.Produtos)
+                    {
+                        <option @(compraProduto.CodProduto == produto.CodProduto ? "selected" : "") value="@produto.CodProduto">@produto.Descricao</option>
+                    }
+                </select>
+            </div>
+            <div class="input-control col s2">
+                <label for="txtUnidade">Unidade</label>
+                <input type="text" name="txtUnidade@(i + 1)" id="txtUnidade" maxlength="5" value="@compraProduto.Unidade" required class="validate">
+            </div>
+            <div class="input-control col s2">
+                <label for="txtQuantidade">Quantidade</label>
+                <input type="text" name="txtQuantidade@(i + 1)" id="txtQuantidade" value="@compraProduto.Quantidade" required class="validate mask-numero">
+            </div>
+            <div class="input-control col s2">
+                <label for="txtPrecoUnitario">Preço Unitário</label>
+                <input type="text" name="txtPrecoUnitario@(i + 1)" id="txtPrecoUnitario" value="@compraProduto.PrecoUnitario.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" required class="validate mask-dinheiro">
+            </div>
+            <div class="input-control col s2">
+                <label for="txtValorTotal">Valor Total</label>
+                <input type="text" name="txtValorTotal@(i + 1)" id="txtValorTotal" value="@compraProduto.Valor.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
+            </div>
+        </div>
+    }
+    <div class="row">
+        <div class="input-control col s4">
+            <label for="txtProduto">Produto</label>
+            <select name="txtProduto@(Model.Compra.CompraProduto.Count + 1)" id="txtProduto" required class="validate">
+                <option value="" selected disabled>Produto</option>
+                @foreach (Produto produto in Model.Produtos)
+                {
+                    <option value="@produto.CodProduto">@produto.Descricao</option>
+
+                }
+            </select>
+        </div>
+        <div class="input-control col s2">
+            <label for="txtUnidade">Unidade</label>
+            <input type="text" name="txtUnidade@(Model.Compra.CompraProduto.Count + 1)" id="txtUnidade" maxlength="5" required class="validate">
+        </div>
+        <div class="input-control col s2">
+            <label for="txtQuantidade">Quantidade</label>
+            <input type="text" name="txtQuantidade@(Model.Compra.CompraProduto.Count + 1)" id="txtQuantidade" required class="validate mask-numero">
+        </div>
+        <div class="input-control col s2">
+            <label for="txtPrecoUnitario">Preço Unitário</label>
+            <input type="text" name="txtPrecoUnitario@(Model.Compra.CompraProduto.Count + 1)" id="txtPrecoUnitario" required class="validate mask-dinheiro">
+        </div>
+        <div class="input-control col s2">
+            <label for="txtValorTotal">Valor Total</label>
+            <input type="text" name="txtValorTotal@(Model.Compra.CompraProduto.Count + 1)" id="txtValorTotal" disabled class="validate mask-dinheiro">
+        </div>
+    </div>
+</section>
+<div class="input-control col s6">
+    <label for="txtDesconto">Desconto</label>
+    <input type="text" name="txtDesconto" id="txtDesconto" value="@(Model.Compra.Desconto?.ToString("0.00", new System.Globalization.CultureInfo("pt-BR")))" required class="validate mask-dinheiro">
+</div>
+<div class="input-control col s6">
+    <label for="txtCompraValor">Valor Total</label>
+    <input type="date" name="txtCompraValor" id="txtCompraValor" value="@Model.Compra.ValorTotal.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
+</div>
