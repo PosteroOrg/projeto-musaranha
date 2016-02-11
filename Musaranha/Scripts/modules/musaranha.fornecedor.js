@@ -45,7 +45,8 @@
             Musaranha.reativarMask();
         }
         else if ($input.val().trim().length == 0) {
-            $lastInput.remove();
+            if ($section.find('input[id^=txtTelefone]').length > 1)
+                $lastInput.remove();
         }
     }
 

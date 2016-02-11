@@ -31,8 +31,16 @@ namespace Musaranha.Controllers
                 funcionario.Pessoa = new Pessoa();
                 funcionario.Pessoa.Tipo = "F";
                 funcionario.Pessoa.Nome = form["txtNome"];
-                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
-
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    string numTelefone = form[$"txtTelefone{n}"].SomenteNumeros();
+                    if (numTelefone.Length == 11 || numTelefone.Length == 10)
+                    {
+                        funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = numTelefone });
+                    }
+                    n++;
+                }
 
                 /* Funcionario */
                 funcionario.NumIdentidade = form["txtIdentidade"].SomenteNumeros();
@@ -59,7 +67,16 @@ namespace Musaranha.Controllers
                 /* Dados Pessoais */
                 funcionario.Pessoa.Nome = form["txtNome"];
                 funcionario.Pessoa.Telefone.Clear();
-                funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = form["txtTelefone"].SomenteNumeros() });
+                int n = 1;
+                while (!String.IsNullOrWhiteSpace(form[$"txtTelefone{n}"]))
+                {
+                    string numTelefone = form[$"txtTelefone{n}"].SomenteNumeros();
+                    if (numTelefone.Length == 11 || numTelefone.Length == 10)
+                    {
+                        funcionario.Pessoa.Telefone.Add(new Telefone { NumTelefone = numTelefone });
+                    }
+                    n++;
+                }
 
                 /* Funcionario */
                 funcionario.NumIdentidade = form["txtIdentidade"].SomenteNumeros();
@@ -160,6 +177,23 @@ namespace Musaranha.Controllers
             {
                 document.SetPageSize(PageSize.A4);
                 document.NewPage();
+            });
+        }
+
+        // POST: /funcionario/json/5
+        [HttpPost]
+        public ActionResult Json(int cod)
+        {
+            Funcionario funcionario = Funcionario.ObterPorCodigo(cod);
+            return Json(new
+            {
+                Nome = funcionario.Pessoa.Nome,
+                Telefones = funcionario.Pessoa.Telefone.Select(t => t.NumTelefone),
+                NumIdentidade = funcionario.NumIdentidade,
+                NumCarteiraTrabalho = funcionario.NumCarteiraTrabalho,
+                Salario = funcionario.Salario.ToString("0.00", new CultureInfo("pt-BR")),
+                Categoria = funcionario.Categoria,
+                Observacao = funcionario.Observacao
             });
         }
     }

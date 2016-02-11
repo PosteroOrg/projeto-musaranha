@@ -2,27 +2,58 @@
     function iniciar() {
         $('select').material_select();
 
-        $('button.incluir').off().click(function () {
+        $('button.incluir').off('click').click(function () {
             abrirModalInclusao();
         });
 
-        $('button.editar').off().click(function () {
+        $('button.editar').off('click').click(function () {
             abrirModalEdicao(this);
         });
 
-        $('button.excluir').off().click(function () {
+        $('button.excluir').off('click').click(function () {
             var $tr = $(this).parents('[data-funcionario]');
             var codPessoa = $tr.data('funcionario');
             var nome = $tr.find('td').eq(0).text();
             var categoria = $tr.find('td').eq(2).text();
             abrirModalExclusao(codPessoa, nome, categoria);
         });
+
+        $('input#txtTelefone').off('change').change(function () {
+            novoTelefone($(this));
+        });
+    }
+
+    function novoTelefone($input) {
+        var $section = $input.closest('div.telefones');
+        var $lastInput = $section.find('input[id^=txtTelefone]').last();
+        if (checarTelefone($lastInput)) {
+            var $cloneInput = $lastInput.clone();
+            var n = parseInt($cloneInput.attr('name').replace(/\D/g, ''));
+            var name = $cloneInput.attr('name').replace(/\d/g, '') + (++n);
+            $cloneInput.val('');
+            $cloneInput.attr('name', name);
+            $section.append($cloneInput);
+            iniciar();
+            Musaranha.reativarMask();
+        }
+        else if ($input.val().trim().length == 0) {
+            if($section.find('input[id^=txtTelefone]').length > 1)
+                $lastInput.remove();
+        }
+    }
+
+    function checarTelefone($input) {
+        var telefone = $input.val().replace(/\D/g, '');
+        return (telefone.length == 11 || telefone.length == 10);
     }
 
     function abrirModalInclusao() {
         var $modal = $('.acao.modal');
 
         $modal.find('.header').text('Incluir Funcionário');
+        while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+            $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+        }
         $modal.find('.primary').text('Incluir').off().click(function () {
             incluir();
         });
@@ -36,22 +67,36 @@
         var codPessoa = $(button).parents('[data-funcionario]').data('funcionario');
 
         $modal.find('.header').text('Editar Funcionário');
+        while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+            $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+        }
 
-        $modal.find('#txtNome').val($tds.eq(0).text());
-        $modal.find('#txtTelefone').val($tds.eq(1).text());
-        $modal.find('#txtCategoria').val($tds.eq(2).text()[0]);
-        $modal.find('#txtIdentidade').val($tds.eq(3).text());
-        $modal.find('#txtCarteiraTrabalho').val($tds.eq(4).text());
-        $modal.find('#txtSalario').val($tds.eq(5).text().split('R$ ').pop());
-        $modal.find('#txtObservacao').text($tds.eq(6).text());
+        $.ajax({
+            url: '/funcionario/json/' + codPessoa,
+            type: 'POST',
+            success: function (fornecedor) {
+                $modal.find('#txtNome').val(fornecedor.Nome);
+                for (var i = 0, length = fornecedor.Telefones.length; i < length; i++) {
+                    var $input = $modal.find('input[id^=txtTelefone]').last();
+                    $input.val(fornecedor.Telefones[i]);
+                    novoTelefone($input);
+                }
+                $modal.find('#txtCategoria').val(fornecedor.Categoria);
+                $modal.find('#txtIdentidade').val(fornecedor.NumIdentidade);
+                $modal.find('#txtCarteiraTrabalho').val(fornecedor.NumCarteiraTrabalho);
+                $modal.find('#txtSalario').val(fornecedor.Salario);
+                $modal.find('#txtObservacao').text(fornecedor.Observacao);
 
-        $modal.find('.primary').text('Editar').off().click(function () {
-            editar(codPessoa);
+                $modal.find('.primary').text('Editar').off().click(function () {
+                    editar(codPessoa);
+                });
+
+                Musaranha.reativarMask();
+                iniciar();
+
+                $modal.openModal();
+            }
         });
-
-        Musaranha.reativarMask();
-
-        $modal.openModal();
     }
 
     function abrirModalExclusao(codPessoa, nome, categoria) {
@@ -89,6 +134,9 @@
                 },
                 complete: function () {
                     $('form.acao.modal .modal-footer .progress').remove();
+                    while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+                        $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+                    }
                     $('form.acao.modal').get(0).reset();
                     $('form.acao.modal').closeModal();
                 }
@@ -119,6 +167,9 @@
                 },
                 complete: function () {
                     $('form.acao.modal .modal-footer .progress').remove();
+                    while ($('form.acao.modal div.telefones input[id^=txtTelefone]').length > 1) {
+                        $('form.acao.modal div.telefones input[id^=txtTelefone]').last().remove();
+                    }
                     $('form.acao.modal').get(0).reset();
                     $('form.acao.modal').closeModal();
                 }
@@ -162,6 +213,13 @@
         if (!$('#txtTelefone').val()) {
             $('#txtTelefone').addClass("invalid");
             valido = false;
+        }
+        if ($('#txtTelefone').val()) {
+            var telefone = $('#txtTelefone').val().replace(/\D/g, '');
+            if (telefone.length != 10 && telefone.length != 11) {
+                $('#txtTelefone').addClass("invalid");
+                valido = false;
+            }
         }
         if (!$('#txtIdentidade').val()) {
             $('#txtIdentidade').addClass("invalid");
