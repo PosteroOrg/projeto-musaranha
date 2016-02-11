@@ -9,15 +9,15 @@
 <br />
 <form action="@Url.Action("Compras")" method="post">
     <div class="row">
-        <div class="input-control col s6">
+        <div class="input-control col s12 m6">
             <label for="txtDataInicio">Data Ínicio</label>
             <input type="date" name="txtDataInicio" id="txtDataInicio" required class="datepicker">
         </div>
-        <div class="input-control col s6">
+        <div class="input-control col s12 m6">
             <label for="txtDataTermino">Data Término</label>
             <input type="date" name="txtDataTermino" id="txtDataTermino" required class="datepicker">
         </div>
-        <div class="input-control col s6">
+        <div class="input-control col s12 m6">
             <label for="txtFornecedor">Fornecedor</label>
             <select name="txtFornecedor" id="txtFornecedor" required class="validate">
                 <option value="0" selected>Todos</option>
@@ -27,7 +27,7 @@
                 }
             </select>
         </div>
-        <div class="input-control col s6">
+        <div class="input-control col s12 m6">
             <label for="txtProduto">Produto</label>
             <select name="txtProduto" id="txtProduto" required class="validate">
                 <option value="0" selected>Todos</option>
