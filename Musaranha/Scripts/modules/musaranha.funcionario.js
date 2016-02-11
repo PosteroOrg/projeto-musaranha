@@ -253,15 +253,15 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
             selectYears: true
         });
 
-        $('button.incluir').off().click(function () {
+        $('button.incluir').off('click').click(function () {
             abrirModalInclusao();
         });
 
-        $('button.editar').off().click(function () {
+        $('button.editar').off('click').click(function () {
             abrirModalEdicao(this);
         });
 
-        $('button.excluir').off().click(function () {
+        $('button.excluir').off('click').click(function () {
             var $tr = $(this).parents('[data-pagamento]');
             var pagamento = $tr.data('pagamento');
             var funcionario = $('#txtFuncionario').val();
@@ -292,7 +292,7 @@ Musaranha.Funcionario.Pagamento = Musaranha.Funcionario.Pagamento || (function (
             }
         });
 
-        $('button.recibo').off().click(function () {
+        $('button.recibo').off('click').click(function () {
             var splitedMesAno = $('#txtMesAnoReferencia').val().split('/'),
                 codigo = $('#txtCodigoFuncionario').val(),
                 mes = splitedMesAno[0],

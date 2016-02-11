@@ -7,6 +7,18 @@
     <link rel="shortcut icon" href="~/favicon.png" />
     <title>@ViewBag.Title - Musaranha</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/css/materialize.min.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+        }
+
+        main {
+            flex: 1 0 auto;
+        }
+    </style>
+
     @RenderSection("Styles", required: false)
 </head>
 <body>
@@ -37,7 +49,16 @@
             </div>
         </div>
     </main>
-
+    <footer class="page-footer">        
+        <div class="footer-copyright">
+            <div class="row">
+                <div class="col s12">
+                    © @DateTime.Today.Year Póstero Co.
+                    <a class="grey-text text-lighten-4" href="//github.com/PosteroCompany/projeto-musaranha" target="_blank">on GitHub</a>
+                </div>
+            </div>
+        </div>
+    </footer>
     <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.5/js/materialize.min.js"></script>
     @Scripts.Render("~/bundles/js")

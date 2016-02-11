@@ -1,14 +1,14 @@
 ﻿Musaranha.Produto = Musaranha.Produto || (function () {
     function iniciar() {
-        $('button.incluir').off().click(function () {
+        $('button.incluir').off('click').click(function () {
             abrirModalInclusao();
         });
 
-        $('button.editar').off().click(function () {
+        $('button.editar').off('click').click(function () {
             abrirModalEdicao(this);
         });
 
-        $('button.excluir').off().click(function () {
+        $('button.excluir').off('click').click(function () {
             var $tr = $(this).parents('tr');
             var codProduto = $tr.data('produto');
             var descricao = $tr.find('td').eq(1).text();
