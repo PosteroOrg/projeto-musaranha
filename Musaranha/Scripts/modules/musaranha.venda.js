@@ -202,6 +202,9 @@
         $('select').material_select();
 
         $modal.find('.header').text('Incluir Venda');
+        while ($('form.incluir.modal section.itens div.row').length > 1) {
+            $('form.incluir.modal section.itens div.row').last().remove();
+        }
         $modal.find('.primary').text('Incluir').off('click').click(function () {
             incluir();
         });
