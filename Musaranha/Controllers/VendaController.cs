@@ -66,7 +66,7 @@ namespace Musaranha.Controllers
                 Venda venda = new Venda();
 
                 venda.CodCliente = int.Parse(form["txtCliente"]);
-                venda.DtVenda = DateTime.Parse(form["txtData"]);
+                venda.DtVenda = DateTime.Parse(form["txtData"], new CultureInfo("pt-BR"));
                 venda.Desconto = Decimal.Parse(form["txtDesconto"], new CultureInfo("pt-BR"));
 
                 int n = 1;
@@ -125,7 +125,7 @@ namespace Musaranha.Controllers
                 Venda venda = Venda.ObterPorCodigo(cod);
 
                 venda.CodCliente = int.Parse(form["txtCliente"]);
-                venda.DtVenda = DateTime.Parse(form["txtData"]);
+                venda.DtVenda = DateTime.Parse(form["txtData"], new CultureInfo("pt-BR"));
                 venda.Desconto = Decimal.Parse(form["txtDesconto"], new CultureInfo("pt-BR"));
 
                 int n = 1;

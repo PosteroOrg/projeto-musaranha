@@ -66,7 +66,7 @@ namespace Musaranha.Controllers
                 Compra compra = new Compra();
 
                 compra.CodFornecedor = int.Parse(form["txtFornecedor"]);
-                compra.DtCompra = DateTime.Parse(form["txtData"]);
+                compra.DtCompra = DateTime.Parse(form["txtData"], new CultureInfo("pt-BR"));
                 compra.Desconto = Decimal.Parse(form["txtDesconto"], new CultureInfo("pt-BR"));
 
                 int n = 1;
@@ -125,7 +125,7 @@ namespace Musaranha.Controllers
                 Compra compra = Compra.ObterPorCodigo(cod);
 
                 compra.CodFornecedor = int.Parse(form["txtFornecedor"]);
-                compra.DtCompra = DateTime.Parse(form["txtData"]);
+                compra.DtCompra = DateTime.Parse(form["txtData"], new CultureInfo("pt-BR"));
                 compra.Desconto = Decimal.Parse(form["txtDesconto"], new CultureInfo("pt-BR"));
 
                 int n = 1;
