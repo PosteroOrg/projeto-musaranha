@@ -41,11 +41,11 @@
             </div>
             <div class="input-control col s2">
                 <label for="txtPrecoUnitario">Preço Unitário</label>
-                <input type="text" name="txtPrecoUnitario@(i + 1)" id="txtPrecoUnitario" value="@vendaProduto.PrecoUnitario.ToString("C", new System.Globalization.CultureInfo("pt-BR"))" required class="validate mask-dinheiro">
+                <input type="text" name="txtPrecoUnitario@(i + 1)" id="txtPrecoUnitario" value="@vendaProduto.PrecoUnitario.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" required class="validate mask-dinheiro">
             </div>
             <div class="input-control col s2">
                 <label for="txtValorTotal">Valor Total</label>
-                <input type="text" name="txtValorTotal@(i + 1)" id="txtValorTotal" value="@vendaProduto.Valor.ToString("C", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
+                <input type="text" name="txtValorTotal@(i + 1)" id="txtValorTotal" value="@vendaProduto.Valor.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
             </div>
         </div>
     }
@@ -81,9 +81,9 @@
 </section>
 <div class="input-control col s6">
     <label for="txtDesconto">Desconto</label>
-    <input type="text" name="txtDesconto" id="txtDesconto" value="@(Model.Venda.Desconto?.ToString("C", new System.Globalization.CultureInfo("pt-BR")))" required class="validate mask-dinheiro">
+    <input type="text" name="txtDesconto" id="txtDesconto" value="@(Model.Venda.Desconto?.ToString("0.00", new System.Globalization.CultureInfo("pt-BR")))" required class="validate mask-dinheiro">
 </div>
 <div class="input-control col s6">
     <label for="txtVendaValor">Valor Total</label>
-    <input type="date" name="txtVendaValor" id="txtVendaValor" value="@Model.Venda.ValorTotal.ToString("C", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
+    <input type="date" name="txtVendaValor" id="txtVendaValor" value="@Model.Venda.ValorTotal.ToString("0.00", new System.Globalization.CultureInfo("pt-BR"))" disabled class="validate mask-dinheiro">
 </div>

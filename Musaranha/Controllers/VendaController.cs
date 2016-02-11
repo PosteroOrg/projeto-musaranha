@@ -38,17 +38,17 @@ namespace Musaranha.Controllers
 
             if (!String.IsNullOrWhiteSpace(dataInicio))
             {
-                DateTime data = DateTime.Parse(dataInicio);
+                DateTime data = DateTime.Parse(dataInicio, new CultureInfo("pt-BR"));
                 vendas = vendas.Where(v => v.DtVenda >= data).ToList();
             }
 
             if (!String.IsNullOrWhiteSpace(dataTermino))
             {
-                DateTime data = DateTime.Parse(dataTermino + " 23:59:59");
+                DateTime data = DateTime.Parse(dataTermino + " 23:59:59", new CultureInfo("pt-BR"));
                 vendas = vendas.Where(v => v.DtVenda <= data).ToList();
             }
 
-            return PartialView("_Lista", vendas);
+            return PartialView("_Lista", vendas.OrderByDescending(c => c.DtVenda).ToList());
         }
 
         // POST: venda/itens

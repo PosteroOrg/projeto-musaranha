@@ -209,7 +209,9 @@
     <Compile Include="Models\Produto.cs">
       <DependentUpon>Repositorio.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\pCompra.cs" />
     <Compile Include="Models\pVenda.cs" />
+    <Compile Include="Models\pCompraProduto.cs" />
     <Compile Include="Models\pVendaProduto.cs" />
     <Compile Include="Models\Repositorio.Context.cs">
       <AutoGen>True</AutoGen>
@@ -239,7 +241,9 @@
     <Compile Include="ViewModels\FuncionarioPagamentoViewModel.cs" />
     <Compile Include="ViewModels\FuncionarioReciboViewModel.cs" />
     <Compile Include="ViewModels\RelatorioVendasViewModel.cs" />
+    <Compile Include="ViewModels\CompraEditarViewModel.cs" />
     <Compile Include="ViewModels\VendaEditarViewModel.cs" />
+    <Compile Include="ViewModels\CompraIndexViewModel.cs" />
     <Compile Include="ViewModels\VendaIndexViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -277,6 +281,9 @@
     <Content Include="Views\Venda\Partials\_Lista.cshtml" />
     <Content Include="Views\Venda\Partials\_Itens.cshtml" />
     <Content Include="Views\Venda\Partials\_Editar.cshtml" />
+    <Content Include="Views\Compra\Partials\_Editar.cshtml" />
+    <Content Include="Views\Compra\Partials\_Itens.cshtml" />
+    <Content Include="Views\Compra\Partials\_Lista.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
