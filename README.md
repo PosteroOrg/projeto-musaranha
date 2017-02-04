@@ -14,7 +14,7 @@
 
 **Professor**: Fabiano Papaiz
 
-**Arquivo**: [projdesenvsist-projeto.pdf](http://diatinf.ifrn.edu.br/antigo/lib/exe/fetch.php?media=corpodocente:papaiz:09.0-projdesenvsist-projeto.pdf)
+**Arquivo**: [projdesenvsist-projeto.pdf](https://www.dropbox.com/s/zpq4rg86oohkc3f/Descri%C3%A7%C3%A3o%20do%20Projeto.pdf?dl=0)
 
 **Data de Início**: 30 nov. 2015
 
